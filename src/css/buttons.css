@@ -1,0 +1,5 @@
+@import './foundations.css';
+
+button{
+    background-color: var(--primary-color);
+}
