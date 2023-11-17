@@ -1,13 +1,12 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Start from './js/pages/Start'
-import CreateAccount from './js/pages/CreateAccount'
-import Login from './js/pages/Login'
-import Home from './js/pages/Home'
+import  { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Start from './pages/Start'
+import CreateAccount from './pages/CreateAccount'
+import Login from './pages/Login'
+import Home from './pages/Home'
 
 const Layout = () => {
   return (
     <>
-
       <Router>
             <Routes>
               <Route path='/' element={<Start />}/>
@@ -16,6 +15,8 @@ const Layout = () => {
               <Route path='/home' element={ <Home/>}/>
             </Routes>
       </Router>
+      
+      
   
     </>
   )
