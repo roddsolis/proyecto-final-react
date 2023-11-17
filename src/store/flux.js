@@ -2,17 +2,15 @@
 // getActions: obtiene todo lo que este dentro del actions
 // setStore : actualiza la informacion o estado.
 
-const getState = ({getStore, getActions, setStore}) => {
+const getState = () => {
+  return {
+    store:{
+        currentUser: null
+    },
+    actions:{
 
-
-    return {
-        store: {
-            currentUser: null
-        },
-        actions: {
-
-        }
     }
+  }
 }
 
 export default getState
