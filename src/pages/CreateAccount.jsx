@@ -1,8 +1,9 @@
 
 const CreateAccount = () => {
+
   return (
     <div>
-      Pagina para crear cuenta
+        Esta es la pagina para crear una cuenta, todo el codigo relacionado a crear cuenta debe estar aca.
     </div>
   )
 }

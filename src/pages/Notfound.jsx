@@ -2,7 +2,7 @@
 const Notfound = () => {
   return (
     <div>
-      !La página no existe¡
+      Lo sentimos, la página no existe
     </div>
   )
 }

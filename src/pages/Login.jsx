@@ -2,7 +2,7 @@
 const Login = () => {
   return (
     <div>
-      esta es pagina de inicio de sesion
+        Esta es la pagina de incio de seion, todo el codigo relacionado a inicar sesion debe estar aca.    
     </div>
   )
 }
