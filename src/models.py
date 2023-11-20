@@ -4,8 +4,13 @@ db = SQLAlchemy()
 
 
 
-class User(db.Model):
-    __tablename__ = 'users'
+class Alumno(db.Model):
+    __tablename__ = 'alumno'
     id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nullable=False)
+    name = db.Column(db.String)
+    last_name = db.Column(db.String)
+    email = db.Column(db.String)
+    password = db.Column(db.String)
+
+
+    
