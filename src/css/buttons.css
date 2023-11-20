@@ -15,7 +15,7 @@ button{
     font-weight: 600;
     line-height: 21.6px; /* 120% */
     letter-spacing: -0.18px;
-    background: linear-gradient(180deg, var(--primary-4) 0%, var(--primary-5) 100%);
+    background: var(--button-surface-primary);
     color: white;
     height: 56px;
     font-size: 16px;
@@ -23,6 +23,6 @@ button{
 
 
 .btn-primary:hover{
-    background: linear-gradient(180deg, var(--primary-3) 0%, var(--primary-4) 100%);
+    background:var(--button-surface-primary-hover);
 }
 

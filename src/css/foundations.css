@@ -11,11 +11,12 @@
   /* colores neutrales estos se deben aplicar a bordes, sombras, fondos, tipografia*/
 
   --neutral-6: #131417;
-  --neutral-6: #708396;
-  --neutral-6: #b1c3cc;
-  --neutral-6: #d8e1e6;
-  --neutral-6: #e5ebef;
-  --neutral-6: #f0f4f7;
+  --neutral-5: #708396;
+  --neutral-4: #b1c3cc;
+  --neutral-3: #d8e1e6;
+  --neutral-2: #e5ebef;
+  --neutral-1: #f0f4f7;
+
 
   /* estos son colores de sistema y se usan para alertas, mensajes de error, informacion, etc */
 
@@ -38,6 +39,15 @@
   --info-3: #94cbfd;
   --info-2: #dbeefe;
   --info-1: #f1f8ff;
+
+  /* backgrounds */
+
+  --background-brand: var(var(--primary-5));
+  --background-light: var(--neutral-1);
+
+  /* button surface*/
+  --button-surface-primary: linear-gradient(180deg, var(--primary-4) 0%, var(--primary-5) 100%);
+  --button-surface-primary-hover: linear-gradient(180deg, var(--primary-3) 0%, var(--primary-4) 100%);
 
   /* sizes */
 
