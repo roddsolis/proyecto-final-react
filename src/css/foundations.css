@@ -1,3 +1,171 @@
-:root{
-    --primary-color: orange;
+/* este root contiene todos los estilos aplicados en cada vista y componentes */
+:root {
+  /* colores primarios */
+
+  --primary-5: #0E4FC8;
+  --primary-4: #3a7af1;
+  --primary-3: #81adfd;
+  --primary-2: #cfdffc;
+  --primary-1: #e7effd;
+
+  /* colores neutrales estos se deben aplicar a bordes, sombras, fondos, tipografia*/
+
+  --neutral-6: #131417;
+  --neutral-6: #708396;
+  --neutral-6: #b1c3cc;
+  --neutral-6: #d8e1e6;
+  --neutral-6: #e5ebef;
+  --neutral-6: #f0f4f7;
+
+  /* estos son colores de sistema y se usan para alertas, mensajes de error, informacion, etc */
+
+  --danger-4: #ed2647;
+  --danger-3: #f47c90;
+  --danger-2: #fbd3da;
+  --danger-1: #feeef1;
+
+  --warning-4: #febd3b;
+  --warning-3: #fed789;
+  --warning-2: #fff2d8;
+  --warning-1: #fffaf0;
+
+  --success-4: #23cb69;
+  --success-3: #7be0a5;
+  --success-2: #d3f5e1;
+  --success-1: #eefbf3;
+
+  --info-4: #4da8fc;
+  --info-3: #94cbfd;
+  --info-2: #dbeefe;
+  --info-1: #f1f8ff;
+
+  /* sizes */
+
+  --extra-large : 32px;
+  --large : 24px;
+  --medium : 16px;
+  --small : 12px;
+  --extra-small : 8px;
+
+  
+
 }
+
+/* title classes*/
+
+.title-l {
+  font-size: 48px;
+  font-weight: 600;
+  line-height: 59.4px; /* 123.75% */
+  letter-spacing: -0.48px;
+}
+.title-m {
+  font-size: 40px;
+  font-weight: 600;
+  line-height: 59.4px; /* 123.75% */
+  letter-spacing: -0.48px;
+}
+.title-sm {
+  font-size: 38px;
+  font-weight: 600;
+  line-height: 41.8px; /* 110% */
+  letter-spacing: -0.38px;
+}
+
+/* subtitle classes */
+
+.subtitle-l {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 33px; /* 110% */
+  letter-spacing: -0.3px;
+}
+.subtitle-m {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 30.8px; /* 110% */
+  letter-spacing: -0.28px;
+}
+.subtitle-sm {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 26.4px; /* 120% */
+  letter-spacing: -0.22px;
+}
+
+/* paragraph classes */
+
+.paragraph-l {
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 20.8px; /* 115.556% */
+  letter-spacing: -0.18px;
+}
+.paragraph-m {
+    font-size: 16px;
+      font-weight: 400;
+    line-height: 20.8px; /* 130% */
+    letter-spacing: -0.16px;
+}
+.paragraph-s {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20.8px; /* 148.571% */
+  letter-spacing: -0.14px;
+}
+.paragraph-xs {
+    font-size: 12px;
+      font-weight: 400;
+    line-height: 16px; /* 133.333% */
+    letter-spacing: -0.12px;
+}
+
+/* button text classes */
+
+.btn-text-l {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 21.6px; /* 120% */
+  letter-spacing: -0.18px;
+}
+.btn-text-m {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 20.8px; /* 130% */
+  letter-spacing: -0.16px;
+}
+.btn-text-s {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 18.2px; /* 130% */
+  letter-spacing: -0.14px;
+}
+.button-text-xs {
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 15.6px; /* 130% */
+  letter-spacing: -0.12px;
+}
+
+
+/* border radius classes */
+
+.b-radius-xl{
+    border-radius: var(--extra-large);
+}
+.b-radius-l{
+    border-radius: var(--large);
+}
+.b-radius-m{
+    border-radius: var(--medium);
+}
+.b-radius-s{
+    border-radius: var(--small);
+}
+.b-radius-xs{
+    border-radius: var(--extra-small);
+}
+
+/* box-shadows */
+
+

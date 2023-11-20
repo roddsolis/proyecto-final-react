@@ -1,9 +1,10 @@
+import '../css/buttons.css'
 
 const Buttons = () => {
   return (
-    <Buttons>
-      Este es un boton
-    </Buttons>
+    <>
+    <button className='btn-primary'>Button sample</button>
+    </>
   )
 }
 
