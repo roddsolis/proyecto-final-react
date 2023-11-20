@@ -45,10 +45,14 @@
   --background-brand: var(var(--primary-5));
   --background-light: var(--neutral-1);
 
-  /* button surface*/
+  /* button primary surface*/
   --button-surface-primary: linear-gradient(180deg, var(--primary-4) 0%, var(--primary-5) 100%);
   --button-surface-primary-hover: linear-gradient(180deg, var(--primary-3) 0%, var(--primary-4) 100%);
 
+  /* button secondary surface */
+  --button-surface-secondary: linear-gradient(180deg, white 0%, var(--neutral-1) 100%);
+  --button-surface-secondary-hover: linear-gradient(180deg, var(--neutral-1) 0%, var(--neutral-2) 100%);
+  
   /* sizes */
 
   --extra-large : 32px;
