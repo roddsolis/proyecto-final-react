@@ -3,6 +3,7 @@
 @import './cardprofile.css';
 @import './status.css';
 @import './searching.css';
+@import './createAcount.css';
 
 *{
     margin: 0;

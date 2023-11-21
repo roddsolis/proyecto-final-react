@@ -1,0 +1,12 @@
+svg{
+    color:var(--neutral-5);
+    font-size: 28px
+}
+
+.card {
+    border-radius: 0;
+  }
+
+.businessText{
+    color: var(--danger-4);
+}
