@@ -1,0 +1,37 @@
+.contadores{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1em;
+}
+
+.mainContent{
+    padding-top: var(--extra-large);
+    padding-bottom: var(--extra-large);
+
+    & p{
+        color: var(--neutral-5);
+    }
+}
+
+.sessionWrapper{
+    display: flex;
+    flex-direction: column;
+    padding: var(--extra-large);
+    border-radius: var(--medium);
+    background-color: white;
+    gap: var(--medium);
+    box-shadow: 0px 12px 11px -6px var(--neutral-2);
+    margin-bottom: 3em;
+    border: 1px solid var(--neutral-3);
+
+    & p{
+        color: var(--neutral-5);
+    }
+}
+
+.actionWrapper{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}

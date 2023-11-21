@@ -11,7 +11,7 @@
 }
 
 .blue {
-    color: #3A7AF1;
+    color: var(--primary-4);
 }
 
 .card-profile {

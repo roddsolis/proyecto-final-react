@@ -1,0 +1,11 @@
+.counterWrapper{
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap:0.5em;
+    border: 1px solid var(--neutral-3);
+    padding: var(--medium);
+    border-radius: var(--extra-small);
+    box-shadow: 0px 12px 11px -6px var(--neutral-2);
+}

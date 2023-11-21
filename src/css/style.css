@@ -1,9 +1,15 @@
+
+/* todos los imports de css deben estar al inicio */
+/* ejemplo: @import 'mi-archivo-style.css' */
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap';
 @import './foundations.css';
 @import './cardprofile.css';
 @import './status.css';
 @import './searching.css';
 @import './createAcount.css';
+@import './principal.css';
+@import './contadorUsuarios.css';
+@import './categorias.css';
 
 *{
     margin: 0;
@@ -14,24 +20,11 @@
     shape-rendering: geometricPrecision;
 }
 
-
-body{
+#root{
     height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
+    width: 100%;  
 }
 
-.centrado{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    gap: 2em;
-}
 
-/* todos los imports de css deben estar al inicio */
-/* ejemplo: @import 'mi-archivo-style.css' */
 
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import Button from './Button' 
 
 const CardProfile = () => {
     return (
@@ -19,7 +19,7 @@ const CardProfile = () => {
                     </div>
                     <div className="card-profile-navbar-navlink2">
                         <div className="text-left">Método de pago</div>
-                        <div className="text-right blue">Cambiar</div>
+                        <Button btnText={'cambiar'} className={'btn-tertiary btn-m' }/>
                     </div>
                 </div>
                 <div className="card-profile-important text-left">
