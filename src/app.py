@@ -18,22 +18,20 @@ db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
 
-# aca se agregan los endpoints de la base de datos
-
+#Aca se agregan los endpoints de la base de datos
 
 @app.route('/')
 def data():
     data = {
         "name": "Nombre de prueba",
         "correo": "correoprueba@gmail.com"
-    }
+        }
 
     return jsonify(data), 200
 
 @app.route('/user-data', methods=['POST','PUT'])
 def userData():
     pass
-  
 
 if __name__ == '__main__':
     app.run()
