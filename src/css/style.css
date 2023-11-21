@@ -1,5 +1,6 @@
 @import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap';
 @import './foundations.css';
+@import './createAcount.css';
 
 *{
     margin: 0;
