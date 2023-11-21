@@ -10,7 +10,7 @@ class Alumno(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     apellidos = db.Column(db.String(120), nullable=False)
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nulable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False, unique=True)
   
 
 class Tutor(db.Model):
@@ -19,7 +19,7 @@ class Tutor(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     apellidos = db.Column(db.String(120), nullable=False)
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nulable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False, unique=True)
 
 class Perfil(db.Model):
     __tablename__ = 'perfiles'
@@ -41,6 +41,8 @@ class Sala(db.Model):
 
 class Metodo_de_pago(db.Model):
     __tablename__ = 'metodos_de_pago'
+    id = db.Column(db.Integer, primary_key=True)
 
 class Cuenta_bancaria(db.Model):
     __tablename__ = 'cuentas_bancarias'
+    id = db.Column(db.Integer, primary_key=True)
