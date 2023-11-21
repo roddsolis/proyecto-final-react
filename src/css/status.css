@@ -1,0 +1,22 @@
+.card-status {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border: 1px solid #D8E1E6;
+    border-radius: 15px;
+    width: auto;
+    height: auto;
+    padding: 20px;
+}
+
+.card-status-status {
+    border: 1px solid #D8E1E6;
+    border-radius: 10px;
+    padding: 5px 10px;
+    margin-bottom: 10px;
+}
+
+.card-status-text {
+    color: #708396;
+}

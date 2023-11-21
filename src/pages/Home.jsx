@@ -1,9 +1,10 @@
+import CardProfile from "../components/CardProfile"
 
 const Home = () => {
   return (
-    <div>
-      pagina Home
-    </div>
+    <>
+      <CardProfile/>
+    </>
   )
 }
 
