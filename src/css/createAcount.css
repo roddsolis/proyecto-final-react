@@ -1,8 +1,12 @@
 svg{
     color:var(--neutral-5);
-    size: 40px
+    font-size: 28px
 }
 
 .card {
     border-radius: 0;
   }
+
+.businessText{
+    color: var(--danger-4);
+}

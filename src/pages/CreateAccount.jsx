@@ -2,6 +2,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
+import {Link} from "react-router-dom";
 import Button from "../components/Button";
 
 const CreateAccount = () => {
@@ -34,13 +35,13 @@ const CreateAccount = () => {
                                     <div className="row mb-3">
                                         <h5 className="text-center mb-5">Que quieres hacer?</h5>
                                         <div className="col-md-6 mb-4 text-center">
-                                            <input type="checkbox" className="form-check-input" />
+                                            <input type="radio" className="form-check-input" checked/>
                                             <label htmlFor="connected" className="form-check-label mx-2">
-                                                Quiero ensenar
+                                                Quiero enseñar
                                             </label>
                                         </div>
                                         <div className="col-md-6 mb-4 text-center">
-                                            <input type="checkbox" className="form-check-input" />
+                                            <input type="radio" className="form-check-input" />
                                             <label htmlFor="connected" className="form-check-label mx-2">
                                                 Quiero aprender
                                             </label>
@@ -61,7 +62,7 @@ const CreateAccount = () => {
                                     </div>
                                     {/* <!--  PASSWORD INPUT --> */}
                                     <div className="mb-4">
-                                        <input type="password" className="form-control" placeholder="Contrasena"
+                                        <input type="password" className="form-control" placeholder="Contraseña"
                                             name="password" />
                                     </div>
                                     <div className="d-flex  justify-content-center">
@@ -71,9 +72,7 @@ const CreateAccount = () => {
                                     <div className="text-start my-3">
                                         <span>
                                             Ya tienes una cuenta?
-                                            <a href="./pages/Login.jsx" className="ms-2">
-                                                Login
-                                            </a>
+                                            <Link to='/login'>Login</Link>
                                         </span>
                                     </div>
 

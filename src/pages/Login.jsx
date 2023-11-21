@@ -1,3 +1,4 @@
+import {Link} from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
@@ -31,7 +32,7 @@ const Login = () => {
                                     {/* <!--  EMAIL INPUT --> */}
                                     <div>
                                         <h4 className="mb-4">Completa los campos</h4>
-                                    </div>
+                                    </div>  
                                     <div className="mb-4">
                                         <input type="email" className="form-control" placeholder="e-mail" name="email" />
                                     </div>
@@ -42,14 +43,20 @@ const Login = () => {
                                     </div>
                                     <div className="text-start my-3">
                                         <span>
-                                            Olvidaste tu contrasena?
+                                            Olvidaste tu contraseña?
                                             <a href="./pages/CreateAccount.jsx" className="ms-2">
-                                                Recuperarla
+                                            Recupérala aquí
                                             </a>
                                         </span>
                                     </div>
                                     <div className="d-flex  justify-content-center">
                                         <Button btnText={'Login'} className="btn-primary btn-s"/>
+                                    </div>
+                                    <div className="text-start my-3">
+                                        <div>
+                                            Crea una cuenta  
+                                            <Link to='/create-acount' className='button-text-large'> aquí</Link>
+                                        </div>
                                     </div>
 
                                     {/* <!--  RRSS --> */}
