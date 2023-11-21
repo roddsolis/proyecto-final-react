@@ -1,28 +1,81 @@
-@import './foundations.css';
+@import "./foundations.css";
 
-button{
-    border: none;
-}       
- 
-.btn-primary{
-    padding: 1.5em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width:fit-content;
-    box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset, 0px 1px 0px 0px rgba(255, 255, 255, 0.5) inset;
-    border-radius: var(--small);
+button {
+  border: none;
+}
+
+.btn-primary {
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
+    0px 1px 0px 0px rgba(255, 255, 255, 0.5) inset;
+  font-weight: 600;
+  line-height: 21.6px; /* 120% */
+  letter-spacing: -0.18px;
+  background: var(--button-surface-primary);
+  color: white;
+}
+
+.btn-secondary {
+  padding: 1.5em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.1) inset,
+    0px 0px 2px 0px #b1c3cc inset;
+  font-weight: 600;
+  line-height: 21.6px; /* 120% */
+  letter-spacing: -0.18px;
+  background: var(--button-surface-secondary);
+  color: var(--neutral-6);
+
+}
+
+.btn-tertiary {
+    background: none;
     font-weight: 600;
     line-height: 21.6px; /* 120% */
     letter-spacing: -0.18px;
-    background: linear-gradient(180deg, var(--primary-4) 0%, var(--primary-5) 100%);
-    color: white;
-    height: 56px;
-    font-size: 16px;
+    color: var(--primary-4);
+  }
+  
+
+.btn-primary:hover {
+  background: var(--button-surface-primary-hover);
+  transition: 0.3s ease-in-out;
+
+}
+.btn-secondary:hover {
+  background: var(--button-surface-secondary-hover);
+  transition: 0.3s ease-in-out;
+
+}
+.btn-tertiary:hover {
+  color:  var(--primary-5);
+  transition: 0.3s ease-in-out;
 }
 
-
-.btn-primary:hover{
-    background: linear-gradient(180deg, var(--primary-3) 0%, var(--primary-4) 100%);
+.btn-l {
+  border-radius: var(--small);
+  height: 56px;
+  font-size: 16px;
 }
-
+.btn-m {
+  border-radius: var(--small);
+  height: 48px;
+  font-size: 14px;
+}
+.btn-s {
+  border-radius: var(--extra-small);
+  height: 40px;
+  font-size: 12px;
+}
+.btn-xs {
+  border-radius: var(--extra-small);
+  height: 32px;
+  font-size: 12px;
+}
