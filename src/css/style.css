@@ -9,7 +9,7 @@
 @import "./principal.css";
 @import "./contadorUsuarios.css";
 @import "./categorias.css";
-@import "./error404.css";
+@import "./notFound.css";
 
 * {
   margin: 0;
