@@ -29,9 +29,9 @@ def data():
 
     return jsonify(data), 200
 
-@app.route('/user-data', methods=['POST','PUT'])
-def userData():
-    pass
+@app.route('/alumnos')
+def getStudents():
+    return jsonify({"nombre": "Mario Alvarez"})
 
 if __name__ == '__main__':
     app.run()
