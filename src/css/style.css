@@ -10,6 +10,8 @@
 @import "./contadorUsuarios.css";
 @import "./categorias.css";
 @import "./notFound.css";
+@import "./homeadmin.css";
+@import "./adminlogin.css";
 @import "./room.css";
 
 * {
