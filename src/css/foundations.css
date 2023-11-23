@@ -51,6 +51,7 @@
   /* button secondary surface */
   --button-surface-secondary: linear-gradient(180deg, white 0%, var(--neutral-1) 100%);
   --button-surface-secondary-hover: linear-gradient(180deg, var(--neutral-1) 0%, var(--neutral-2) 100%);
+  --video-surface-inactive: linear-gradient(180deg, var(--neutral-6) 30%, var(--neutral-5) 1000%);
   
   /* sizes */
 

@@ -1,39 +1,41 @@
-import {
-  FaFacebook,
-  FaSquareXTwitter,
-  FaGoogle,
-  FaGithub,
-} from "react-icons/fa";
+import {FaFacebook,FaGoogle,FaGithub} from "react-icons/fa";
+import { FaSquareXTwitter } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 
 const CreateAccount = () => {
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const crearUnaCuenta = (e) => {
-    e.preventDefault();
+
+  const crearUnaCuenta = () => {
     fetch(`${store.apiURL}/create-acount`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
-        tipo_de_usuario: null,
-        nombre: name,
-        apellido: lastName,
-        correo: email,
-        contraseña: password,
+        "tipo_de_usuario": null,
+        "nombre": name,
+        "apellido": lastName,
+        "correo": email,
+        "contraseña": password,
       }),
     })
       .then((response) => response)
       .then((data) => console.log(data))
       .catch((error) => console.log(error));
   };
+
+  useEffect(()=>{
+    crearUnaCuenta()
+  },[])
+
+ 
 
   return (
     <>

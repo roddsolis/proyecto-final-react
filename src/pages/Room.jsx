@@ -1,18 +1,21 @@
 
 const Room = () => {
   return (
-<<<<<<< HEAD
     <>
     <div className="roomWrapper">
-      <div className="col-9 h-100 bg-success p-3">screen</div>
-      <div className="col-3 h-100 bg-warning p-3">chat</div>
+      <div className="callColumn">
+        <div className="statusWrapper">status + name </div>
+        <div className="videoWrapper">video</div>
+      </div>
+      <div className="chatColumn">
+        <div className="chatWrapper">
+          <div className="heaWrapper">head</div>
+          <div className="mainWrapper">main</div>
+          <div className="actionsWrapper">send</div>
+        </div>
+      </div>
     </div>
     </>
-=======
-    <div>
-      esta es la vista de la sala
-    </div>
->>>>>>> 88ef36726431dca20f774cdc57c4ab6fa55ecf88
   )
 }
 
