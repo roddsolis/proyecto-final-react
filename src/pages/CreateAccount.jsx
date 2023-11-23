@@ -10,35 +10,28 @@ import { useContext, useState } from "react";
 import { Context } from "../store/AppContext";
 
 const CreateAccount = () => {
-    
-  const { store, actions } = useContext(Context);
-
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-    const crearUnaCuenta = (e) => {
-        e.preventDefault()
-        fetch(`${store.apiURL}/create-acount`,{
-            method:'POST',
-            headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({
-    
-                'tipo_de_usuario': null,
-                'nombre': name,
-                'apellido': lastName,
-                'correo': email,
-                'contraseña': password,
-            })
-        })
-        .then(response =>response)
-        .then(data => console.log(data))
-        .catch(error => console.log(error))
-        
-
-    }
-    
+  const crearUnaCuenta = (e) => {
+    e.preventDefault();
+    fetch(`${store.apiURL}/create-acount`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        tipo_de_usuario: null,
+        nombre: name,
+        apellido: lastName,
+        correo: email,
+        contraseña: password,
+      }),
+    })
+      .then((response) => response)
+      .then((data) => console.log(data))
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -58,22 +51,6 @@ const CreateAccount = () => {
           <form action="" method="post" className="formWrapper">
             <h3 className="title-sm">¿Que quieres hacer?</h3>
 
-<<<<<<< HEAD
-                        <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
-                                <div className="container">
-                                <input type="radio" className="form-check-input"/>
-                                <label htmlFor="connected" className="form-check-label mx-2">
-                                    Quiero enseñar
-                                </label>
-                            </div>
-                            <div className="container">
-                                <input type="radio" className="form-check-input" />
-                                <label htmlFor="connected" className="form-check-label mx-2">
-                                    Quiero aprender
-                                </label>
-                            </div>
-                        </div>
-=======
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
               <div className="container">
                 <div className="form-check">
@@ -108,28 +85,32 @@ const CreateAccount = () => {
                 </div>
               </div>
             </div>
->>>>>>> 88ef36726431dca20f774cdc57c4ab6fa55ecf88
 
+            <div className="mb-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre"
+                name="nombre"
+                id="nombre"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Apellido"
+                name="apellido"
+                id="apellido"
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+              />
+            </div>
 
-<<<<<<< HEAD
-                   
-                       <div className="mb-4">
-                           <input type="text" className="form-control" placeholder="Nombre" name='nombre' id='nombre' onChange={(e)=>{setName(e.target.value)}} />
-                       </div>
-                       <div className="mb-4">
-                           <input type="text" className="form-control" placeholder="Apellido" name='apellido' id='apellido' onChange={(e)=>{setLastName(e.target.value)}} />
-                       </div>
-                   
-                   <div className="mb-4">
-                       <input type="email" className="form-control" placeholder="e-mail" name="correo" id='correo' onChange={(e)=>{setEmail(e.target.value)}} />
-                   </div>
-                   <div className="mb-4">
-                       <input type="password" className="form-control" placeholder="Contraseña" name="constraseña" id='contraseña'onChange={(e)=>{setPassword(e.target.value)}}/>
-                   </div>
-                   <div className="d-flex  justify-content-center">
-                       <input type='submit' value='registrar'></input>
-                   </div>
-=======
             <div className="mb-4">
               <input
                 type="email"
@@ -157,7 +138,6 @@ const CreateAccount = () => {
             <div className="d-flex  justify-content-center">
               <input type="submit" value="registrar"></input>
             </div>
->>>>>>> 88ef36726431dca20f774cdc57c4ab6fa55ecf88
 
             <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
