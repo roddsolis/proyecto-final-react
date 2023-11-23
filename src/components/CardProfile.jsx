@@ -14,11 +14,11 @@ const CardProfile = () => {
                 </div>
                 <div className="card-profile-navbar">
                     <div className="card-profile-navbar-navlink1">
-                        <div className="text-left">Cambiar contraseña</div>
-                        <div className="text-right blue">Cambiar</div>
+                        <div className="card-profile-text-left">Cambiar contraseña</div>
+                        <div className="card-profile-text-right card-profile-blue">Cambiar</div>
                     </div>
                     <div className="card-profile-navbar-navlink2">
-                        <div className="text-left">Método de pago</div>
+                        <div className="card-profile-text-left">Método de pago</div>
                         <Button btnText={'cambiar'} className={'btn-tertiary btn-m' }/>
                     </div>
                 </div>
