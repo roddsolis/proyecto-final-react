@@ -1,7 +1,9 @@
-import { FaFacebook } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaSquareXTwitter,
+  FaGoogle,
+  FaGithub,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState } from "react";
@@ -56,6 +58,7 @@ const CreateAccount = () => {
           <form action="" method="post" className="formWrapper">
             <h3 className="title-sm">¿Que quieres hacer?</h3>
 
+<<<<<<< HEAD
                         <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
                                 <div className="container">
                                 <input type="radio" className="form-check-input"/>
@@ -70,8 +73,45 @@ const CreateAccount = () => {
                                 </label>
                             </div>
                         </div>
+=======
+            <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
+              <div className="container">
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="optionEnsenar"
+                    name="opcion"
+                  />
+                  <label
+                    htmlFor="optionEnsenar"
+                    className="form-check-label mx-2"
+                  >
+                    Quiero enseñar
+                  </label>
+                </div>
+              </div>
+              <div className="container">
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="optionAprender"
+                    name="opcion"
+                  />
+                  <label
+                    htmlFor="optionAprender"
+                    className="form-check-label mx-2"
+                  >
+                    Quiero aprender
+                  </label>
+                </div>
+              </div>
+            </div>
+>>>>>>> 88ef36726431dca20f774cdc57c4ab6fa55ecf88
 
 
+<<<<<<< HEAD
                    
                        <div className="mb-4">
                            <input type="text" className="form-control" placeholder="Nombre" name='nombre' id='nombre' onChange={(e)=>{setName(e.target.value)}} />
@@ -89,6 +129,35 @@ const CreateAccount = () => {
                    <div className="d-flex  justify-content-center">
                        <input type='submit' value='registrar'></input>
                    </div>
+=======
+            <div className="mb-4">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="e-mail"
+                name="correo"
+                id="correo"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
+            <div className="mb-4">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Contraseña"
+                name="contraseña"
+                id="contraseña"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+            <div className="d-flex  justify-content-center">
+              <input type="submit" value="registrar"></input>
+            </div>
+>>>>>>> 88ef36726431dca20f774cdc57c4ab6fa55ecf88
 
             <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
@@ -127,7 +196,3 @@ const CreateAccount = () => {
 };
 
 export default CreateAccount;
-
-{
-  /* <Button btnText={'Obtener cuenta'} className="btn-primary btn-m"/> */
-}
