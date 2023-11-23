@@ -10,6 +10,8 @@ import { useContext, useState } from "react";
 import { Context } from "../store/AppContext";
 
 const CreateAccount = () => {
+  const { store, actions } = useContext(Context);
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
