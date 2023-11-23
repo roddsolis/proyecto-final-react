@@ -2,7 +2,7 @@ import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
-import {Link} from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import {useContext, useState} from 'react'
 import {Context } from '../store/AppContext'
@@ -18,6 +18,7 @@ const CreateAccount = () => {
     const [password, setPassword] = useState('')
 
     const crearUnaCuenta = (e) => {
+        e.preventDefault()
         fetch(`${store.apiURL}/create-acount`,{
             method:'POST',
             headers: {'Content-Type': 'application/json'},
@@ -125,8 +126,8 @@ const CreateAccount = () => {
        
            
     </>
-  )
-}
+  );
+};
 
 export default CreateAccount
 

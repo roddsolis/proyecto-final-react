@@ -1,29 +1,30 @@
-
 /* todos los imports de css deben estar al inicio */
 /* ejemplo: @import 'mi-archivo-style.css' */
-@import 'https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap';
-@import './foundations.css';
-@import './cardprofile.css';
-@import './status.css';
-@import './searching.css';
-@import './createAcount.css';
-@import './principal.css';
-@import './contadorUsuarios.css';
-@import './categorias.css';
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap";
+@import "./foundations.css";
+@import "./cardprofile.css";
+@import "./status.css";
+@import "./searching.css";
+@import "./createAcount.css";
+@import "./principal.css";
+@import "./contadorUsuarios.css";
+@import "./categorias.css";
+@import "./notFound.css";
 
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-    text-rendering: geometricPrecision;
-    shape-rendering: geometricPrecision;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Inter", sans-serif;
+  text-rendering: geometricPrecision;
+  shape-rendering: geometricPrecision;
 }
 
-#root{
-    height: 100vh;
-    width: 100%;  
+#root {
+  height: 100vh;
+  width: 100%;
 }
+<<<<<<< HEAD
 
 input{
     height: 48px;
@@ -32,3 +33,5 @@ input{
 
 
 
+=======
+>>>>>>> c2cccef7e976cf0101c8b76fc8c1d289828dab4d
