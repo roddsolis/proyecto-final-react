@@ -1,9 +1,10 @@
+import AdminLogin from "../pages/admin/AdminLogin"
 
 const Room = () => {
   return (
-    <div>
-      esta es la vista de la sala
-    </div>
+    <>
+      <AdminLogin />
+    </>
   )
 }
 

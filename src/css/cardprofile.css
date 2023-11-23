@@ -1,16 +1,16 @@
-.text-left {
+.card-profile-text-left {
     text-align: left;
 }
 
-.text-right {
+.card-profile-text-right {
     text-align: right;
 }
 
-.gray {
+.card-profile-gray {
     color: #D8E1E6;
 }
 
-.blue {
+.card-profile-blue {
     color: var(--primary-4);
 }
 

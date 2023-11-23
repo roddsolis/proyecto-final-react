@@ -10,6 +10,8 @@
 @import "./contadorUsuarios.css";
 @import "./categorias.css";
 @import "./notFound.css";
+@import "./homeadmin.css";
+@import "./adminlogin.css";
 
 * {
   margin: 0;
@@ -29,3 +31,8 @@ input {
   height: 48px;
   font-family: "Inter", sans-serif;
 }
+
+
+
+=======
+>>>>>>> c2cccef7e976cf0101c8b76fc8c1d289828dab4d
