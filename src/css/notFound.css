@@ -5,12 +5,6 @@
   box-sizing: border-box;
 }
 
-body {
-  height: 100vh;
-  background-color: aqua;
-  background-size: 100%;
-}
-
 #error-page {
   position: absolute;
   top: 10%;
