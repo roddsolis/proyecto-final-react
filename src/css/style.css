@@ -14,6 +14,7 @@
 @import "./adminlogin.css";
 @import "./room.css";
 @import "./statusTag.css";
+@import "./avatar.css";
 
 * {
   margin: 0;

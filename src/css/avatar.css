@@ -1,0 +1,9 @@
+.avatarWrapper{
+    background-color:hsla(80, 100%, 50%, 0.7);
+    width: 8em;
+    height: 8em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100% ;
+}
