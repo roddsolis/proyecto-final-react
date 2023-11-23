@@ -25,6 +25,10 @@
     width: 100%;  
 }
 
+input{
+    height: 48px;
+    font-family: 'Inter', sans-serif;
+}
 
 
 

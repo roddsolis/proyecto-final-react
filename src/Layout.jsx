@@ -10,17 +10,16 @@ import Notfound from './pages/Notfound'
 
 const Layout = () => {
 
-  const {store} = useContext(Context)
+  const {store, actions} = useContext(Context)
 
 
-  console.log(store)
 
   return (
     <>
       <Router>
             <Routes>
               <Route path='/' element={<Start />}/>
-              <Route path='/create-acount' element={ <CreateAccount/>} />
+              <Route path='/create-acount' element={ <CreateAccount/>} values={ store, actions}/>
               <Route path='/login' element={ <Login/>}/>
               <Route path='/home' element={ <Home/>}/>
               <Route path='/room' element={ <Room/>}/>

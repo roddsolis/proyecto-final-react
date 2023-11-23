@@ -21,17 +21,22 @@ CORS(app)
 #Aca se agregan los endpoints de la base de datos
 
 @app.route('/')
-def data():
-    data = {
-        "name": "Nombre de prueba",
-        "correo": "correoprueba@gmail.com"
-        }
+def main():
+    return 'main'
 
-    return jsonify(data), 200
+@app.route('/create-acount', methods=['GET', 'POST'])
+def getNewUser():
 
-@app.route('/alumnos')
-def getStudents():
-    return jsonify({"nombre": "Mario Alvarez"})
+    if request.method == 'POST':
+        name = request.form['nombre']
+        lastname = request.form['apellido']
+        email = request.form['correo']
+        password = request.form['constraseña']
+
+        print(name,lastname,email,password)
+
+    return 'hola'
+    
 
 if __name__ == '__main__':
     app.run()

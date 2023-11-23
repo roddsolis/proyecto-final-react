@@ -10,3 +10,15 @@ svg{
 .businessText{
     color: var(--danger-4);
 }
+
+.formWrapper{
+    width: 100%;
+}
+
+div.col-6{
+    padding: 8em;
+}
+
+p.paragraph-m{
+    color:var(--neutral-5)
+}
