@@ -12,8 +12,6 @@ const Layout = () => {
 
   const {store, actions} = useContext(Context)
 
-
-
   return (
     <>
       <Router>

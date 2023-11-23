@@ -23,18 +23,18 @@ const CreateAccount = () => {
             method:'POST',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({
-    
+              
                 'tipo_de_usuario': null,
                 'nombre': name,
                 'apellido': lastName,
                 'correo': email,
                 'contraseña': password,
+
             })
         })
         .then(response =>response)
         .then(data => console.log(data))
         .catch(error => console.log(error))
-        
 
     }
     
@@ -94,7 +94,7 @@ const CreateAccount = () => {
                    </div>
                    <div className="d-flex  justify-content-center">
                        <input type='submit' value='registrar'></input>
-                   </div>
+                   </div>z
 
                     <div className="d-flex align-items-center justify-content-center p-3">
                     <p className='paragraph-m mb-0 me-3'>¿Ya tienes una cuenta?</p><Link to='/login'><Button btnText={'ir al login'} className={'btn-tertiary btn-l'} btnOnClick={crearUnaCuenta()}/></Link>
