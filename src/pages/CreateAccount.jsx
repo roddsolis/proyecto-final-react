@@ -1,7 +1,9 @@
-import { FaFacebook } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
-import { FaGoogle } from "react-icons/fa";
-import { FaGithub } from "react-icons/fa";
+import {
+  FaFacebook,
+  FaSquareXTwitter,
+  FaGoogle,
+  FaGithub,
+} from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState } from "react";
@@ -53,16 +55,36 @@ const CreateAccount = () => {
 
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
               <div className="container">
-                <input type="radio" className="form-check-input" />
-                <label htmlFor="connected" className="form-check-label mx-2">
-                  Quiero enseñar
-                </label>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="optionEnsenar"
+                    name="opcion"
+                  />
+                  <label
+                    htmlFor="optionEnsenar"
+                    className="form-check-label mx-2"
+                  >
+                    Quiero enseñar
+                  </label>
+                </div>
               </div>
               <div className="container">
-                <input type="radio" className="form-check-input" />
-                <label htmlFor="connected" className="form-check-label mx-2">
-                  Quiero aprender
-                </label>
+                <div className="form-check">
+                  <input
+                    type="radio"
+                    className="form-check-input"
+                    id="optionAprender"
+                    name="opcion"
+                  />
+                  <label
+                    htmlFor="optionAprender"
+                    className="form-check-label mx-2"
+                  >
+                    Quiero aprender
+                  </label>
+                </div>
               </div>
             </div>
 
@@ -108,7 +130,7 @@ const CreateAccount = () => {
                 type="password"
                 className="form-control"
                 placeholder="Contraseña"
-                name="constraseña"
+                name="contraseña"
                 id="contraseña"
                 onChange={(e) => {
                   setPassword(e.target.value);
@@ -156,7 +178,3 @@ const CreateAccount = () => {
 };
 
 export default CreateAccount;
-
-{
-  /* <Button btnText={'Obtener cuenta'} className="btn-primary btn-m"/> */
-}
