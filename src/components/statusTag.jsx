@@ -1,14 +1,17 @@
 
 
-const statusTag = () => {
+const StatusTag = (props) => {
+
+
+
   return (
     <>
       <div className="statusWrapper">
         <div className="statusLight"></div>
-        <p>{status}</p>
+        <p className='paragraph-m mb-0'><strong>{props.status}</strong></p> 
       </div>
     </>
   )
 }
 
-export default statusTag
+export default StatusTag

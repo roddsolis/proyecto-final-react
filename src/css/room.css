@@ -22,17 +22,22 @@
     grid-column: 10 / 13;
 }
 
-.statusWrapper{
+.userStatusWrapper{
     /* background-color: red; */
     display: flex;
     align-items: center;
     padding: var(--large);
-    height: 112px;   
+    height: 112px;
+    gap: 1em;
+    & h4{
+        margin-bottom: 0;
+    }   
 }
 .videoWrapper{
     background: var(--video-surface-inactive) ;
     height: 100%;
     border-radius: var(--medium);
+    aspect-ratio: 16 / 9;
 }
 .chatWrapper{
     background-color: white;
