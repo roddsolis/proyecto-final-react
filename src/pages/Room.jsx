@@ -56,7 +56,7 @@ const Room = () => {
     <>
     <div className="roomWrapper">
       <div className="callColumn">
-        <div className="userStatusWrapper"> <StatusTag status={'Online'}/> 
+        <div className="userStatusWrapper"> <StatusTag status={'Online'} color={'green'}/> 
           <h4 className='subtitle-sm'>{tutorName}</h4> 
           <p className='btn-text-s mb-0'>Tutor</p> 
         </div>

@@ -32,7 +32,6 @@ const CreateAccount = () => {
   };
 
   useEffect(()=>{
-    actions.crearUnaCuenta()
   },[actions])
 
  

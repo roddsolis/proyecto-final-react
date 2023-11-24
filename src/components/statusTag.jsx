@@ -1,14 +1,14 @@
 
 
-const StatusTag = (props) => {
+const StatusTag = ({status, color}) => {
 
 
 
   return (
     <>
       <div className="statusWrapper">
-        <div className="statusLight green"></div>
-        <p className='paragraph-m mb-0'><strong>{props.status}</strong></p> 
+        <div className={`statusLight ${color}`}></div>
+        <p className='paragraph-m mb-0'><strong>{status}</strong></p> 
       </div>
     </>
   )
