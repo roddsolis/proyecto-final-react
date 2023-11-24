@@ -1,48 +1,48 @@
-#homeadmin-container {
+#adminhome-container {
     width: 100%;
     height: 100vh;
     display: inline-block;
 }
 
-.homeadmin-header {
+.adminhome-header {
     width: 100%;
     height: 100px;
 }
 
-.homeadmin-subheader {
+.adminhome-subheader {
     padding: 10px;
     border: 1px solid #D8E1E6;
     height: 100%;
 }
 
-.homeadmin-title {
+.adminhome-title {
     text-align: center;
 }
 
-.homeadmin-correo {
+.adminhome-correo {
     display: inline-flex;
 }
 
-.homeadmin-logout {
+.adminhome-logout {
 
 }
 
-.homeadmin-leftright {
+.adminhome-leftright {
     display: flex;
     width: 100%;
 }
 
-.homeadmin-leftside {
+.adminhome-leftside {
     padding: 10px;
     width: 20%;
 }
 
-.homeadmin-rightside {
+.adminhome-rightside {
     width: 80%;
     padding: 10px 10px 10px 0px;
 }
 
-.homeadmin-borderright {
+.adminhome-borderright {
     border: 1px solid #D8E1E6;
     border-radius: 10px;
     padding: 10px;
@@ -50,15 +50,15 @@
     height: 100%;
 }
 
-.homeadmin-navbar {
+.adminhome-navbar {
     background-color: #f0f4f7;
 }
 
-.homeadmin-subnavbar {
+.adminhome-subnavbar {
     width: 100%;
 }
 
-.homeadmin-navlink1 {
+.adminhome-navlink1 {
     background-color: #f0f4f7;
     display: flex;
     justify-content: space-between;
@@ -68,7 +68,7 @@
     width: 100%;
 }
 
-.homeadmin-navlink2 {
+.adminhome-navlink2 {
     background-color: #f0f4f7;
     display: flex;
     justify-content: space-between;
@@ -78,7 +78,7 @@
     width: 100%;
 }
 
-.homeadmin-navlink3 {
+.adminhome-navlink3 {
     background-color: #f0f4f7;
     display: flex;
     justify-content: space-between;
