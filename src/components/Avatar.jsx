@@ -1,9 +1,11 @@
 
-const Avatar = () => {
+const Avatar = ({avatarScale, img}) => {
+
   return (
     <>
-      <div className="avatarWrapper">
-        <p className='title-sm mb-0'>HV</p>
+      <div className="avatarWrapper" style={{scale:`${avatarScale}%`}}>
+        <img src={img} alt="" />
+        {/* <p className='title-sm mb-0'>HV</p> */}
       </div>
     </>
   )

@@ -6,7 +6,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 
 const CreateAccount = () => {
-  const { store } = useContext(Context);
+  const { store, actions } = useContext(Context);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -32,8 +32,8 @@ const CreateAccount = () => {
   };
 
   useEffect(()=>{
-    crearUnaCuenta()
-  },[])
+    actions.crearUnaCuenta()
+  },[actions])
 
  
 
