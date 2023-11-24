@@ -4,7 +4,7 @@ const AdminHome = () => {
             <div id="adminhome-container">
                 <div className="adminhome-header">
                     <div className="adminhome-subheader">
-                        <h1 className="adminhome-title">Admin Panel</h1>
+                        <div className="adminhome-title">Admin Panel</div>
                         <div className="adminhome-correo">correo@correo.com</div>
                         <div className="adminhome-logout">Cerrar sesión</div>
                     </div>
@@ -49,4 +49,4 @@ const AdminHome = () => {
     )
 }
 
-export default HomeAdmin
+export default AdminHome

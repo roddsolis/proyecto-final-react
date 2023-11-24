@@ -7,6 +7,8 @@ import Login from './pages/Login'
 import Home from './pages/Home'
 import Room from './pages/Room'
 import Notfound from './pages/Notfound'
+import AdminLogin from './pages/AdminLogin'
+import AdminHome from './pages/AdminHome'
 
 const Layout = () => {
 
@@ -21,6 +23,8 @@ const Layout = () => {
               <Route path='/login' element={ <Login/>}/>
               <Route path='/home' element={ <Home/>}/>
               <Route path='/room' element={ <Room/>}/>
+              <Route path='/adminlogin' element={ <AdminLogin/>}/>
+              <Route path='/adminhome' element={ <AdminHome/>}/>
               <Route path='*' element={ <Notfound/>}/>
             </Routes>
       </Router>
