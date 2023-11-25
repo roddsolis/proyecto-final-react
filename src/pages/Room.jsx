@@ -12,8 +12,10 @@ const Room = () => {
   const [tutorImg, setTutorImg] = useState('')
   const [tutorName, setTutorName] = useState('')
   const [tutorfirstName, setTutorfirstName] = useState('')
-
   const [alumnoImg, setAlumnoImg] = useState('')
+  const [message, setMessage] = useState('')
+
+
 
   useEffect(()=>{
 
@@ -47,6 +49,11 @@ const Room = () => {
     })
     .catch(err => err)
 
+    fetch('https://jsonplaceholder.typicode.com/comments')
+    .then(response => response.json(response))
+    .then(data => setMessage(data[0].body) )
+    .catch(err => err)
+
   },[])
   
 
@@ -61,7 +68,7 @@ const Room = () => {
           <p className='btn-text-s mb-0'>Tutor</p> 
         </div>
         <div className="videoWrapper">
-            <Avatar img={tutorImg}/> 
+            <Avatar img={tutorImg} avatarSize={128}/> 
               <div className="videoActionsWrapper"> 
                 <div className="callIconWrapper icon-active">{/* <Mic strokeWidth={2.5} /> */}<MicOff /></div> 
                 <div className="callIconWrapper icon-active">{/* <Video strokeWidth={1.8}/> */}<VideoOff /></div> 
@@ -76,17 +83,21 @@ const Room = () => {
           <div className="mainWrapper">
             <div className="messageWrapper">
               <div className="userInfoContainer">
-                <Avatar avatarScale={32} img={alumnoImg}/> <div className="userInfoChat"><p>Tú</p></div>    
+                <div className="avatarContainer">
+                  <Avatar img={alumnoImg} avatarSize={40}/>
+                  </div>
+                 <div className="userInfoChat"><p className='btn-text-m'>Tú</p><p className='paragraph-s'>00:00</p></div>    
               </div>
-              <div className="messageContainer paragraph-s">
-                aca va el mensaje
+              <div className="messageContainer ">
+                <div className="messageContainer--message paragraph-s">
+                {message}
+                </div>
               </div>
-
             </div>
           </div>
           <div className="actionsWrapper">
             <div className="chatActionContainer">
-              <div className="actionIconWraper"><Plus size={20}/></div>
+              <div className="actionIconWraper"><Plus size={18}/></div>
                 <input type="text" placeholder={`Envia un mensaje a ${tutorfirstName}`} className='paragraph-s'/>
             </div>
           </div>

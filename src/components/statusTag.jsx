@@ -2,7 +2,7 @@
 
 const StatusTag = ({status, color}) => {
 
-
+  
 
   return (
     <>

@@ -106,13 +106,31 @@
 
             & .userInfoContainer{
                 background-color: aquamarine;
+                height:40px;
                 display: flex;
                 align-items: center;
-                height:fit-content;
 
-                & p{
-                    margin-bottom: 0px;
+                & .userInfoChat{
+                    display: flex;
+                    align-items: center;
+                    background-color: chartreuse;
+                    height: 100%;
+                    width: 100%;
+                    padding-left: 0.5em;
+
+                    & p:first-child{
+                        margin-bottom: 0px;
+                        width: 100%;
+                    }
+                    & p:last-child{
+                        margin-bottom: 0px;
+                    }
                 }
+
+            }
+
+            .messageContainer{
+                background-color: aqua;
             }
         }
 
