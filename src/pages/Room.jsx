@@ -2,6 +2,7 @@ import StatusTag from "../components/StatusTag"
 import Avatar from "../components/Avatar"
 import { MicOff,VideoOff, ScreenShare, Phone, Plus  } from 'lucide-react';
 import {useEffect, useState } from 'react'
+import UserChatMessage from '../components/UserChatMessage'
 
 // import { Mic, Video  } from 'lucide-react';
 
@@ -81,19 +82,7 @@ const Room = () => {
         <div className="chatWrapper">
           <div className="headWrapper"><p className='btn-text-s mb-0'>Conversación con {tutorfirstName}</p></div>
           <div className="mainWrapper">
-            <div className="messageWrapper">
-              <div className="userInfoContainer">
-                <div className="avatarContainer">
-                  <Avatar img={alumnoImg} avatarSize={40}/>
-                  </div>
-                 <div className="userInfoChat"><p className='btn-text-m'>Tú</p><p className='paragraph-s'>00:00</p></div>    
-              </div>
-              <div className="messageContainer ">
-                <div className="messageContainer--message paragraph-s">
-                {message}
-                </div>
-              </div>
-            </div>
+            <UserChatMessage message={message} img={alumnoImg} avatarSize={32} accountType={true}/>
           </div>
           <div className="actionsWrapper">
             <div className="chatActionContainer">

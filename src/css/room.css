@@ -64,7 +64,7 @@
 }
 .chatWrapper{
     background: linear-gradient(white 90%, var(--neutral-3) 150%);
-    width: 400px;
+    max-width: 440px;
     height: 100%;
     border-radius: var(--medium);
     border: 1px solid var(--neutral-3);
@@ -92,97 +92,66 @@
     }
 
     & .mainWrapper{
-        background-color: red;
+        /* background-color: red; */
         height: 100%;
         width: 100%;
         overflow-y: visible;
-        padding: var(--extra-small);
+        padding: var(--medium);
 
         & .messageWrapper{
-            background-color: chocolate;
+            /* background-color: chocolate; */
             display: flex;
             flex-direction: column;
             height: auto;
-
+            
             & .userInfoContainer{
-                background-color: aquamarine;
+                /* background-color: aquamarine; */
                 height:40px;
                 display: flex;
                 align-items: center;
-
-                & .userInfoChat{
+                
+                & .userInfoText{
                     display: flex;
                     align-items: center;
-                    background-color: chartreuse;
                     height: 100%;
                     width: 100%;
                     padding-left: 0.5em;
-
+                    
                     & p:first-child{
                         margin-bottom: 0px;
                         width: 100%;
                     }
                     & p:last-child{
                         margin-bottom: 0px;
+                        color: var(--neutral-4);
+                        width:100%;
+                        text-align: end;
                     }
                 }
-
             }
 
             .messageContainer{
-                background-color: aqua;
+                /* background-color: aqua; */
+                padding: var(--small) 0em 0em var(--small);
+                font-size: 14px;
+                
+                .message{
+                    padding: var(--large);
+                    background-color: white;
+                    border-radius: 0px var(--small) var(--small) var(--small);
+                    border: 1px solid var(--neutral-3);
+                    box-shadow: 0px 14px 16px -14px var(--neutral-3);
+                }
             }
+        }
+
         }
 
     }
 
-    & .actionsWrapper{
-        /* background-color: yellow; */
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        width: 100%;
-        padding: 0px var(--small) var(--small) var(--small);        
-        
-        & .chatActionContainer{
-            background-color: white;
-            width: 100%;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            gap: 1em;
-            border: 1px solid var(--neutral-3);
-            border-radius:var(--extra-small);
-            padding: 0px 0px 0px 8px ;
-            overflow: hidden;
-            
-            & .actionIconWraper{
-                background-color: var(--primary-4);
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                width: 32px;
-                height: 32px;
-                aspect-ratio: 1 / 1;
-                border-radius: 100px;
-                & svg{color: white;}   
-            }
-
-            & input{
-                /* background-color: aquamarine; */
-                border: none;
-                width: 100%;
-            }
-            & ::placeholder{
-                color: var(--neutral-4);
-            }
-        }
+    
 
 
-
-    }
-
-}
 
 
 .videoActionsWrapper{
