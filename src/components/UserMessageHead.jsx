@@ -1,4 +1,4 @@
-import Avatar from "./Avatar";
+lsimport Avatar from "./Avatar";
 
 const UserMessageHead = ( {img, avatarSize, align, tutorName} ) => {
   return (
