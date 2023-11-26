@@ -110,7 +110,7 @@
                 display: flex;
                 align-items: center;
 
-                & .userInfoChat{
+                & .userInfoText{
                     display: flex;
                     align-items: center;
                     background-color: chartreuse;
