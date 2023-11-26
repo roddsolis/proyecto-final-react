@@ -17,6 +17,14 @@ const Room = () => {
   const [tutorfirstName, setTutorfirstName] = useState('')
   const [alumnoImg, setAlumnoImg] = useState('')
   const [message, setMessage] = useState('')
+  const [sendFile, setSendFile] = useState('none')
+
+
+  const activateSendFiles = () => {
+    setSendFile(prev => !prev)
+  }
+
+
 
   useEffect(()=>{
 
@@ -79,8 +87,12 @@ const Room = () => {
             <ChatRoomMessage message={message} img={tutorImg} tutorName={tutorfirstName} avatarSize={32} accountType={false} align={'left'} chatImgScale={30}/>
           </div>
           <div className="actionsWrapper">
-            <div className="chatActionContainer">
-              <div className="actionIconWraper"><Plus size={18}/></div>
+            <div className="sendFilesWrapper" style={{display: sendFile ? '': 'none'}}>
+              <div className="fileType">file type 1</div>
+              <div className="fileType">file type 2</div>
+            </div>
+            <div className="chatActionContainer" >
+              <div className="actionIconWraper" onClick={()=> activateSendFiles()}><Plus size={18}/></div>
                 <input type="text" placeholder={`Envia un mensaje a ${tutorfirstName}`} className='paragraph-s'/>
             </div>
           </div>

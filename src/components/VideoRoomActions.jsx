@@ -1,5 +1,5 @@
 import { MicOff,VideoOff, ScreenShare, Phone  } from 'lucide-react';
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import { Mic, Video  } from 'lucide-react';
 
 
@@ -8,15 +8,6 @@ const VideoRoomActions = () => {
   const [mic, SetMic] = useState(false)
   const [cam, SetCam] = useState(false)
   const [screen, SetScreen] = useState(false)
-
-  
-    
-
-  useEffect(()=>{
-  
-  },[])  
-
-
 
   return (
     <>

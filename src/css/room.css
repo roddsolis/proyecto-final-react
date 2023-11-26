@@ -8,6 +8,7 @@
     column-gap: 1em;
     padding: 1em;
     overflow: hidden;
+    background:linear-gradient(var(--primary-1) 0%, white 40%);
     
 }
 
@@ -48,7 +49,7 @@
     height: 100%;
     width: 100%;
     max-width: 1440px;
-    border-radius: var(--medium);
+    border-radius: var(--large);
     aspect-ratio: 16 / 9;
     display: flex;
     flex-direction: column;
@@ -104,7 +105,19 @@
         align-items: center;
         justify-content: space-between;
         width: 100%;
-        padding: 0px var(--small) var(--small) var(--small);        
+        padding: 0px var(--small) var(--small) var(--small);
+        position: relative;
+        
+        .sendFilesWrapper{
+            bottom: 52px ;
+            left: 36px;
+            position: absolute;
+            background-color: white;
+            border: 1px solid var(--neutral-3);
+            padding: var(--large);
+            border-radius: var(--small) var(--small) var(--small) 0;
+            box-shadow: 0px 24px 32px -8px hsla(210, 15%, 51%, 0.5);
+        }
         
         & .chatActionContainer{
             background-color: white;
@@ -146,36 +159,3 @@
 
 }
 
-
-.videoActionsWrapper{
-    /* background-color: red; */
-    width: 100%;
-    height: auto;
-    bottom: 0;
-    position: absolute;
-    padding: 1em;
-    display: flex;
-    gap: 1em;
-    background: linear-gradient(hsla(0, 0%, 0%, 0) 50%,black 200%);
-}
-
-.callIconWrapper{
-    border-radius: var(--extra-large);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 56px;
-    height: 56px;
-    border: 1px solid hsla(0, 0%, 50%, 0.1);
-    backdrop-filter: blur(15px);
-    background-color: hsla(0, 0%, 50%, 0.3); 
-    & svg{color: white;}
-} 
-
-.icon-red{
-    background-color: var(--danger-4); 
-}
-
-.icon-active{
-    background-color: hsla(0, 0%, 10%, 0.3); 
-}
