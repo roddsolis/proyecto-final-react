@@ -1,11 +1,11 @@
 import UserMessage from './UserMessage'
 import UserMessageHead from './UserMessageHead'
-const ChatRoomMessage = (  {img, avatarSize,message}  ) => {
+const ChatRoomMessage = (  {img, avatarSize, message, align, tutorName}  ) => {
   return (
     <>
       <div className="messageWrapper">
-        <UserMessageHead img={img} avatarSize={avatarSize}/>
-        <UserMessage message={message}/>
+        <UserMessageHead img={img} avatarSize={avatarSize} align={align} tutorName={tutorName}/>
+        <UserMessage message={message} align={align}/>
       </div>
     </>
   )

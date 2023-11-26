@@ -1,3 +1,30 @@
 .messageContainer{
-    background-color: aqua;
+    letter-spacing: 0.06em;
+    padding-bottom: 1.5em;
+    .message{
+        background-color: white;
+        padding: var(--medium) ;
+        margin-left: var(--small);
+        margin-right: 0;
+        margin-top: var(--extra-small);
+        font-size: 0.8em;
+        border-radius: 0 var(--small) var(--small) var(--small);
+        border: 1px solid var(--neutral-3);
+        white-space-collapse:normal;
+    }
+
+}
+
+.left{
+        
+    .message{
+        padding: var(--medium) ;
+        margin-left: 0;
+        margin-right: var(--small);
+        margin-top: var(--extra-small);
+        font-size: 0.8em;
+        border-radius: var(--small) 0 var(--small) var(--small);
+        border: 1px solid var(--neutral-3);
+        white-space-collapse:normal;
+    }
 }

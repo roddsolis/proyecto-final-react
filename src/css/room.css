@@ -92,48 +92,10 @@
     }
 
     & .mainWrapper{
-        background-color: red;
         height: 100%;
         width: 100%;
         overflow-y: visible;
-        padding: var(--extra-small);
-
-        & .messageWrapper{
-            background-color: chocolate;
-            display: flex;
-            flex-direction: column;
-            height: auto;
-
-            & .userInfoContainer{
-                background-color: aquamarine;
-                height:40px;
-                display: flex;
-                align-items: center;
-
-                & .userInfoText{
-                    display: flex;
-                    align-items: center;
-                    background-color: chartreuse;
-                    height: 100%;
-                    width: 100%;
-                    padding-left: 0.5em;
-
-                    & p:first-child{
-                        margin-bottom: 0px;
-                        width: 100%;
-                    }
-                    & p:last-child{
-                        margin-bottom: 0px;
-                    }
-                }
-
-            }
-
-            .messageContainer{
-                background-color: aqua;
-            }
-        }
-
+        padding: var(--small);
     }
 
     & .actionsWrapper{

@@ -1,24 +1,51 @@
 & .userInfoContainer{
-    background-color: aquamarine;
-    height:40px;
     display: flex;
-    align-items: center;
-
     & .userInfoText{
         display: flex;
         align-items: center;
-        background-color: chartreuse;
-        height: 100%;
         width: 100%;
+        height: 32px;
         padding-left: 0.5em;
 
         & p:first-child{
             margin-bottom: 0px;
             width: 100%;
+            text-align: start;
+            margin-bottom: 0;
+        }
+        & p:last-child{
+            width: 100%;
+            text-align: end;
+            margin-bottom: 0;
+        }
+    }
+
+}
+
+.left{
+
+    /* background-color: blue; */
+    flex-direction: row-reverse;
+
+    .userInfoText{
+        /* background-color: brown; */
+        flex-direction: row-reverse;
+        padding-left: 0px;
+        padding-right: 0.5em;
+        
+        & p:first-child{
+            margin-bottom: 0px;
+            width: 100%;
+            text-align: end;
         }
         & p:last-child{
             margin-bottom: 0px;
+            width: 100%;
+            text-align: start;
         }
+
+        
     }
+
 
 }

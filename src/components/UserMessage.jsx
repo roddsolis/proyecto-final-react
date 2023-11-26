@@ -1,8 +1,10 @@
 
-const UserMessage = ({message}) => {
+const UserMessage = ({message, align}) => {
   return (
     <>
-      <div className="messageContainer "><div className="message">{message}</div></div>
+      <div className={`messageContainer ${align}`}>
+        <div className="message">{message}</div>
+        </div>
     </>
   )
 }
