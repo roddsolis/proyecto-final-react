@@ -1,8 +1,10 @@
 import StatusTag from "../components/StatusTag"
 import Avatar from "../components/Avatar"
-import { MicOff,VideoOff, ScreenShare, Phone, Plus  } from 'lucide-react';
 import {useEffect, useState } from 'react'
 import ChatRoomMessage from '../components/ChatRoomMessage'
+import { Plus } from 'lucide-react';
+import VideoRoomActions from '../components/VideoRoomActions'
+
 
 // import { Mic, Video  } from 'lucide-react';
 
@@ -15,8 +17,6 @@ const Room = () => {
   const [tutorfirstName, setTutorfirstName] = useState('')
   const [alumnoImg, setAlumnoImg] = useState('')
   const [message, setMessage] = useState('')
-
-
 
   useEffect(()=>{
 
@@ -57,9 +57,7 @@ const Room = () => {
 
   },[])
   
-
-
-
+  
   return (
     <>
     <div className="roomWrapper">
@@ -69,21 +67,16 @@ const Room = () => {
           <p className='btn-text-s mb-0'>Tutor</p> 
         </div>
         <div className="videoWrapper">
-            <Avatar img={tutorImg} avatarSize={128}/> 
-              <div className="videoActionsWrapper"> 
-                <div className="callIconWrapper icon-active">{/* <Mic strokeWidth={2.5} /> */}<MicOff /></div> 
-                <div className="callIconWrapper icon-active">{/* <Video strokeWidth={1.8}/> */}<VideoOff /></div> 
-                <div className="callIconWrapper"><ScreenShare/></div> 
-                <div className="callIconWrapper icon-red"><Phone /></div> 
-              </div> 
+            <Avatar img={tutorImg} avatarSize={128} chatImgScale={100}/> 
+            <VideoRoomActions />
         </div>
       </div>
       <div className="chatColumn">
         <div className="chatWrapper">
           <div className="headWrapper"><p className='btn-text-s mb-0'>Conversación con {tutorfirstName}</p></div>
           <div className="mainWrapper">
-            <ChatRoomMessage message={message} img={alumnoImg} avatarSize={32} accountType={true} />
-            <ChatRoomMessage message={message} img={tutorImg} tutorName={tutorfirstName} avatarSize={32} accountType={true} align={'left'}/>
+            <ChatRoomMessage message={message} img={alumnoImg} avatarSize={32} accountType={true} chatImgScale={30} />
+            <ChatRoomMessage message={message} img={tutorImg} tutorName={tutorfirstName} avatarSize={32} accountType={false} align={'left'} chatImgScale={30}/>
           </div>
           <div className="actionsWrapper">
             <div className="chatActionContainer">

@@ -5,4 +5,8 @@
     border-radius: 1000px;
     overflow: hidden;
     aspect-ratio: 1 / 1;
+
+    img{
+        user-select: none;
+    }
 }

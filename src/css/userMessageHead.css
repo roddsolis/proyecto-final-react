@@ -1,5 +1,6 @@
 & .userInfoContainer{
     display: flex;
+    
     & .userInfoText{
         display: flex;
         align-items: center;
@@ -14,19 +15,20 @@
             margin-bottom: 0;
         }
         & p:last-child{
+            color: var(--neutral-5);
             width: 100%;
             text-align: end;
-            margin-bottom: 0;
+            margin-bottom: 0;   
         }
     }
-
+    
 }
 
 .left{
-
+    
     /* background-color: blue; */
     flex-direction: row-reverse;
-
+    
     .userInfoText{
         /* background-color: brown; */
         flex-direction: row-reverse;
@@ -39,6 +41,7 @@
             text-align: end;
         }
         & p:last-child{
+            color: var(--neutral-5);
             margin-bottom: 0px;
             width: 100%;
             text-align: start;
