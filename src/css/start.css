@@ -1,18 +1,21 @@
-.startWrapper{
+.startWrapper {
     background-color: white;
+    background: radial-gradient(circle at -150% -150%, var(--primary-3) 0%, rgba(255, 255, 255, 0) 100%);
+    background-position: left top;
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
 
 .contentWrapper{
     max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding: var(--extra-large);
     
     & p {
         color: var(--neutral-5);
@@ -28,5 +31,5 @@
 
 
 img{
-    scale: 10%;
+    width: 35em;
 }

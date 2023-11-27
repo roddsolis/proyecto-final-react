@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import injectContext, { Context } from "./store/AppContext";
 import Start from "./pages/Start";
 import CreateAccount from "./pages/CreateAccount";
@@ -11,22 +10,9 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-=======
-import  { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import {useContext, useEffect} from 'react'
-import injectContext, { Context } from './store/AppContext'
-import Start from './pages/Start'
-import CreateAccount from './pages/CreateAccount'
-import Login from './pages/Login'
-import Home from './pages/Home'
-import Room from './pages/Room'
-import Notfound from './pages/Notfound'
-import AdminLogin from './pages/AdminLogin'
-import AdminHome from './pages/AdminHome'
 import socketIO from 'socket.io-client'
 
 const WS = 'http://localhost:8080';
->>>>>>> 0ca38705425d3aae943f5d936217d88ea450ff7e
 
 const Layout = () => {
   const { store, actions } = useContext(Context);
