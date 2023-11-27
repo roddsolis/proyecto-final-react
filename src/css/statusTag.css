@@ -2,16 +2,7 @@
     0% {box-shadow: 0px 0px 0px 0px var(--success-1);}
     50% {box-shadow: 0px 0px 0px 4px var(--success-2);}
     100% {box-shadow: 0px 0px 0px 6px white;}
-   
-  
-   
 }
-
-@keyframes light-red {
-    from {box-shadow: 0px 0px 0px 0px var(--danger-2);}
-    to {box-shadow: 0px 0px 0px 4px var(--danger-2);}
-}
-
 
 
 .statusWrapper{

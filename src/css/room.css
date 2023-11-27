@@ -1,3 +1,9 @@
+
+@keyframes sendifile {
+    0% {transform:translateY(16px); opacity: 0;}
+    50% { transform: translateY(0px); opacity: 100;}
+}
+
 .roomWrapper{
     /* background-color: aquamarine; */
     width: 100%;
@@ -86,10 +92,7 @@
         align-items: center;
         padding: var(--medium);
         box-shadow: 0px -12px 24px var(--neutral-4);
-
-        & p{
-            color: var(--neutral-6);
-        }
+        p{color: var(--neutral-6);}
     }
 
     & .mainWrapper{
@@ -117,6 +120,9 @@
             padding: var(--large);
             border-radius: var(--small) var(--small) var(--small) 0;
             box-shadow: 0px 24px 32px -8px hsla(210, 15%, 51%, 0.5);
+            animation-name: sendifile;
+            animation-duration: 0.2s;
+
         }
         
         & .chatActionContainer{
@@ -140,8 +146,13 @@
                 height: 32px;
                 aspect-ratio: 1 / 1;
                 border-radius: 100px;
-                & svg{color: white;}   
+                transition: transform 0.2s;
+                & svg{color: white;}
             }
+            .actionIconWraper.focused{
+                transform: rotate(45deg);
+            }   
+
 
             & input{
                 /* background-color: aquamarine; */

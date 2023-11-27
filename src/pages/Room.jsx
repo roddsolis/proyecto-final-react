@@ -8,8 +8,6 @@ import VideoRoomActions from '../components/VideoRoomActions'
 
 // import { Mic, Video  } from 'lucide-react';
 
-
-
 const Room = () => {
 
   const [tutorImg, setTutorImg] = useState('')
@@ -17,12 +15,12 @@ const Room = () => {
   const [tutorfirstName, setTutorfirstName] = useState('')
   const [alumnoImg, setAlumnoImg] = useState('')
   const [message, setMessage] = useState('')
-  const [sendFile, setSendFile] = useState('none')
+  const [sendFile, setSendFile] = useState('')
+  const [btnFocus, setBtnFocus] = useState(false)
 
 
-  const activateSendFiles = () => {
-    setSendFile(prev => !prev)
-  }
+  const activateSendFiles = () => {setSendFile(prev => !prev)}
+  const btnFocusActive = (isFocused) => {setBtnFocus(isFocused);};
 
 
 
@@ -92,14 +90,13 @@ const Room = () => {
               <div className="fileType">file type 2</div>
             </div>
             <div className="chatActionContainer" >
-              <div className="actionIconWraper" onClick={()=> activateSendFiles()}><Plus size={18}/></div>
+              <button className={`actionIconWraper ${btnFocus ? 'focused': ''}`} onClick={()=> activateSendFiles()} onFocus={()=>{btnFocusActive(true)}} onBlur={() => btnFocusActive(false)}><Plus size={18}/></button>
                 <input type="text" placeholder={`Envia un mensaje a ${tutorfirstName}`} className='paragraph-s'/>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
     </>
   )
 }
