@@ -1,9 +1,7 @@
 
 
 const StatusTag = ({status, color}) => {
-
   
-
   return (
     <>
       <div className="statusWrapper">
