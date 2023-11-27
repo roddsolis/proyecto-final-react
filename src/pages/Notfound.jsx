@@ -1,4 +1,7 @@
+import { Link } from "react-router-dom";
+import Button from "../components/button";
 import "./../css/notFound.css";
+
 const Notfound = () => {
   return (
     <>
@@ -11,9 +14,12 @@ const Notfound = () => {
           </h4>
           <p>Disculpa, no sabemos que ha pasado.</p>
           <div className="btns p-2">
-            <button type="button" className="btn btn-primary">
-              Volver a Home
-            </button>
+            <Link to="/home">
+              <Button
+                btnText={"Comenzar Ahora"}
+                className={"btn-primary btn-l"}
+              />
+            </Link>
           </div>
         </div>
       </div>
