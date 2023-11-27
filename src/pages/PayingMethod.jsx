@@ -58,7 +58,7 @@ function PayingMethod() {
           <div className="row gy-3 mb-5">
             <div className="col-md-6">
               <label htmlFor="cc-name" className="form-label">
-                Nombre en la tarjeta
+                Nombre del titular
               </label>
               <input
                 type="text"
@@ -74,7 +74,7 @@ function PayingMethod() {
 
             <div className="col-md-6">
               <label htmlFor="cc-number" className="form-label">
-                Número de tarjeta de crédito
+                Número de tarjeta
               </label>
               <input
                 type="text"
@@ -105,7 +105,7 @@ function PayingMethod() {
             </div>
 
             <div className="col-md-3">
-              <label htmlFor="cc-cvv" className="form-label">
+              <label htmlFor="cc-cvv" className="form-label" placeholder="cvv">
                 CVV
               </label>
               <input

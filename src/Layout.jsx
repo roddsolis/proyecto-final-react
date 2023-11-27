@@ -13,13 +13,16 @@ import PayingMethod from "./pages/PayingMethod";
 import socketIO from 'socket.io-client'
 
 const WS = 'http://localhost:8080';
+import socketIO from "socket.io-client";
+
+const WS = "http://localhost:8080";
 
 const Layout = () => {
   const { store, actions } = useContext(Context);
 
-  useEffect(()=>{
-    socketIO(WS)
-  },[])
+  useEffect(() => {
+    socketIO(WS);
+  }, []);
 
   return (
     <>
