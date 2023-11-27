@@ -4,7 +4,6 @@ from flask_sqlalchemy import SQLAlchemy
 db = SQLAlchemy()
 
 
-
 class Alumno(db.Model):
     __tablename__ = 'alumnos'
     id = db.Column(db.Integer, primary_key=True)
@@ -50,6 +49,8 @@ class Materia(db.Model):
 class Solicitud_sala(db.Model):
     __tablename__ = 'solicitud_sala'
     id = db.Column(db.Integer, primary_key=True)
+    confirmacion_alumno = db.Column(db.Boolean, default=False, nullable=True)
+    confirmacion_tutor = db.Column(db.Boolean, default=False, nullable=True)
     estado = db.Column(db.Boolean)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False)
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False)

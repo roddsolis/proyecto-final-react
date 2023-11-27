@@ -1,19 +1,28 @@
 import StatusTag from "../components/StatusTag"
 import Avatar from "../components/Avatar"
-import { MicOff,VideoOff, ScreenShare, Phone, Plus  } from 'lucide-react';
 import {useEffect, useState } from 'react'
+import ChatRoomMessage from '../components/ChatRoomMessage'
+import { Plus } from 'lucide-react';
+import VideoRoomActions from '../components/VideoRoomActions'
+
 
 // import { Mic, Video  } from 'lucide-react';
-
-
 
 const Room = () => {
 
   const [tutorImg, setTutorImg] = useState('')
   const [tutorName, setTutorName] = useState('')
   const [tutorfirstName, setTutorfirstName] = useState('')
-
   const [alumnoImg, setAlumnoImg] = useState('')
+  const [message, setMessage] = useState('')
+  const [sendFile, setSendFile] = useState('')
+  const [btnFocus, setBtnFocus] = useState(false)
+
+
+  const activateSendFiles = () => {setSendFile(prev => !prev)}
+  const btnFocusActive = (isFocused) => {setBtnFocus(isFocused);};
+
+
 
   useEffect(()=>{
 
@@ -47,11 +56,14 @@ const Room = () => {
     })
     .catch(err => err)
 
+    fetch('https://jsonplaceholder.typicode.com/comments')
+    .then(response => response.json(response))
+    .then(data => setMessage(data[0].body) )
+    .catch(err => err)
+
   },[])
   
-
-
-
+  
   return (
     <>
     <div className="roomWrapper">
@@ -61,39 +73,30 @@ const Room = () => {
           <p className='btn-text-s mb-0'>Tutor</p> 
         </div>
         <div className="videoWrapper">
-            <Avatar img={tutorImg}/> 
-              <div className="videoActionsWrapper"> 
-                <div className="callIconWrapper icon-active">{/* <Mic strokeWidth={2.5} /> */}<MicOff /></div> 
-                <div className="callIconWrapper icon-active">{/* <Video strokeWidth={1.8}/> */}<VideoOff /></div> 
-                <div className="callIconWrapper"><ScreenShare/></div> 
-                <div className="callIconWrapper icon-red"><Phone /></div> 
-              </div> 
+            <Avatar img={tutorImg} avatarSize={128} chatImgScale={100}/> 
+            <VideoRoomActions />
         </div>
       </div>
       <div className="chatColumn">
         <div className="chatWrapper">
           <div className="headWrapper"><p className='btn-text-s mb-0'>Conversación con {tutorfirstName}</p></div>
           <div className="mainWrapper">
-            <div className="messageWrapper">
-              <div className="userInfoContainer">
-                <Avatar avatarScale={32} img={alumnoImg}/> <div className="userInfoChat"><p>Tú</p></div>    
-              </div>
-              <div className="messageContainer paragraph-s">
-                aca va el mensaje
-              </div>
-
-            </div>
+            <ChatRoomMessage message={message} img={alumnoImg} avatarSize={32} accountType={true} chatImgScale={30} />
+            <ChatRoomMessage message={message} img={tutorImg} tutorName={tutorfirstName} avatarSize={32} accountType={false} align={'left'} chatImgScale={30}/>
           </div>
           <div className="actionsWrapper">
-            <div className="chatActionContainer">
-              <div className="actionIconWraper"><Plus size={20}/></div>
+            <div className="sendFilesWrapper" style={{display: sendFile ? '': 'none'}}>
+              <div className="fileType">file type 1</div>
+              <div className="fileType">file type 2</div>
+            </div>
+            <div className="chatActionContainer" >
+              <button className={`actionIconWraper ${btnFocus ? 'focused': ''}`} onClick={()=> activateSendFiles()} onFocus={()=>{btnFocusActive(true)}} onBlur={() => btnFocusActive(false)}><Plus size={18}/></button>
                 <input type="text" placeholder={`Envia un mensaje a ${tutorfirstName}`} className='paragraph-s'/>
             </div>
           </div>
         </div>
       </div>
     </div>
-    
     </>
   )
 }

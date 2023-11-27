@@ -1,30 +1,42 @@
+@keyframes light-green {
+    0% {box-shadow: 0px 0px 0px 0px var(--success-1);}
+    50% {box-shadow: 0px 0px 0px 4px var(--success-2);}
+    100% {box-shadow: 0px 0px 0px 6px white;}
+}
+
+
 .statusWrapper{
-    height: 48px;
+    height: 40px;
     background-color: white;
     border: 1px solid var(--neutral-3);
-    border-radius: var(--extra-large);
-    padding: var(--small) var(--large);
+    border-radius: var(--small);
+    padding: var(--small) var(--medium);
     gap: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0px 12px 12px -8px var(--neutral-3), 0px -8px 24px 0px var(--neutral-1) inset;
+    box-shadow: 0px 12px 12px -12px var(--neutral-2), 0px -2px 0px 0px var(--neutral-1) inset;
     & p{color: var(--neutral-6);}
 }
 
+
 .statusLight{
     
-    width: 12px;
-    height: 12px;
+    width: 10px;
+    height: 10px;
     border-radius: 100px;
+    
    
 }
 
 .green{
     background-color: var(--success-4);
-    box-shadow: 0px 0px 0px 4px var(--success-2)
+    /* box-shadow: 0px 0px 0px 0px var(--success-2); */
+    animation-name: light-green;
+    animation-duration: 1.5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
 }
 .red{
     background-color: var(--danger-4);
-    box-shadow: 0px 0px 0px 4px var(--danger-2)
 }

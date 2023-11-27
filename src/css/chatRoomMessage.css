@@ -1,0 +1,6 @@
+.messageWrapper {
+  /* background-color: chocolate; */
+  display: flex;
+  flex-direction: column;
+  height: auto;
+}

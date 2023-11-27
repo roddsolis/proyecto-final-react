@@ -2,11 +2,11 @@
 :root {
   /* colores primarios */
 
-  --primary-5: #0E4FC8;
-  --primary-4: #3a7af1;
-  --primary-3: #81adfd;
-  --primary-2: #cfdffc;
-  --primary-1: #e7effd;
+  --primary-5: #0061C2;
+  --primary-4: #007BF5;
+  --primary-3: #81BFFD;
+  --primary-2: #CFE5FC;
+  --primary-1: #E7F2FD;
 
   /* colores neutrales estos se deben aplicar a bordes, sombras, fondos, tipografia*/
 

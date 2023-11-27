@@ -15,6 +15,10 @@
 @import "./room.css";
 @import "./statusTag.css";
 @import "./avatar.css";
+@import "./userMessage.css";
+@import "./userMessageHead.css";
+@import "./chatRoomMessage.css";
+@import "./videoRoomActions.css";
 
 * {
   margin: 0;
