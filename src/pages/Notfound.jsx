@@ -9,16 +9,10 @@ const Notfound = () => {
           <h4 data-text="Ups! Pagina no encontrada">
             Ups! Pagina no encontrada
           </h4>
-          <p>
-            Disculpa, no sabemos que ha pasado. Si gustas, puedes reportar el
-            problema.
-          </p>
+          <p>Disculpa, no sabemos que ha pasado.</p>
           <div className="btns p-2">
             <button type="button" className="btn btn-primary">
               Volver a Home
-            </button>
-            <button type="button" className="btn btn-secondary">
-              Reportar Problema
             </button>
           </div>
         </div>
