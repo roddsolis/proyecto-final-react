@@ -10,9 +10,6 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-import socketIO from 'socket.io-client'
-
-const WS = 'http://localhost:8080';
 import socketIO from "socket.io-client";
 
 const WS = "http://localhost:8080";
