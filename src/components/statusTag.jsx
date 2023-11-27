@@ -3,7 +3,7 @@ const StatusTag = ({ status, color }) => {
     <>
       <div className="statusWrapper">
         <div className={`statusLight ${color}`}></div>
-        <p className="paragraph-m mb-0">
+        <p className="paragraph-s mb-0">
           <strong>{status}</strong>
         </p>
       </div>

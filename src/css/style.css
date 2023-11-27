@@ -2,6 +2,7 @@
 /* ejemplo: @import 'mi-archivo-style.css' */
 @import "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap";
 @import "./foundations.css";
+@import"./buttons.css";
 @import "./cardprofile.css";
 @import "./status.css";
 @import "./searching.css";
@@ -19,6 +20,7 @@
 @import "./userMessageHead.css";
 @import "./chatRoomMessage.css";
 @import "./videoRoomActions.css";
+@import "./start.css";
 
 * {
   margin: 0;
@@ -27,6 +29,7 @@
   font-family: "Inter", sans-serif;
   text-rendering: geometricPrecision;
   shape-rendering: geometricPrecision;
+  & a{text-decoration: none;}
 }
 
 #root {
