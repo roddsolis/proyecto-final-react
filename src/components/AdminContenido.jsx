@@ -1,5 +1,5 @@
 
-const SubcategoriasComponent = () => {
+const ContenidoComponent = () => {
     return (
         <>
         <div className="card-status">
@@ -11,4 +11,4 @@ const SubcategoriasComponent = () => {
     )
 }
 
-export default SubcategoriasComponent;
+export default ContenidoComponent;
