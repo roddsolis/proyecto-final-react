@@ -1,4 +1,4 @@
-function PayingMethod() {
+function tutorBankData() {
   return (
     <div className="container-fluid d-flex p-0 h-100">
       <div className="col-6 bg-primary d-flex align-items-center justify-content-center p-5">
@@ -131,4 +131,4 @@ function PayingMethod() {
   );
 }
 
-export default PayingMethod;
+export default tutorBankData;
