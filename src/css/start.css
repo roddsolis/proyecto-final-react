@@ -1,21 +1,24 @@
-.startWrapper{
+.startWrapper {
     background-color: white;
+    background: radial-gradient(circle at -150% -150%, var(--primary-4) 0%, rgba(255, 255, 255, 0) 85%);
+    background-position: left top;
     width: 100%;
     height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-
 }
+
 
 .contentWrapper{
     max-width: 600px;
     display: flex;
     flex-direction: column;
     gap: 1em;
+    padding: var(--extra-large);
     
     & p {
-        color: var(--neutral-5);
+        color: var(--neutral-6);
         line-height: 1.6rem;
         letter-spacing: 0.03rem;
     }
@@ -25,8 +28,5 @@
     }
     
 }
+.startImg{width: 35em;}
 
-
-img{
-    scale: 10%;
-}

@@ -1,118 +1,117 @@
 .card-profile-text-left {
-    text-align: left;
+  text-align: left;
 }
 
 .card-profile-text-right {
-    text-align: right;
+  text-align: right;
 }
 
 .card-profile-gray {
-    color: #D8E1E6;
+  color: #d8e1e6;
 }
 
 .card-profile-blue {
-    color: var(--primary-4);
+  color: var(--primary-4);
 }
 
 .card-profile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    border: 1px solid #D8E1E6;
-    border-radius: 15px;
-    width: auto;
-    height: auto;
-    padding: 30px;
-    background-color: #FFFFFF;
-    gap: 30px;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  border: 1px solid #d8e1e6;
+  border-radius: 15px;
+  padding: 15px;
+  background-color: #ffffff;
+  gap: 15px;
 }
 
 .card-profile-photo {
 }
 
 .card-profile-photo-img {
-    border: 1px solid #D8E1E6;
-    border-radius: 50%;
+  border: 1px solid #d8e1e6;
+  border-radius: 50%;
+  width: 80px; /* Agrega un ancho para asegurar la consistencia */
+  height: 80px; /* Ajusta según tus necesidades */
 }
 
 .card-profile-photo-change {
-    color: #3A7AF1;
+  color: #3a7af1;
 }
 
 .card-profile-userdata {
-
 }
 
 .card-profile-userdata-mail {
-    color: #708396;
+  color: #708396;
 }
 
 .card-profile-userdata-name {
-    font-size: 22px;
+  font-size: 22px;
 }
 
 .card-profile-navbar {
-    width: 100%;
+  width: 100%;
+  margin-top: 100px;
 }
 
 .card-profile-navbar-navlink1 {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #D8E1E6;
-    border-radius: 10px 10px 0 0;
-    padding: 10px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #d8e1e6;
+  border-radius: 10px 10px 0 0;
+  padding: 10px;
+  width: 100%;
 }
 
 .card-profile-navbar-navlink2 {
-    display: flex;
-    justify-content: space-between;
-    border: 1px solid #D8E1E6;
-    border-top: 0;
-    border-radius: 0 0 10px 10px;
-    padding: 10px;
-    width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #d8e1e6;
+  border-top: 0;
+  border-radius: 0 0 10px 10px;
+  padding: 10px;
+  width: 100%;
 }
 
 .card-profile-important {
-    background-color: #F1F8FF;
-    border: 1px solid #94CBFD;
-    padding: 10px;
-    border-radius: 10px;
-    width: 100%;
+  background-color: #f1f8ff;
+  border: 3px solid #2eabff;
+  padding-top: 10px;
+  border-radius: 10px;
+  width: 100%;
 }
 
 .card-profile-important-text {
-    font-size: 12px;
+  font-size: 12px;
 }
 
-
 .card-profile-switchmode {
-    border: 1px solid #D8E1E6;
-    padding: 10px;
-    border-radius: 10px;
-    width: 100%;
+  border: 1px solid #d8e1e6;
+  padding: 10px;
+  border-radius: 10px;
+  width: 100%;
 }
 
 .card-profile-switchmode-title {
-    font-size: 14px;
+  font-size: 14px;
 }
 
 .card-profile-switchmode-text {
-    font-size: 12px;
-    color: #708396;
+  font-size: 12px;
+  color: #708396;
 }
 
 .card-profile-switchmode-change {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .card-profile-logout {
-    padding: 10px 20px;
-    border: 1px solid #D8E1E6;
-    border-radius: 50px;
-    width: auto;
-    font-size: 15px;
+  padding: 10px 20px;
+  border: 1px solid #d8e1e6;
+  border-radius: 50px;
+  width: auto;
+  font-size: 15px;
 }

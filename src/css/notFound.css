@@ -16,6 +16,13 @@
   justify-content: center;
 }
 
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* O ajusta la altura según sea necesario */
+}
+
 #error-page .content {
   max-width: 600px;
   text-align: center;

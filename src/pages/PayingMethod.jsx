@@ -14,9 +14,9 @@ function PayingMethod() {
       </div>
       <div className="col-6 d-flex align-items-center justify-content-center">
         <form action="" method="post" className="formWrapper">
-          <h3 className="title-sm mb-5">Pago</h3>
+          <h3 className="title-sm mb-5 text-center">Pago</h3>
           {/* Aquí puedes añadir los campos y elementos del formulario de pago */}
-          <div className="my-3 mb-5">
+          <div className="my-3">
             <div className="form-check">
               <input
                 id="credit"
@@ -57,14 +57,12 @@ function PayingMethod() {
           </div>
           <div className="row gy-3 mb-5">
             <div className="col-md-6">
-              <label htmlFor="cc-name" className="form-label">
-                Nombre en la tarjeta
-              </label>
+              <label htmlFor="cc-name" className="form-label"></label>
               <input
                 type="text"
                 className="form-control"
                 id="cc-name"
-                placeholder=""
+                placeholder="Nombre del titular"
                 required
               />
               <div className="invalid-feedback">
@@ -73,14 +71,12 @@ function PayingMethod() {
             </div>
 
             <div className="col-md-6">
-              <label htmlFor="cc-number" className="form-label">
-                Número de tarjeta de crédito
-              </label>
+              <label htmlFor="cc-number" className="form-label"></label>
               <input
                 type="text"
                 className="form-control"
                 id="cc-number"
-                placeholder=""
+                placeholder=" Número de tarjeta"
                 required
               />
               <div className="invalid-feedback">
@@ -89,14 +85,12 @@ function PayingMethod() {
             </div>
 
             <div className="col-md-3">
-              <label htmlFor="cc-expiration" className="form-label">
-                Vencimiento
-              </label>
+              <label htmlFor="cc-expiration" className="form-label"></label>
               <input
                 type="text"
                 className="form-control"
                 id="cc-expiration"
-                placeholder=""
+                placeholder="mm/aa"
                 required
               />
               <div className="invalid-feedback">
@@ -105,14 +99,12 @@ function PayingMethod() {
             </div>
 
             <div className="col-md-3">
-              <label htmlFor="cc-cvv" className="form-label">
-                CVV
-              </label>
+              <label htmlFor="cc-cvv" className="form-label"></label>
               <input
                 type="text"
                 className="form-control"
                 id="cc-cvv"
-                placeholder=""
+                placeholder="cvv"
                 required
               />
               <div className="invalid-feedback">
@@ -121,9 +113,18 @@ function PayingMethod() {
             </div>
           </div>
           <hr className="my-4" />
-          <button className="w-100 btn btn-primary btn-lg" type="submit">
-            Continuar con el pago
-          </button>
+          <div className="row gy-3 mb-5 d-flex justify-content-between">
+            <div className="col-md-6">
+              <button className="w-100 btn btn-warning btn-m" type="submit">
+                Pagar
+              </button>
+            </div>
+            <div className="col-md-6">
+              <button className="w-100 btn btn-danger btn-m" type="submit">
+                Pagar después
+              </button>
+            </div>
+          </div>
         </form>
       </div>
     </div>
