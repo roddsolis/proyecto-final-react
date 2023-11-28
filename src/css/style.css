@@ -24,6 +24,8 @@
 @import "./tutorBankData.css";
 @import "./searching.css";
 @import "./login.css";
+@import "./admintutores.css";
+@import "./adminestudiantes.css";
 
 * {
   margin: 0;
