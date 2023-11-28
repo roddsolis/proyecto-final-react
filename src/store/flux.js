@@ -6,10 +6,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 
   return {
     store:{
-        apiURL: 'http://127.0.0.1:5000/',
+        apiURL: 'http://127.0.0.1:8080/',
         currentUser: {
-          'nombre': "",
-          'apellido': ""
+          access_token:'123456',
+          user:{
+              nombre: 'rodrigo',
+              apellido: 'solis',
+              correo: 'rodrigo.solis.g@gmail.com'
+          }
         }
     },
 

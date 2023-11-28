@@ -27,11 +27,7 @@ const Layout = () => {
       <Router>
         <Routes>
           <Route path="/" element={<Start />} />
-          <Route
-            path="/create-acount"
-            element={<CreateAccount />}
-            values={(store, actions)}
-          />
+          <Route path="/create-account" element={<CreateAccount />} values={(store, actions)} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/payingmethod" element={<PayingMethod />} />

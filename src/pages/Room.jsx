@@ -1,14 +1,21 @@
 import StatusTag from "../components/StatusTag"
 import Avatar from "../components/Avatar"
-import {useEffect, useState } from 'react'
+import {useEffect, useState,useContext} from 'react'
 import ChatRoomMessage from '../components/ChatRoomMessage'
 import { Plus } from 'lucide-react';
 import VideoRoomActions from '../components/VideoRoomActions'
+import {Context} from '../store/AppContext'
 
 
 // import { Mic, Video  } from 'lucide-react';
 
 const Room = () => {
+
+
+  const {store, actions } = useContext(Context)
+
+  console.log(store,actions)
+
 
   const [tutorImg, setTutorImg] = useState('')
   const [tutorName, setTutorName] = useState('')
