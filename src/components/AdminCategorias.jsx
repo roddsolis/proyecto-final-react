@@ -1,14 +1,14 @@
 
-const CategoriasComponent = () => {
+const AdminCategorias = () => {
     return (
         <>
         <div className="card-status">
             <div className="card-status-status">
-                AdminComponent3
+                Admin Categorias
             </div>
         </div>
         </>
     )
 }
 
-export default CategoriasComponent;
+export default AdminCategorias;

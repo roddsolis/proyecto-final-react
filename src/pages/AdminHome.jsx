@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
-import TutoresComponent from '../components/AdminTutores';
-import EstudiantesComponent from '../components/AdminEstudiantes';
-import CategoriasComponent from '../components/AdminCategorias';
-import ContenidoComponent from '../components/AdminContenido';
+import AdminTutores from '../components/AdminTutores';
+import AdminEstudiantes from '../components/AdminEstudiantes';
+import AdminCategorias from '../components/AdminCategorias';
+import AdminContenido from '../components/AdminContenido';
 
 const AdminHome = () => {
     const [contenidoDerecha, setContenidoDerecha] = useState(null);
@@ -11,16 +11,16 @@ const AdminHome = () => {
         // Configura el componente correcto según la opción seleccionada
         switch (opcion) {
             case 'Tutores':
-                setContenidoDerecha(<TutoresComponent />);
+                setContenidoDerecha(<AdminTutores />);
                 break;
             case 'Estudiantes':
-                setContenidoDerecha(<EstudiantesComponent />);
+                setContenidoDerecha(<AdminEstudiantes />);
                 break;
             case 'Categorias':
-                setContenidoDerecha(<CategoriasComponent />);
+                setContenidoDerecha(<AdminCategorias />);
                 break;
             case 'Contenidos':
-                setContenidoDerecha(<ContenidosComponent />);
+                setContenidoDerecha(<AdminContenido />);
                 break;
             default:
                 setContenidoDerecha(null);
