@@ -10,7 +10,7 @@ class Alumno(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     apellidos = db.Column(db.String(120), nullable=False)
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=True, nullable=True)
     
     profile = db.relationship('Perfil', backref='alumno', uselist=False)
@@ -33,7 +33,7 @@ class Tutor(db.Model):
     nombre = db.Column(db.String(120), nullable=False)
     apellidos = db.Column(db.String(120), nullable=False)
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nullable=False, unique=True)
+    password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=False, nullable=True)
 
     profile = db.relationship('Perfil', backref='tutor', uselist=False)

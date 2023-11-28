@@ -28,36 +28,39 @@ def main():
 def getNewUser():
     if request.method == 'GET':
         return 'entrando con el metodo GET'
+    if request.method == 'POST':
 
-    try:
-        name = request.form.get('nombre')
-        lastname = request.form.get('apellido')
-        email = request.form.get('correo')
-        password = request.form.get('contraseña')
-        opcion = request.form.get('opcion')  # Nueva línea para obtener la opción (enseñar o aprender)
+        try:
+            name = request.json.get('nombre')
+            lastname = request.json.get('apellido')
+            email = request.json.get('correo')
+            password = request.json.get('contraseña')
+            opcion = request.json.get('opcion')  # Nueva línea para obtener la opción (enseñar o aprender)
 
-        if opcion == 'Quiero aprender':
-            print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
-            nuevo_usuario = Alumno(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
-        elif opcion == 'Quiero enseñar':
-            print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
-            nuevo_usuario = Tutor(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
-        else:
-            return jsonify({'error': 'Opción no válida'})
+            nuevo_usuario = None
+            print(opcion)
+            if opcion == 'Quiero aprender':
+                print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
+                nuevo_usuario = Alumno(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
+            elif opcion == 'Quiero enseñar':
+                print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
+                nuevo_usuario = Tutor(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
+            else:
+                return jsonify({'error': 'Opción no válida'})
 
-        db.session.add(nuevo_usuario)
-        db.session.commit()
+            db.session.add(nuevo_usuario)
+            db.session.commit()
 
-        return jsonify({
-            'name': name,
-            'lastname': lastname,
-            'email': email,
-            'password': password,
-            'opcion': opcion
-        })
+            return jsonify({
+                'name': name,
+                'lastname': lastname,
+                'email': email,
+                'password': password,
+                'opcion': opcion
+            })
 
-    except Exception as e:
-        return jsonify({'error': str(e)})
+        except Exception as e:
+            return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     socketio.run(app, port=8080)
