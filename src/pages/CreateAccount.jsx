@@ -47,8 +47,8 @@ const CreateAccount = () => {
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6 bg-primary d-flex align-items-center justify-content-center p-5">
-          <div className="col">
+        <div className="col-6 d-flex align-items-center justify-content-center p-5" id='createAccountImg'>
+          <div className="col" >
             <h1 className="title-sm">Bienvenido a Lorem ipsum</h1>
             <p className="paragraph-l">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam

@@ -24,7 +24,6 @@ CORS(app)
 def main():
     return 'hola desde el main'
 
-
 @app.route('/create-account', methods=['GET', 'POST'])
 def getNewUser():
     if request.method == 'GET':
