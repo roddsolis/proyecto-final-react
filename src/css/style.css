@@ -23,6 +23,7 @@
 @import "./start.css";
 @import "./tutorBankData.css";
 @import "./searching.css";
+@import "./login.css";
 
 * {
   margin: 0;
