@@ -11,12 +11,12 @@ svg{
 
 div.col-6{padding: 8em;}
 
-p.paragraph-m{color:var(--neutral-5)
-}
+p.paragraph-m{color:var(--neutral-5)}
 
 #createAccountImg{
-    background-image: url('public/main-img.png');
+    background-image: url('main-img.png');
     background-position: bottom center;
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 80em;
 }
+
