@@ -2,7 +2,6 @@ import Searching from "./Searching";
 import Categorias from "./Categorias";
 import ContadorUsuarios from "./ContadorUsuarios";
 import Button from "./Button";
-import Searching from "./Searching";
 
 const Principal = () => {
   return (

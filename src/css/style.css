@@ -22,6 +22,7 @@
 @import "./videoRoomActions.css";
 @import "./start.css";
 @import "./tutorBankData.css";
+@import "./searching.css";
 
 * {
   margin: 0;
