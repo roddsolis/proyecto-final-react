@@ -15,16 +15,14 @@
 }
 
 .card-profile {
-  box-sizing: border-box;
   display: flex;
+  padding: 40px;
   flex-direction: column;
+  justify-content: flex-end;
   align-items: center;
-  text-align: center;
-  border: 1px solid #d8e1e6;
-  border-radius: 15px;
-  padding: 15px;
-  background-color: #ffffff;
-  gap: 15px;
+  gap: 48px;
+  flex: 1 0 0;
+  align-self: stretch;
 }
 
 .card-profile-photo {
@@ -77,7 +75,6 @@
 }
 
 .card-profile-important {
-  background-color: #f1f8ff;
   border: 3px solid #2eabff;
   padding-top: 10px;
   border-radius: 10px;
@@ -85,7 +82,13 @@
 }
 
 .card-profile-important-text {
+  /* Text/Extra small/Regular */
+  font-family: Inter;
   font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 16px; /* 133.333% */
+  letter-spacing: -0.12px;
 }
 
 .card-profile-switchmode {

@@ -1,3 +1,4 @@
+import Searching from "./Searching";
 import Categorias from "./Categorias";
 import ContadorUsuarios from "./ContadorUsuarios";
 import Button from "./Button";
@@ -19,8 +20,8 @@ const Principal = () => {
 
       <div className="sessionWrapper">
         <h3 className="subtitle-sm">Ultima Sesion</h3>
-        <p className="paragraph-m">Si deseas acceder a la informacion proporcionada por el tutor puedes ingresar nuevamente a la sala</p>
-        <div className="actionWrapper">
+        <Searching />
+        <div className="actionWrapper mt-1">
           <Button btnText={"Buscar tutor en linea"} className={"btn-primary btn-l"} />
         </div>
       </div>

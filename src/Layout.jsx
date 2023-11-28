@@ -10,27 +10,23 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-import socketIO from 'socket.io-client'
+import socketIO from "socket.io-client";
 
-const WS = 'http://localhost:8080/';
+const WS = "http://localhost:8080/";
 
 const Layout = () => {
   const { store, actions } = useContext(Context);
 
-  useEffect(()=>{
-    socketIO(WS)
-  },[])
+  useEffect(() => {
+    socketIO(WS);
+  }, []);
 
   return (
     <>
       <Router>
         <Routes>
           <Route path="/" element={<Start />} />
-          <Route
-            path="/create-acount"
-            element={<CreateAccount />}
-            values={(store, actions)}
-          />
+          <Route path="/create-account" element={<CreateAccount />} values={(store, actions)} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
           <Route path="/payingmethod" element={<PayingMethod />} />

@@ -5,7 +5,7 @@ const Start = () => {
   return (
     <>
       <div className="startWrapper">
-        <img src="/student.png" alt="" className='startImg'/>
+        <img src="/student.png" alt="" className="startImg" />
         <div className="contentWrapper">
           <h3 className="title-sm">Bienvenido a Metty</h3>
           <p className="paragraph-m">

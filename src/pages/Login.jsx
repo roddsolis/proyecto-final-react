@@ -49,7 +49,7 @@ const Login = () => {
             <div className="text-start my-3">
               <div>
                 Crea una cuenta
-                <Link to="/CreateAccount" className="button-text-large">
+                <Link to="/create-account" className="button-text-large">
                   {" "}
                   aquí
                 </Link>
