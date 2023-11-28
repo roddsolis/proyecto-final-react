@@ -1,4 +1,5 @@
 .searching {
+<<<<<<< HEAD
   display: flex;
   justify-content: space-between;
   border: 1px solid #a9a9a9;
@@ -6,3 +7,23 @@
   padding: 30px;
   width: 100%;
 }
+=======
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #A9A9A9;
+    border-radius: 10px;
+    padding: 30px;
+    width: 100%;
+    font-weight: bold;
+    background-color: #f1f8ff;
+}
+
+.searching-textleft {
+    text-align: left;
+}
+
+.searching-textright {
+    color: #3a7af1;
+    text-align: right;
+}
+>>>>>>> 90e2d722ece6dc7ec3043d482d33f612b624a172
