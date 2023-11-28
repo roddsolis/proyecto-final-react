@@ -16,18 +16,12 @@
     "http": "^0.0.1-security",
     "lucide-react": "^0.292.0",
     "react": "^18.2.0",
-    "react-bootstrap": "^2.9.1",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
     "react-router": "^6.19.0",
-<<<<<<< HEAD
     "react-router-dom": "^6.19.0",
     "socket.io-client": "^4.7.2",
     "socketio": "^1.0.0"
-=======
-    "react-router-dom": "^6.20.0",
-    "socket.io-client": "^4.7.2"
->>>>>>> ba74ddf3f2b47e3712f1a5e7645ca70c4b22e7e9
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
@@ -44,5 +38,3 @@
   "author": "",
   "license": "ISC"
 }
-
-
