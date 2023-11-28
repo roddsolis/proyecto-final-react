@@ -17,6 +17,16 @@ class Alumno(db.Model):
     datos_de_pago = db.relationship('Metodo_de_pago', backref='alumno', uselist=False )
     materia_seleccionada = db.relationship('Materia', backref='alumno', uselist=False )
 
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'nombre': self.nombre,
+            'apellidos': self.apellidos,
+            'correo_electronico': self.correo_electronico,
+            'password': self.password,
+            'tipo_de_cuenta': self.tipo_de_cuenta,
+        }
+
 class Tutor(db.Model):
     __tablename__ = 'tutores'
     id = db.Column(db.Integer, primary_key=True)
@@ -29,6 +39,16 @@ class Tutor(db.Model):
     profile = db.relationship('Perfil', backref='tutor', uselist=False)
     datos_bancarios = db.relationship('Cuenta_bancaria', backref='tutor', uselist=False )
     materia_seleccionada = db.relationship('Materia', backref='tutor')
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'nombre': self.nombre,
+            'apellidos': self.apellidos,
+            'correo_electronico': self.correo_electronico,
+            'password': self.password,
+            'tipo_de_cuenta': self.tipo_de_cuenta,
+        }   
 
 
 class Perfil(db.Model):

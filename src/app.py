@@ -1,21 +1,18 @@
 import os
-from flask import Flask
-from dotenv import load_dotenv
 from flask import Flask, jsonify, request
+from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_cors import CORS
-from models import db 
+from models import db, Alumno, Tutor
 from flask_socketio import SocketIO, emit
-from flask import Flask, render_template, send_from_directory
-
-
+from flask import render_template, send_from_directory
 
 load_dotenv()
 
 app = Flask(__name__)
-app.config['DEBUG'] = True,
+app.config['DEBUG'] = True
 app.config['ENV'] = 'development'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] =False
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASEURI')
 socketio = SocketIO(app, cors_allowed_origins='*')
 
@@ -23,40 +20,45 @@ db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
 
-#Aca se agregan los endpoints de la base de datos
-
-""" @app.route('/')
+@app.route('/')
 def main():
-    return 'main'
+    return 'hola desde el main'
 
-@app.route('/create-acount', methods=['GET', 'POST'])
+
+@app.route('/create-account', methods=['GET', 'POST'])
 def getNewUser():
+    if request.method == 'GET':
+        return 'entrando con el metodo GET'
 
-    if request.method == 'POST':
-        name = request.form['nombre']
-        lastname = request.form['apellido']
-        email = request.form['correo']
-        password = request.form['constraseña']
+    try:
+        name = request.form.get('nombre')
+        lastname = request.form.get('apellido')
+        email = request.form.get('correo')
+        password = request.form.get('contraseña')
+        opcion = request.form.get('opcion')  # Nueva línea para obtener la opción (enseñar o aprender)
 
-        print(name,lastname,email,password)
+        if opcion == 'Quiero aprender':
+            print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
+            nuevo_usuario = Alumno(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
+        elif opcion == 'Quiero enseñar':
+            print(f"Datos recibidos: {name}, {lastname}, {email}, {password}, {opcion}")
+            nuevo_usuario = Tutor(nombre=name, apellidos=lastname, correo_electronico=email, password=password)
+        else:
+            return jsonify({'error': 'Opción no válida'})
 
-    return 'hola' """
+        db.session.add(nuevo_usuario)
+        db.session.commit()
 
+        return jsonify({
+            'name': name,
+            'lastname': lastname,
+            'email': email,
+            'password': password,
+            'opcion': opcion
+        })
 
-@app.route('/room')
-def room():
-    # Puedes ajustar la ruta según tu estructura de archivos
-    return send_from_directory('pages', './pages/Room.jsx')
-
-@socketio.on('connect')
-def handle_connect():
-    print('Usuario conectado')
-
-@socketio.on('disconnect')
-def handle_disconnect():
-    print('Usuario desconectado')
-    
+    except Exception as e:
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
-    app.run()
     socketio.run(app, port=8080)

@@ -4,7 +4,18 @@ import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import Button from "../components/Button";
+import { Context } from "../store/AppContext";
+import { useContext} from "react";
+
+
+
 const Login = () => {
+
+    // usecontext maneja los datos globales de la aplicacion:
+    const { store, actions } = useContext(Context);
+
+    console.log(store, actions)
+
   return (
     <>
         <section className="background-radial-gradient overflow-hidden">

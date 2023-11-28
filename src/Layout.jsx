@@ -12,9 +12,6 @@ import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
 import socketIO from 'socket.io-client'
 
-const WS = 'http://localhost:8080';
-import socketIO from "socket.io-client";
-
 const WS = "http://localhost:8080";
 
 const Layout = () => {
@@ -30,7 +27,7 @@ const Layout = () => {
         <Routes>
           <Route path="/" element={<Start />} />
           <Route
-            path="/create-acount"
+            path="/create-account"
             element={<CreateAccount />}
             values={(store, actions)}
           />
