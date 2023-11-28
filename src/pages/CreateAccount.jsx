@@ -6,7 +6,6 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 
 const CreateAccount = () => {
-
   // usecontext maneja los datos globales de la aplicacion:
   const { store, actions } = useContext(Context);
 
@@ -15,7 +14,7 @@ const CreateAccount = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  console.log(store.apiURL)
+  console.log(store.apiURL);
 
   const crearUnaCuenta = async () => {
     try {
@@ -28,10 +27,10 @@ const CreateAccount = () => {
           apellido: lastName,
           correo: email,
           contraseña: password,
-          opcion: document.querySelector('input[name="opcion"]:checked').value
-      }),
+          opcion: document.querySelector('input[name="opcion"]:checked').value,
+        }),
       });
-  
+
       if (response.ok) {
         console.log("Registro exitoso");
       } else {
@@ -47,24 +46,20 @@ const CreateAccount = () => {
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6 d-flex align-items-end justify-content-center p-5" id='createAccountImg'>
-          <div className="contentWrapper text-white" >
+        <div className="col-6 d-flex align-items-end justify-content-center p-5" id="createAccountImg">
+          <div className="contentWrapper text-white">
             <h1 className="title-sm">Bienvenido a Lorem ipsum</h1>
-            <p className="paragraph-l text-white">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam
-              quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?
-            </p>
+            <p className="paragraph-l text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
           </div>
         </div>
         <div className="col-6 d-flex align-items-center justify-content-center">
-
-          <form action="" method='post' className="formWrapper">
+          <form action="" method="post" className="formWrapper">
             <h3 className="title-sm">¿Que quieres hacer?</h3>
 
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
               <div className="container">
                 <div className="form-check">
-                <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
+                  <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
                   <label htmlFor="optionEnsenar" className="form-check-label mx-2">
                     Quiero enseñar
                   </label>
@@ -72,7 +67,7 @@ const CreateAccount = () => {
               </div>
               <div className="container">
                 <div className="form-check">
-                <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
+                  <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
                   <label htmlFor="optionAprender" className="form-check-label mx-2">
                     Quiero aprender
                   </label>
@@ -81,26 +76,62 @@ const CreateAccount = () => {
             </div>
 
             <div className="mb-4">
-              <input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" onChange={(e) => { setName(e.target.value); }} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Nombre"
+                name="nombre"
+                id="nombre"
+                onChange={(e) => {
+                  setName(e.target.value);
+                }}
+              />
             </div>
             <div className="mb-4">
-              <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" onChange={(e) => { setLastName(e.target.value); }} />
+              <input
+                type="text"
+                className="form-control"
+                placeholder="Apellido"
+                name="apellido"
+                id="apellido"
+                onChange={(e) => {
+                  setLastName(e.target.value);
+                }}
+              />
             </div>
 
             <div className="mb-4">
-              <input type="email" className="form-control" placeholder="e-mail" name="correo" id="correo" onChange={(e) => { setEmail(e.target.value); }} />
+              <input
+                type="email"
+                className="form-control"
+                placeholder="e-mail"
+                name="correo"
+                id="correo"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
             </div>
             <div className="mb-4">
-              <input type="password" className="form-control" placeholder="Contraseña" name="contraseña" id="contraseña" onChange={(e) => { setPassword(e.target.value); }} />
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Contraseña"
+                name="contraseña"
+                id="contraseña"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
             </div>
             <div className="d-flex justify-content-center">
-            <Button btnOnClick={crearUnaCuenta} btnText={'Crear cuenta'} className={'btn-primary btn-m'}/>
+              <Button btnOnClick={crearUnaCuenta} btnText={"Crear cuenta"} className={"btn-primary btn-m"} />
             </div>
 
             <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
               <Link to="/login">
-              <Button btnText={"ir al login"} className={"btn-tertiary btn-l"}  />
+                <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
               </Link>
             </div>
 

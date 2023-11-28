@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../components/Button";
+import Button from "../components/Button"; // Asegúrate de que la ruta sea correcta
 import { Link } from "react-router-dom";
 
 function TutorBankData() {
@@ -24,44 +24,20 @@ function TutorBankData() {
       <div className="col-6 bg-primary d-flex align-items-center justify-content-center p-5">
         <div className="col text-center">
           <h1 className="title-sm mb-4">Bienvenido a Lorem ipsum</h1>
-          <p className="paragraph-l mb-5">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet,
-            itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora
-            at cupiditate quis eum maiores libero veritatis? Dicta facilis sint
-            aliquid ipsum atque?
-          </p>
+          <p className="paragraph-l mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
         </div>
       </div>
       <div className="col-6 d-flex align-items-center justify-content-center">
         <form className="w-100">
-          <div className="row gy-3">
-            <div className="col-md-12">
-              <input
-                className="form-control"
-                placeholder="Rut"
-                id="exampleid"
-                aria-describedby="emailHelp"
-              />
-            </div>
-          </div>
           <div className="mb-3">
-            <label htmlFor="exampleEmail" className="form-label"></label>
-            <input
-              type="email"
-              className="form-control"
-              placeholder="e-mail"
-              id="exampleInputPassword1"
-            />
+            <input className="form-control mb-3" placeholder="Rut" id="exampleid" aria-describedby="emailHelp" />
+
+            <input type="email" className="form-control" placeholder="e-mail" id="exampleInputPassword1" />
           </div>
 
           {/* SELECCION DE BANCO */}
           <div className="mb-3">
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              value={selectedBank}
-              onChange={handleBankChange}
-            >
+            <select className="form-select" aria-label="Default select example" value={selectedBank} onChange={handleBankChange}>
               <option value="">Selecciona un banco</option>
               <option value="1">Falabella</option>
               <option value="2">Itau</option>
@@ -72,12 +48,7 @@ function TutorBankData() {
 
           {/* SELECCION DE TIPO DE CUENTA */}
           <div className="mb-3">
-            <select
-              className="form-select"
-              aria-label="Default select example"
-              value={selectedAccountType}
-              onChange={handleAccountTypeChange}
-            >
+            <select className="form-select" aria-label="Default select example" value={selectedAccountType} onChange={handleAccountTypeChange}>
               <option value="">Tipo de cuenta</option>
               <option value="1">Corriente</option>
               <option value="2">Vista</option>
@@ -86,26 +57,18 @@ function TutorBankData() {
           </div>
 
           <div className="mb-3">
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Ingrese el número de cuenta"
-              id="numeroCuenta"
-              aria-describedby="numeroCuentaHelp"
-              value={numeroCuenta}
-              onChange={handleNumeroCuentaChange}
-            />
+            <input type="text" className="form-control" placeholder="Ingrese el número de cuenta" id="numeroCuenta" aria-describedby="numeroCuentaHelp" value={numeroCuenta} onChange={handleNumeroCuentaChange} />
             <div id="numeroCuentaHelp" className="form-text"></div>
           </div>
+          <div className="containerBtn">
+            <Link to="/login">
+              <Button btnText={"Omitir"} className={"btn-secondary btn-m mt-5"} />
+            </Link>
 
-          {/* CAMBIAR LA RUTA DEL BOTON */}
-          <Link to="/login">
-            <Button
-              btnText={"Omitir"}
-              className={"btn-primary btn-m mt-5"}
-              /*  btnOnClick={crearUnaCuenta()}   ANADIR FUNCION  AQUI*/
-            />
-          </Link>
+            <Link to="#">
+              <Button btnText={"Guardar"} className={"btn-primary btn-m mt-5"} />
+            </Link>
+          </div>
         </form>
       </div>
     </div>
