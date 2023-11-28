@@ -22,7 +22,7 @@ CORS(app)
 
 @app.route('/')
 def main():
-    return 'hola desde el main'
+    return 'main'
 
 @app.route('/create-account', methods=['GET', 'POST'])
 def getNewUser():
@@ -61,6 +61,44 @@ def getNewUser():
 
         except Exception as e:
             return jsonify({'error': str(e)})
+        
+
+# Este es el enpoint que obtiene toda la lista de alumnos registrados
+
+@app.route('/alumnos',methods=['GET'])
+def obtener_alumnos():
+    alumnos = Alumno.query.all()
+
+    if not alumnos:
+        return jsonify({'mensaje': 'No hay alumnos en la base de datos'})
+
+    alumnos_json = [{'id': alumno.id, 'nombre': alumno.nombre, 'apellidos': alumno.apellidos,
+                     'correo': alumno.correo_electronico, 'password': alumno.password, 'cuenta': alumno.tipo_de_cuenta}
+                    for alumno in alumnos]
+    
+    print(alumnos_json)
+    return jsonify(alumnos_json)
+
+
+# Este es el enpoint que obtiene toda la lista de alumnos registrados
+
+@app.route('/tutores',methods=['GET'])
+def obtener_turores():
+    tutores = Tutor.query.all()
+
+    if not tutores:
+        return jsonify({'mensaje': 'No hay tutor en la base de datos'})
+
+    tutor_json = [{'id': tutor.id, 'nombre': tutor.nombre, 'apellidos': tutor.apellidos,
+                     'correo': tutor.correo_electronico, 'password': tutor.password, 'cuenta': tutor.tipo_de_cuenta}
+                    for tutor in tutores]
+    
+    print(tutor_json)
+    return jsonify(tutor_json)
+    
+
+
+
 
 if __name__ == '__main__':
     socketio.run(app, port=8080)
