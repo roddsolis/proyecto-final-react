@@ -13,7 +13,7 @@ const Notfound = () => {
             Ups! Pagina no encontrada
           </h4>
           <p>Disculpa, no sabemos que ha pasado.</p>
-          <div className="btns p-2">
+          <div className="btns p-2 justify-content">
             <Link to="/home">
               <Button
                 btnText={"Comenzar Ahora"}
