@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { FaFacebook } from "react-icons/fa";
 import { FaSquareXTwitter } from "react-icons/fa6";
 import { FaGoogle } from "react-icons/fa";
@@ -6,9 +5,12 @@ import { FaGithub } from "react-icons/fa";
 import Button from "../components/Button";
 import { Context } from "../store/AppContext";
 import { useContext, useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+
 
 const Login = () => {
   // usecontext maneja los datos globales de la aplicacion:
+  const navigate = useNavigate();
   const { store, actions } = useContext(Context);
 
   const [email, setEmail] = useState(null)
@@ -16,29 +18,29 @@ const Login = () => {
 
 
   console.log(store, actions);
-
-
   
   const validarDatosDeCuenta = async () => {
-
     try {
-      const response = await  fetch(`${store.apiURL}alumnos`)
-      .then(response => response.json())
-      .then(data=>{
-        for(let i = 0; i < data.length; i++ ){if (data.correo === email){ console.log('son los mismos correos')}else{console.log('son distintos')}}
-        console.log(data)
-      })
-      .catch ( err => console.log(err))
-      if (response.ok){console.log('respuesta exitosa')}
+      const alumnosResponse = await fetch(`${store.apiURL}alumnos`).then(response => response.json());
+      const tutoresResponse = await fetch(`${store.apiURL}tutores`).then(response => response.json());
+  
+      const alumnos = alumnosResponse;  
+      const tutores = tutoresResponse;
+  
+      const usuarioEncontrado = alumnos.find(alumno => alumno.correo === email && alumno.password === password) ||
+        tutores.find(tutor => tutor.correo === email && tutor.password === password);
+  
+      if (usuarioEncontrado) {
+        console.log('Usuario autenticado');
+        navigate('/home');
+      } else {
+        console.log('Credenciales incorrectas');
+      }
+    } catch (error) {
+      console.log('Hubo un error', error);
     }
-    catch{console.log('hubo un error')}}
-
-
-  validarDatosDeCuenta()
-
+  };
   
-  
-
 
   return (
     <>
@@ -50,7 +52,7 @@ const Login = () => {
           </div>
         </div>
         <div className="col-6 d-flex flex-column align-items-center justify-content-center">
-          <form className='w-100 h-100 d-flex flex-column justify-content-center' onSubmit={(e)=>{e.preventDefault()}}>
+          <form className='w-100 h-100 d-flex flex-column justify-content-center' onSubmit={(e)=>{e.preventDefault(), validarDatosDeCuenta()}}>
             {/* <!--  EMAIL INPUT --> */}
             <div>
               <h4 className="mb-4 subtitle-l">Ingresa tus datos</h4>
@@ -64,7 +66,7 @@ const Login = () => {
             </div>
             <div className="d-flex justify-content-between align-items-center">
               <p className='paragraph-m mb-0'>¿No tienes cuenta? crea una cuenta <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
-              <Button btnText={"Iniciar sesion"} className="btn-primary btn-m"/>
+              <Button btnText={"Iniciar sesion"} className="btn-primary btn-m" btnOnClick={validarDatosDeCuenta}/>
             </div>
           </form>
           
