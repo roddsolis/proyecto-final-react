@@ -1,10 +1,9 @@
 import { useState } from "react";
 import CustomSwitch from "./components/CustomSwitch";
 import CircleSwitch from "./components/CircleSwitch";
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./app.css"; // Asegúrate de que la ruta sea correcta según la estructura de tus archivos
 
-const App = () => {
+const CustomCircleSwitch = () => {
   const [isActive, setIsActive] = useState(false);
 
   const handleSwitchChange = () => {
@@ -25,4 +24,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default CustomCircleSwitch;

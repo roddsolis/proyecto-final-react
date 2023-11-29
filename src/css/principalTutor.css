@@ -1,0 +1,20 @@
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+.btn-light.btn-circle.active .circle {
+  background-color: green;
+}
+
+.btn-light.btn-circle.inactive .circle {
+  background-color: red;
+}
+
+/* Estilos adicionales para el texto junto al círculo */
+.btn-light.btn-circle .status-text {
+  margin-left: 5px;
+  font-weight: bold;
+}

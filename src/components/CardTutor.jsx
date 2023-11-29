@@ -10,7 +10,7 @@ const CardTutor = () => {
         </div>
         <div className="card-profile-userdata">
           <div className="subtitle-sm">Hector Valenzuela</div>
-          <div className="card-profile-userdata-mail">hectorvale@gmail.com</div>
+          <div className="card-profile-userdata-mail">hectorvzla@gmail.com</div>
         </div>
         <div className="card-profile-navbar">
           <div className="card-profile-navbar-navlink1">
