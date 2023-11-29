@@ -14,9 +14,10 @@ const Categorias = () => {
         <h3 className="subtitle-sm">Selecciona una categoria</h3>
         <div className="chipsWrapper">
           {nombresDeBotones.map((nombre, index) => (
-            <button
+            <li
               key={index}
               onClick={() => handleBotonClick(nombre)}
+              className='categoryItem'
               style={{
                 padding: "0.6em 1.2em",
                 borderRadius: "100px",
@@ -26,7 +27,7 @@ const Categorias = () => {
               }}
             >
               <strong>{nombre}</strong>
-            </button>
+            </li>
           ))}
         </div>
       </div>
