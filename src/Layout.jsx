@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useContext, useEffect } from "react";
 import injectContext, { Context } from "./store/AppContext";
+import socketIO from "socket.io-client";
 import Start from "./pages/Start";
 import CreateAccount from "./pages/CreateAccount";
 import Login from "./pages/Login";
@@ -10,7 +11,7 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-import socketIO from "socket.io-client";
+import HomeTutor from "./pages/HomeTutor";
 
 const WS = "http://localhost:8080/";
 
@@ -29,7 +30,8 @@ const Layout = () => {
           <Route path="/create-account" element={<CreateAccount />} values={(store, actions)} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/payingmethod" element={<PayingMethod />} />
+          <Route path="/home-tutor" element={<HomeTutor />} />
+          <Route path="/paymentmethod" element={<PayingMethod />} />
           <Route path="/room" element={<Room />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/adminhome" element={<AdminHome />} />
