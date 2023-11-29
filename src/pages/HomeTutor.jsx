@@ -2,6 +2,11 @@ import CardTutor from "../components/CardTutor";
 import PrincipalTutor from "../components/PrincipalTutor";
 
 const HomeTutor = () => {
+  fetch("http://127.0.0.1:8080/alumnos")
+    .then((response) => response.json())
+    .then((data) => console.log(data))
+    .catch((err) => err);
+
   return (
     <>
       <div className="fluid d-flex" style={{ height: "100vh" }}>

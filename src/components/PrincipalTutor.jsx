@@ -27,8 +27,10 @@ const PrincipalTutor = () => {
 
       <div className="sessionWrapper">
         <CircleSwitch isActive={isActive} />
-        <p>Para poder recibir solicitudes de alumnos debes establecer tu estado como activo.</p>
-        <CustomSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
+        <div className="container d-flex align-items-center justify-content-center">
+          <p className="mb-0">Para poder recibir solicitudes de alumnos debes establecer tu estado como activo.</p>
+          <CustomSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
+        </div>
       </div>
     </>
   );
