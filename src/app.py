@@ -80,7 +80,7 @@ def obtener_alumnos():
     return jsonify(alumnos_json)
 
 
-# Este es el enpoint que obtiene toda la lista de alumnos registrados
+# Este es el enpoint que obtiene toda la lista de tutores registrados
 
 @app.route('/tutores',methods=['GET'])
 def obtener_turores():
