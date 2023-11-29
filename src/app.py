@@ -99,6 +99,6 @@ def obtener_turores():
 
 
 
-
+""" Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':
     socketio.run(app, port=8080)
