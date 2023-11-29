@@ -26,7 +26,6 @@
 @import "./login.css";
 @import "./admintutores.css";
 @import "./adminestudiantes.css";
-@import "./principalTutor.css";
 
 * {
   margin: 0;

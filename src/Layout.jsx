@@ -11,7 +11,6 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-import HomeTutor from "./pages/HomeTutor";
 
 const WS = "http://localhost:8080/";
 
@@ -30,7 +29,6 @@ const Layout = () => {
           <Route path="/create-account" element={<CreateAccount />} values={(store, actions)} />
           <Route path="/login" element={<Login />} />
           <Route path="/home" element={<Home />} />
-          <Route path="/home-tutor" element={<HomeTutor />} />
           <Route path="/paymentmethod" element={<PayingMethod />} />
           <Route path="/room" element={<Room />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
