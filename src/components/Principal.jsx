@@ -6,7 +6,7 @@ import CustomSwitch from "./CustomSwitch";
 import Button from "./Button";
 import "./../css/principal.css";
 
-const PrincipalTutor = ({ tipoDeCuenta }) => {
+const PrincipalTutor = ({ tipoDeCuenta, userName }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleSwitchChange = () => {
@@ -23,7 +23,7 @@ const PrincipalTutor = ({ tipoDeCuenta }) => {
       </div>
 
       <div className="mainContent">
-        <h3 className="subtitle-m">Hola ¿Qué quieres enseñar hoy?</h3>
+        <h3 className="subtitle-m">Hola {userName} ¿Qué quieres enseñar hoy?</h3>
         <p className="paragraph-m">Debes seleccionar una categoría y luego una sub-categoría para buscar un alumno y hacer match contigo.</p>
       </div>
       <Categorias />
