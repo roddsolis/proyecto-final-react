@@ -1,22 +1,31 @@
-svg{
-    color:var(--neutral-5);
-    font-size: 28px
+svg {
+  color: var(--neutral-5);
+  font-size: 28px;
 }
 
-.card {border-radius: 0;}
-
-.businessText{color: var(--danger-4);}
-
-.formWrapper{width: 100%;}
-
-div.col-6{padding: 8em;}
-
-p.paragraph-m{color:var(--neutral-5)}
-
-#createAccountImg{
-    background-image: url('main-img.png');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: 80em;
+.card {
+  border-radius: 0;
 }
 
+.businessText {
+  color: var(--danger-4);
+}
+
+.formWrapper {
+  width: 100%;
+}
+
+div.col-6 {
+  padding: 8em;
+}
+
+p.paragraph-m {
+  color: var(--neutral-5);
+}
+
+#createAccountImg {
+  background-image: url("main-img.png");
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 80em;
+}

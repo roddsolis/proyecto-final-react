@@ -54,7 +54,6 @@ const CreateAccount = () => {
         </div>
         <div className="col-6 d-flex align-items-center justify-content-center">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
-
             <h3 className="title-sm">¿Que quieres hacer?</h3>
 
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
