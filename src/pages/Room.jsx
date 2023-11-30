@@ -16,7 +16,6 @@ const Room = () => {
 
   console.log(store,actions)
 
-
   const [tutorImg, setTutorImg] = useState('')
   const [tutorName, setTutorName] = useState('')
   const [tutorfirstName, setTutorfirstName] = useState('')
@@ -25,11 +24,8 @@ const Room = () => {
   const [sendFile, setSendFile] = useState('')
   const [btnFocus, setBtnFocus] = useState(false)
 
-
   const activateSendFiles = () => {setSendFile(prev => !prev)}
   const btnFocusActive = (isFocused) => {setBtnFocus(isFocused);};
-
-
 
   useEffect(()=>{
 
@@ -39,17 +35,15 @@ const Room = () => {
 
       for ( let elemento in data.results ){
         const tutorImage = data.results[elemento].picture.large;
-        setTutorImg(tutorImage)
-      }
+        setTutorImg(tutorImage)}
+
       for ( let elemento in data.results ){
-      
         const tutorName = data.results[elemento].name.first +' '+ data.results[elemento].name.last ;
         const firstName = data.results[elemento].name.first;
         setTutorName(tutorName)
-        setTutorfirstName(firstName)
-      }
-      
+        setTutorfirstName(firstName)}  
     })
+
     .catch(err => err)
 
     fetch('https://randomuser.me/api/?nat=es')
