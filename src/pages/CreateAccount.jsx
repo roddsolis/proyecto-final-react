@@ -1,13 +1,16 @@
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
-import { FaSquareXTwitter } from "react-icons/fa6";
+import { FaTwitter } from "react-icons/fa";
+
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 import { Check, Ban } from "lucide-react";
 
+
+
 const CreateAccount = () => {
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -16,9 +19,39 @@ const CreateAccount = () => {
   const [registrationStatus, setRegistrationStatus] = useState(null);
   const [showMessage, setShowMessage] = useState(false);
   const [buttonText, setButtonText] = useState("Crear cuenta");
+  const [formErrors, setFormErrors] = useState({});
 
   const crearUnaCuenta = async () => {
     try {
+      const errors = {};
+
+      if (!name.trim()) {
+        errors.name = "El nombre es requerido";
+      }
+      if (!lastName.trim()) {
+        errors.lastName = "El apellido es requerido";
+      }
+      if (!email.trim()) {
+        errors.email = "El correo es requerido";
+      } else if (!/\S+@\S+\.\S+/.test(email)) {
+        errors.email = "El correo ingresado no es válido";
+      }
+      if (!password.trim()) {
+        errors.password = "La contraseña es requerida";
+      } else if (
+        !/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)
+      ) {
+        errors.password =
+          "La contraseña debe tener al menos 8 caracteres, un número, una letra y un carácter especial";
+      }
+
+      setFormErrors(errors);
+
+      if (Object.keys(errors).length > 0) {
+        console.log("Por favor completa correctamente todos los campos.");
+        return;
+      }
+
       const response = await fetch(`${store.apiURL}/create-account`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -36,7 +69,6 @@ const CreateAccount = () => {
         setRegistrationStatus("success");
         console.log("Registro exitoso");
         setShowMessage(true);
-        // Cambiar el texto del botón a "Siguiente" después de un registro exitoso
         setButtonText("Siguiente");
       } else {
         setRegistrationStatus("error");
@@ -53,13 +85,13 @@ const CreateAccount = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       setShowMessage(false);
-      // Restaurar el texto del botón a "Crear cuenta" después de ocultar el mensaje
       setButtonText("Crear cuenta");
     }, 5000);
 
-    // Limpiar el temporizador al desmontar el componente
     return () => clearTimeout(timer);
   }, [showMessage]);
+
+
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
@@ -105,6 +137,9 @@ const CreateAccount = () => {
                   setName(e.target.value);
                 }}
               />
+              {formErrors.name && (
+                <p className="text-danger">{formErrors.name}</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -117,6 +152,9 @@ const CreateAccount = () => {
                   setLastName(e.target.value);
                 }}
               />
+              {formErrors.lastName && (
+                <p className="text-danger">{formErrors.lastName}</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -129,6 +167,9 @@ const CreateAccount = () => {
                   setEmail(e.target.value);
                 }}
               />
+             {formErrors.email && (
+                <p className="text-danger">{formErrors.email}</p>
+              )}
             </div>
             <div className="mb-4">
               <input
@@ -141,6 +182,9 @@ const CreateAccount = () => {
                   setPassword(e.target.value);
                 }}
               />
+             {formErrors.password && (
+    <p className="text-danger">{formErrors.password}</p>
+  )}
             </div>
 
             <div className="actionsAccountWrapper">
@@ -176,7 +220,7 @@ const CreateAccount = () => {
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaSquareXTwitter />
+                <FaTwitter />
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
