@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../components/Button"; // Asegúrate de que la ruta sea correcta
+import Button from "../components/Button";
 import { Link } from "react-router-dom";
 
 function TutorBankData() {
@@ -22,13 +22,14 @@ function TutorBankData() {
   return (
     <div className="container-fluid d-flex p-0 h-100">
       <div className="col-6 bg-primary d-flex align-items-center justify-content-center p-5">
-        <div className="col text-center">
-          <h1 className="title-sm mb-4">Bienvenido a Lorem ipsum</h1>
-          <p className="paragraph-l mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
+        <div className="col">
+          <h1 className="title-sm">Bienvenido a Lorem ipsum</h1>
+          <p className="paragraph-l">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
         </div>
       </div>
       <div className="col-6 d-flex align-items-center justify-content-center">
         <form className="w-100">
+          <h3 className="title-sm mb-5 text-center">Pago</h3>
           <div className="mb-3">
             <input className="form-control mb-3" placeholder="Rut" id="exampleid" aria-describedby="emailHelp" />
 
