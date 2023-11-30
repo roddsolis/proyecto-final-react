@@ -11,10 +11,10 @@ const Home = () => {
     fetch("http://127.0.0.1:8080/alumnos")
       .then((response) => response.json())
       .then((data) => {
-        setUserEmail(data[1].correo);
-        setUserName(data[1].nombre);
-        setUserLastName(data[1].apellidos);
-        console.log(data[1].nombre);
+        setUserEmail(data[0].correo);
+        setUserName(data[0].nombre);
+        setUserLastName(data[0].apellidos);
+        console.log(data[0].nombre);
       })
       .catch((err) => err);
 
