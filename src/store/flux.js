@@ -6,27 +6,14 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       apiURL: 'http://127.0.0.1:8080/',
-      currentUser: {
-        access_token: '123456',
-        user: {
-          nombre: 'rodrigo',
-          apellido: 'solis',
-          correo: 'rodrigo.solis.g@gmail.com',
-        },
-      },
+      usuarioAutenticado: null, // Nuevo estado para almacenar los datos del usuario autenticado
     },
     actions: {
-      obtenerAlumnos: async () => {
-        try {
-          const response = await fetch('http://127.0.0.1:8080/alumnos');
-          const data = await response.json();
-          console.log(data);
-        } catch (error) {
-          console.error(error);
-        }
+      setUsuarioAutenticado: (usuario) => {
+        const store = getStore();
+        setStore({ usuarioAutenticado: usuario });
       },
     },
-    
   };
 };
 
