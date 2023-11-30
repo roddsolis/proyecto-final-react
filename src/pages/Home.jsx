@@ -3,6 +3,7 @@ import Principal from "../components/Principal";
 import { useEffect, useState } from "react";
 
 const Home = () => {
+
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userLastName, setUserLastName] = useState("");
@@ -22,8 +23,9 @@ const Home = () => {
       .then((response) => response.json())
       .then((data) => console.log(data))
       .catch((err) => err);
-  }, []);
 
+  }, []);
+  
   return (
     <>
       <div className="fluid d-flex" style={{ height: "100vh" }}>

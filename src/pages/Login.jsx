@@ -6,6 +6,8 @@ import Button from "../components/Button";
 import { Context } from "../store/AppContext";
 import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { Ban } from "lucide-react";
+
 
 
 const Login = () => {
@@ -16,6 +18,13 @@ const Login = () => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
+  // const [validateAccount, setValidateAccount] = useState(null)
+  // const [showMessage, setShowMessage] = useState(false);
+  const [opacity, setOpacity] = useState(0)
+  const [errorType, setErrorType] = useState("");
+
+
+
 
   console.log(store, actions);
   
@@ -23,24 +32,31 @@ const Login = () => {
     try {
       const alumnosResponse = await fetch(`${store.apiURL}alumnos`).then(response => response.json());
       const tutoresResponse = await fetch(`${store.apiURL}tutores`).then(response => response.json());
-  
+
       const alumnos = alumnosResponse;  
       const tutores = tutoresResponse;
-  
-      const usuarioEncontrado = alumnos.find(alumno => alumno.correo === email && alumno.password === password) ||
-        tutores.find(tutor => tutor.correo === email && tutor.password === password);
-  
+
+      const usuarioEncontrado = alumnos.find(alumno => alumno.correo === email && alumno.password === password) || tutores.find(tutor => tutor.correo === email && tutor.password === password);
+
       if (usuarioEncontrado) {
-        console.log('Usuario autenticado');
+        // Usuario autenticado
+        // setValidateAccount(true);
         navigate('/home');
+
+        // Aquí puedes almacenar los datos del usuario en el contexto o el estado global
+        actions.setUsuarioAutenticado(usuarioEncontrado);
+
       } else {
-        console.log('Credenciales incorrectas');
+        // Credenciales incorrectas
+        setOpacity(1);
+        setErrorType("credenciales");
       }
     } catch (error) {
-      console.log('Hubo un error', error);
+      // Hubo un error
+      setOpacity(1);
+      setErrorType("servidor");
     }
   };
-  
 
   return (
     <>
@@ -64,11 +80,26 @@ const Login = () => {
             <div className="mb-4">
               <input type="password" className="form-control" placeholder="Contraseña" name="password" onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
-            <div className="d-flex justify-content-between align-items-center">
-              <p className='paragraph-m mb-0'>¿No tienes cuenta? crea una cuenta <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
-              <Button btnText={"Iniciar sesion"} className="btn-primary btn-m" btnOnClick={validarDatosDeCuenta}/>
-            </div>
+            
+        <div className="actionsAccountWrapper">
+        <div className="createAccountMessage error" style={{ opacity: opacity }}>
+          <Ban /> <p className="btn-text-s mb-0">{
+            errorType === "credenciales"
+              ? "Credenciales incorrectas. Si no tienes cuenta, regístrate."
+              : errorType === "servidor"
+              ? "Hubo un error. Inténtalo más tarde."
+              : ""
+          }</p>
+        </div>
+        <Link to={''}>
+          <Button btnText={"Iniciar sesión"} btnOnClick={validarDatosDeCuenta} className="btn-primary btn-l" />
+        </Link>
+      </div>
+
+      
           </form>
+
+          <p className='paragraph-m mb-0'>¿No tienes cuenta? crea una cuenta <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
           
             <div className="text-center my-4 d-flex align-items-center spacing-m">
               <p className='paragraph-m mb-0 pe-3'>O entra con: </p>
@@ -83,3 +114,5 @@ const Login = () => {
 };
 
 export default Login;
+
+{/* <Button btnText={"Iniciar sesion"} className="btn-primary btn-m" btnOnClick={validarDatosDeCuenta}/> */}

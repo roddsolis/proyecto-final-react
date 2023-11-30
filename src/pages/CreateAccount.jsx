@@ -12,6 +12,8 @@ import { Check, Ban } from "lucide-react";
 const CreateAccount = () => {
   const { store } = useContext(Context);
 
+  console.log(actions);
+
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -86,6 +88,13 @@ const CreateAccount = () => {
     const timer = setTimeout(() => {
       setShowMessage(false);
       setButtonText("Crear cuenta");
+      // Restaurar el texto del botón a "Crear cuenta" después de ocultar el mensaje
+
+      if (registrationStatus === "success") {
+        setButtonText("Siguiente");
+      } else {
+        setButtonText("Crear Cuenta");
+      }
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -105,8 +114,9 @@ const CreateAccount = () => {
         <div className="col-6 d-flex align-items-center justify-content-center" id="formContainer">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
             <h3 className="title-sm">¿Que quieres hacer?</h3>
-
+            
             {/* DESDE AQUI */}
+
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
               <div className="container">
                 <div className="form-check">
@@ -127,7 +137,7 @@ const CreateAccount = () => {
             </div>
 
             <div className="mb-4">
-              <input
+                <input
                 type="text"
                 className="form-control"
                 placeholder="Nombre"
@@ -187,7 +197,7 @@ const CreateAccount = () => {
   )}
             </div>
 
-            <div className="actionsAccountWrapper">
+              <div className="actionsAccountWrapper">
               <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
                 {registrationStatus === "error" ? (
                   <>
@@ -199,24 +209,26 @@ const CreateAccount = () => {
                   </>
                 )}
               </div>
+              <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
               <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
-            </div>
+              </Link>
+              </div>
 
-            <div className="d-flex align-items-center justify-content-center p-3">
+              <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
               <Link to="/login">
-                <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
+              <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
               </Link>
-            </div>
+              </div>
 
-            <div className="text-center mt-4">
+              <div className="text-center mt-4">
               <p>o entra con:</p>
               <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaFacebook />
+              <FaFacebook />
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaGoogle />
+              <FaGoogle />
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
@@ -224,7 +236,7 @@ const CreateAccount = () => {
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaGithub />
+              <FaGithub />
               </button>
             </div>
           </form>
