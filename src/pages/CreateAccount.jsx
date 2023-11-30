@@ -168,11 +168,7 @@ const CreateAccount = () => {
                   </>
                 )}
               </div>
-<<<<<<< HEAD
               <Link to={registrationStatus === "success" ? '/paymentmethod': ''}><Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} /></Link>
-=======
-              <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
->>>>>>> 09d46a0f47f2d4de6f5e3435da3f79b56efa5f05
             </div>
 
             <div className="d-flex align-items-center justify-content-center p-3">
