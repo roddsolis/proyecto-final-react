@@ -18,7 +18,6 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
 
     actions:{
-
       crearCuenta: (e)=>{
         e.preventDefault()
         console.log('click')      

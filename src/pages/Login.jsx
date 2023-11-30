@@ -45,7 +45,7 @@ const Login = () => {
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6 bg-primary d-flex align-items-center justify-content-start p-5" id='createAccountImg'>
+        <div className="col-6 bg-primary d-flex align-items-center justify-content-start p-5" id='loginImg'>
           <div className="col">
             <h1 className="title-sm mb-4">Bienvenido a Lorem ipsum</h1>
             <p className="paragraph-l mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>

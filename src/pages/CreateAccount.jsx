@@ -4,17 +4,18 @@ import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
+import { Check, Ban } from 'lucide-react';
 
 const CreateAccount = () => {
-  // usecontext maneja los datos globales de la aplicacion:
   const { store, actions } = useContext(Context);
 
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
-  console.log(store.apiURL);
+  const [registrationStatus, setRegistrationStatus] = useState(null);
+  const [showMessage, setShowMessage] = useState(false);
+  const [buttonText, setButtonText] = useState("Crear cuenta");
 
   const crearUnaCuenta = async () => {
     try {
@@ -32,27 +33,45 @@ const CreateAccount = () => {
       });
 
       if (response.ok) {
+        setRegistrationStatus('success');
         console.log("Registro exitoso");
+        setShowMessage(true);
+        // Cambiar el texto del botón a "Siguiente" después de un registro exitoso
+        setButtonText("Siguiente");
       } else {
+        setRegistrationStatus('error');
         console.log("Error al registrar");
+        setShowMessage(true);
       }
     } catch (error) {
+      setRegistrationStatus('error');
       console.error("Error:", error);
+      setShowMessage(true);
     }
   };
 
-  useEffect(() => {}, [actions]);
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowMessage(false);
+      // Restaurar el texto del botón a "Crear cuenta" después de ocultar el mensaje
+      setButtonText("Crear cuenta");
+    }, 5000);
 
+    // Limpiar el temporizador al desmontar el componente
+    return () => clearTimeout(timer);
+  }, [showMessage]);
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6 d-flex align-items-end justify-content-center p-5" id="createAccountImg">
-          <div className="contentWrapper text-white">
-            <h1 className="title-sm">Bienvenido a Lorem ipsum</h1>
-            <p className="paragraph-l text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
+
+        <div className="col-6" id="createAccountImg">
+          <div className="contenido">
+            <h1 className="title-sm">Más de 100.00 tutores expertos en los temas mas te interesan.</h1>
+            <p>Podras tener sesiones 1 a 1 con un tutor experto en los temas que necesites reforzar, aprender o resolver dudas.</p>
           </div>
         </div>
-        <div className="col-6 d-flex align-items-center justify-content-center">
+
+        <div className="col-6 d-flex align-items-center justify-content-center" id='formContainer'>
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
 
             <h3 className="title-sm">¿Que quieres hacer?</h3>
@@ -76,58 +95,32 @@ const CreateAccount = () => {
               </div>
             </div>
 
-            <div className="mb-4">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nombre"
-                name="nombre"
-                id="nombre"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mb-4">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Apellido"
-                name="apellido"
-                id="apellido"
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
-              />
-            </div>
+            <div className="mb-4"><input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" onChange={(e) => {setName(e.target.value);}}/></div>
+            <div className="mb-4"><input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" onChange={(e) => {setLastName(e.target.value);}}/></div>
+            <div className="mb-4"><input type="email" className="form-control" placeholder="e-mail" name="correo" id="correo" onChange={(e) => {setEmail(e.target.value);}}/></div>
+            <div className="mb-4"><input type="password" className="form-control" placeholder="Contraseña" name="contraseña"id="contraseña" onChange={(e) => {setPassword(e.target.value);}}/></div>
+            
+            
+            
+       
+            <div className="actionsAccountWrapper">
+          <div className={`createAccountMessage ${registrationStatus === 'error' ? 'error' : ''}`} style={{ opacity: showMessage ? '1' : '0', transition: 'opacity 0.3s ease-in-out' }}>
+            {registrationStatus === 'error' ? (
+              <>
+                <Ban /> Hubo un error, inténtalo nuevamente
+              </>
+            ) : (
+              <>
+                <Check /> ¡Tu cuenta fue creada con éxito!
+              </>
+            )}
+          </div>
+          <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
+        </div>
 
-            <div className="mb-4">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="e-mail"
-                name="correo"
-                id="correo"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-            </div>
-            <div className="mb-4">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Contraseña"
-                name="contraseña"
-                id="contraseña"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-            </div>
-            <div className="d-flex justify-content-center">
-              <Button btnOnClick={crearUnaCuenta} btnText={"Crear cuenta"} className={"btn-primary btn-m"} />
-            </div>
+
+
+
 
             <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
