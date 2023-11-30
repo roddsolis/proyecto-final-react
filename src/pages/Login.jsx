@@ -4,9 +4,9 @@ import { FaGoogle } from "react-icons/fa";
 import { FaGithub } from "react-icons/fa";
 import Button from "../components/Button";
 import { Context } from "../store/AppContext";
-import { useContext, useState, useEffect } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Check, Ban } from "lucide-react";
+import { Ban } from "lucide-react";
 
 
 
@@ -18,8 +18,10 @@ const Login = () => {
   const [email, setEmail] = useState(null)
   const [password, setPassword] = useState(null)
 
-  const [validateAccount, setValidateAccount] = useState(null)
-  const [showMessage, setShowMessage] = useState(false);
+  // const [validateAccount, setValidateAccount] = useState(null)
+  // const [showMessage, setShowMessage] = useState(false);
+  const [opacity, setOpacity] = useState(0)
+  const [errorType, setErrorType] = useState("");
 
 
 
@@ -30,32 +32,31 @@ const Login = () => {
     try {
       const alumnosResponse = await fetch(`${store.apiURL}alumnos`).then(response => response.json());
       const tutoresResponse = await fetch(`${store.apiURL}tutores`).then(response => response.json());
-  
+
       const alumnos = alumnosResponse;  
       const tutores = tutoresResponse;
-  
+
       const usuarioEncontrado = alumnos.find(alumno => alumno.correo === email && alumno.password === password) || tutores.find(tutor => tutor.correo === email && tutor.password === password);
 
       if (usuarioEncontrado) {
-        console.log('Usuario autenticado'+ usuarioEncontrado);
-        setValidateAccount(true)
+        // Usuario autenticado
+        // setValidateAccount(true);
         navigate('/home');
+
+        // Aquí puedes almacenar los datos del usuario en el contexto o el estado global
+        actions.setUsuarioAutenticado(usuarioEncontrado);
+
       } else {
-        console.log('Credenciales incorrectas');
+        // Credenciales incorrectas
+        setOpacity(1);
+        setErrorType("credenciales");
       }
     } catch (error) {
-      console.log('Hubo un error', error);
+      // Hubo un error
+      setOpacity(1);
+      setErrorType("servidor");
     }
   };
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setShowMessage(false);
-    }, 5000);
-
-    return () => clearTimeout(timer);
-  }, [showMessage]);
-  
 
   return (
     <>
@@ -80,23 +81,20 @@ const Login = () => {
               <input type="password" className="form-control" placeholder="Contraseña" name="password" onChange={(e)=>{setPassword(e.target.value)}}/>
             </div>
             
-
-            <div className="actionsAccountWrapper">
-
-              <div className={`createAccountMessage ${validateAccount === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
-                {validateAccount === "error" ? (
-                  <>
-                    <Ban /> Hubo un error, inténtalo nuevamente
-                  </>
-                ) : (
-                  <>
-                    <Check /> ¡Tu cuenta fue creada con éxito!
-                  </>
-                )}
-              </div>
-              <Link to={validateAccount === "success" ? '/paymentmethod': ''}><Button btnText={"Iniciar sesion"} btnOnClick={validarDatosDeCuenta} className="btn-primary btn-m"/></Link>
-
-            </div>
+        <div className="actionsAccountWrapper">
+        <div className="createAccountMessage error" style={{ opacity: opacity }}>
+          <Ban /> <p className="btn-text-s mb-0">{
+            errorType === "credenciales"
+              ? "Credenciales incorrectas. Si no tienes cuenta, regístrate."
+              : errorType === "servidor"
+              ? "Hubo un error. Inténtalo más tarde."
+              : ""
+          }</p>
+        </div>
+        <Link to={''}>
+          <Button btnText={"Iniciar sesión"} btnOnClick={validarDatosDeCuenta} className="btn-primary btn-l" />
+        </Link>
+      </div>
 
       
           </form>
