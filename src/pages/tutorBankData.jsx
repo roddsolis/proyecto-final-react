@@ -23,8 +23,8 @@ function TutorBankData() {
     <div className="container-fluid d-flex p-0 h-100">
       <div className="col-6 bg-primary d-flex align-items-center justify-content-center p-5">
         <div className="col">
-          <h1 className="title-sm">Bienvenido a Lorem ipsum</h1>
-          <p className="paragraph-l">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
+          <h1 className="title-sm text-light">Bienvenido a Lorem ipsum</h1>
+          <p className="paragraph-l text-light">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
         </div>
       </div>
       <div className="col-6 d-flex align-items-center justify-content-center">

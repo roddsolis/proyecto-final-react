@@ -47,7 +47,7 @@ const Login = () => {
         actions.setUsuarioAutenticado(usuarioEncontrado);
 
       } else {
-        // Credenciales incorrectas
+        // si las credenciales no son correctas debe pasar por aca
         setOpacity(1);
         setErrorType("credenciales");
       }

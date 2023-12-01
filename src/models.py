@@ -12,7 +12,7 @@ class Alumno(db.Model):
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=True, nullable=True)
-    
+    estado = db.Column(db.Boolean, default=False)
     profile = db.relationship('Perfil', backref='alumno', uselist=False)
     datos_de_pago = db.relationship('Metodo_de_pago', backref='alumno', uselist=False )
     materia_seleccionada = db.relationship('Materia', backref='alumno', uselist=False )
@@ -35,7 +35,7 @@ class Tutor(db.Model):
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=False, nullable=True)
-
+    estado = db.Column(db.Boolean, default=False, nullable=False)
     profile = db.relationship('Perfil', backref='tutor', uselist=False)
     datos_bancarios = db.relationship('Cuenta_bancaria', backref='tutor', uselist=False )
     materia_seleccionada = db.relationship('Materia', backref='tutor')
@@ -48,6 +48,7 @@ class Tutor(db.Model):
             'correo_electronico': self.correo_electronico,
             'password': self.password,
             'tipo_de_cuenta': self.tipo_de_cuenta,
+            'estado': self.estado,
         }   
 
 
@@ -69,19 +70,31 @@ class Materia(db.Model):
 class Solicitud_sala(db.Model):
     __tablename__ = 'solicitud_sala'
     id = db.Column(db.Integer, primary_key=True)
-    confirmacion_alumno = db.Column(db.Boolean, default=False, nullable=True)
-    confirmacion_tutor = db.Column(db.Boolean, default=False, nullable=True)
-    estado = db.Column(db.Boolean)
+    confirmacion_alumno = db.Column(db.Boolean, default=None, nullable=True)
+    confirmacion_tutor = db.Column(db.Boolean, default=None, nullable=True)
+    estado = db.Column(db.Boolean, default=False)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False)
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False)
-  
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'confirmacion_alumno': self.confirmacion_alumno,
+            'confirmacion_tutor': self.confirmacion_tutor,
+            'estado': self.estado,
+            'alumno_id': self.alumno_id,
+            'tutor_id': self.tutor_id,
+        }
+    
 
 class Sala(db.Model):
     __tablename__ = 'salas'
     id = db.Column(db.Integer, primary_key=True)
-    solicitud_sala_id = db.Column(db.Integer, db.ForeignKey('solicitud_sala.id'), nullable=False)
-
-    estado_sala = db.relationship('Solicitud_sala', backref='solicitud_sala', uselist=False) 
+    solicitud_sala_id = db.Column(db.Integer, db.ForeignKey('solicitud_sala.id'), nullable=False, unique=True)
+    alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False)
+    tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False)
+    estado_sala = db.Column(db.Boolean, default=True)
+    finalizar_alumno = db.Column(db.Boolean, default=False)
+    finalizar_tutor = db.Column(db.Boolean, default=False)
 
 class Metodo_de_pago(db.Model):
     __tablename__ = 'metodos_de_pago'

@@ -10,7 +10,6 @@ import { Check, Ban } from "lucide-react";
 
 const CreateAccount = () => {
   const { store } = useContext(Context);
-
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
