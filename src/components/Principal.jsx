@@ -24,6 +24,7 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
 
   return (
     <>
+      <div className="container">
       <div className="contadores">
         <ContadorUsuarios texto={"Alumnos en línea"} />
         <ContadorUsuarios texto={"Alumnos en sala"} />
@@ -39,24 +40,26 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
         }
       </div>
       <Categorias />
-
+        
       <div className="sessionWrapper">
         {usuario === true ? (
           <div className="container d-flex flex-column">
             <h4 className="subtitle-sm">Ultima sesión</h4>
-            <p className="paragraph-m">Si deseas acceder a la informacion proporcionada por el tutor puedes ingresar nuevamente a la sala</p>
+            <p className="paragraph-m">Puedes acceder cuando quieras a tu sala, el historial de conversaciones y archivos se mantiene hasta que se inicie otra sesión.</p>
           </div>
         ) : (
           <>
             <CircleSwitch isActive={isActive} />
-            <div className="container d-flex align-items-center justify-content-center">
+            <div className={usuario === true ? 'tutorContent': 'alumnContent' }>
               <p className="mb-0">Para poder recibir solicitudes de alumnos debes establecer tu estado como activo.</p>
               <CustomSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
             </div>
           </>
         )}
 
-        <div className="emptyState"></div>
+        <div className="emptyState">
+          Aun no tienes una sesión activa
+        </div>
 
         {usuario === true ? (
           <div className="actionWrapper">
@@ -66,6 +69,8 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
           ""
         )}
       </div>
+      </div>
+      
     </>
   );
 };

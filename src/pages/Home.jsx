@@ -15,6 +15,12 @@ const Home = () => {
 
   console.log(usuarioAutenticado.cuenta);
 
+  fetch('https://api.dicebear.com/7.x/bottts-neutral/svg?eyes=bulging,dizzy,eva')
+  .then(response => response.json())
+  .then(data => console.log(data))
+  .catch()
+
+
   useEffect(() => {
     if (usuarioAutenticado) {
       setUserEmail(usuarioAutenticado.correo);
@@ -26,11 +32,11 @@ const Home = () => {
   return (
     <>
       <div className="fluid d-flex" style={{ height: "100vh" }}>
-        <div className="col-3 bg-light d-flex align-item-center justify-content-center p-4">
+        <div className="col-3 bg-light d-flex align-item-center justify-content-center p-4 h-100">
           <CardProfile userEmail={userEmail} userName={userName} userLastName={userLastName} />
         </div>
-        <div className="col-9 p-5">
-          <Principal tipoDeCuenta={usuarioAutenticado.cuenta} userName={userName} userLastName={userLastName} />
+        <div className="col-9 p-5 h-100">
+          <Principal tipoDeCuenta={true} userName={userName} userLastName={userLastName} />
         </div>
       </div>
     </>

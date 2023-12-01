@@ -84,6 +84,7 @@ const CreateAccount = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
+
       setShowMessage(false);
       setButtonText("Crear cuenta");
       // Restaurar el texto del botón a "Crear cuenta" después de ocultar el mensaje
@@ -93,6 +94,7 @@ const CreateAccount = () => {
       } else {
         setButtonText("Crear Cuenta");
       }
+
     }, 5000);
 
     return () => clearTimeout(timer);
@@ -104,8 +106,8 @@ const CreateAccount = () => {
       <div className="container-fluid d-flex p-0 h-100">
         <div className="col-6" id="createAccountImg">
           <div className="contenido">
-            <h1 className="title-sm">Más de 100.00 tutores expertos en los temas mas te interesan.</h1>
-            <p>Podras tener sesiones 1 a 1 con un tutor experto en los temas que necesites reforzar, aprender o resolver dudas.</p>
+            <h1 className="title-sm">Conecta con más de 100,000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.</h1>
+            <p>Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.</p>
           </div>
         </div>
 
