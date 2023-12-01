@@ -6,7 +6,7 @@ import CustomSwitch from "./CustomSwitch";
 import Button from "./Button";
 import "./../css/principal.css";
 
-const PrincipalTutor = ({ tipoDeCuenta, userName }) => {
+const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleSwitchChange = () => {
@@ -15,23 +15,35 @@ const PrincipalTutor = ({ tipoDeCuenta, userName }) => {
 
   let usuario = tipoDeCuenta;
 
+  let nombre = userName
+  let apellido = userLastName
+  console.log(nombre, apellido)
+  console.log(nombre.charAt(0).toUpperCase()+nombre.charAt())
+  console.log(apellido)
+  
+
   return (
     <>
       <div className="contadores">
-        <ContadorUsuarios texto={"Alumnos en Línea"} />
+        <ContadorUsuarios texto={"Alumnos en línea"} />
         <ContadorUsuarios texto={"Alumnos en sala"} />
       </div>
 
       <div className="mainContent">
-        <h3 className="subtitle-m">Hola {userName} ¿Qué quieres enseñar hoy?</h3>
-        <p className="paragraph-m">Debes seleccionar una categoría y luego una sub-categoría para buscar un alumno y hacer match contigo.</p>
+        
+        <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres {usuario === true ? 'aprender': 'enseñar'} hoy?</h4>
+        {usuario === true ? 
+        <p className="paragraph-m">Selecciona un tema de interes y luego busca un tutor en linea para poder acceder a una sala</p>
+        :
+        <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>
+        }
       </div>
       <Categorias />
 
       <div className="sessionWrapper">
         {usuario === true ? (
           <div className="container d-flex flex-column">
-            <h3 className="subtitle-sm">Ultima sesión</h3>
+            <h4 className="subtitle-sm">Ultima sesión</h4>
             <p className="paragraph-m">Si deseas acceder a la informacion proporcionada por el tutor puedes ingresar nuevamente a la sala</p>
           </div>
         ) : (

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import AdminTutores from '../components/AdminTutores';
 import AdminEstudiantes from '../components/AdminEstudiantes';
 import AdminCategorias from '../components/AdminCategorias';

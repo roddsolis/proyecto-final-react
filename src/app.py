@@ -32,13 +32,12 @@ def getNewUser():
     if request.method == 'GET':
         return 'entrando con el metodo GET'
     if request.method == 'POST':
-
         try:
             name = request.json.get('nombre')
             lastname = request.json.get('apellido')
             email = request.json.get('correo')
             password = request.json.get('contraseña')
-            opcion = request.json.get('opcion')  # Nueva línea para obtener la opción (enseñar o aprender)
+            opcion = request.json.get('opcion')
 
             nuevo_usuario = None
             print(opcion)
@@ -330,7 +329,7 @@ def obtener_ultima_solicitud_polling(tutor_id):
         print(f'Error en el servidor: {str(e)}')
         return jsonify({'error': f'Error al obtener la última solicitud_sala: {str(e)}'}), 500
 
-
+    
 """ Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':
     socketio.run(app, port=8080)
