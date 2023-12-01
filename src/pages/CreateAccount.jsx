@@ -1,6 +1,5 @@
 import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
 import { FaTwitter } from "react-icons/fa";
-
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState, useEffect } from "react";
@@ -11,7 +10,6 @@ import { Check, Ban } from "lucide-react";
 
 const CreateAccount = () => {
   const { store } = useContext(Context);
-  
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
@@ -20,6 +18,43 @@ const CreateAccount = () => {
   const [showMessage, setShowMessage] = useState(false);
   const [buttonText, setButtonText] = useState("Crear cuenta");
   const [formErrors, setFormErrors] = useState({});
+  const validateInput = (inputValue) => {
+    const regex = /^[A-Za-z]+$/;
+    return regex.test(inputValue);
+  };
+
+  const handleNameChange = (e) => {
+    const value = e.target.value;
+    if (!validateInput(value) && value !== "") {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        name: "Solo se aceptan letras en este campo",
+      }));
+    } else {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        name: undefined,
+      }));
+      setName(value);
+    }
+  };
+
+  const handleLastNameChange = (e) => {
+    const value = e.target.value;
+    if (!validateInput(value) && value !== "") {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: "Solo se aceptan letras en este campo",
+      }));
+    } else {
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        lastName: undefined,
+      }));
+      setLastName(value);
+    }
+  };
+
 
   const crearUnaCuenta = async () => {
     try {
@@ -114,7 +149,7 @@ const CreateAccount = () => {
         <div className="col-6 d-flex align-items-center justify-content-center" id="formContainer">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
             <h3 className="title-sm">¿Que quieres hacer?</h3>
-            
+
             {/* DESDE AQUI */}
 
             <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
@@ -137,20 +172,18 @@ const CreateAccount = () => {
             </div>
 
             <div className="mb-4">
-                <input
+              <input
                 type="text"
                 className="form-control"
                 placeholder="Nombre"
                 name="nombre"
                 id="nombre"
-                onChange={(e) => {
-                  setName(e.target.value);
-                }}
+                value={name}
+                onChange={handleNameChange}
               />
-              {formErrors.name && (
-                <p className="text-danger">{formErrors.name}</p>
-              )}
+              {formErrors.name && <p className="text-danger">{formErrors.name}</p>}
             </div>
+
             <div className="mb-4">
               <input
                 type="text"
@@ -158,9 +191,8 @@ const CreateAccount = () => {
                 placeholder="Apellido"
                 name="apellido"
                 id="apellido"
-                onChange={(e) => {
-                  setLastName(e.target.value);
-                }}
+                value={lastName}
+                onChange={handleLastNameChange}
               />
               {formErrors.lastName && (
                 <p className="text-danger">{formErrors.lastName}</p>
@@ -177,7 +209,7 @@ const CreateAccount = () => {
                   setEmail(e.target.value);
                 }}
               />
-             {formErrors.email && (
+              {formErrors.email && (
                 <p className="text-danger">{formErrors.email}</p>
               )}
             </div>
@@ -192,12 +224,12 @@ const CreateAccount = () => {
                   setPassword(e.target.value);
                 }}
               />
-             {formErrors.password && (
-    <p className="text-danger">{formErrors.password}</p>
-  )}
+              {formErrors.password && (
+                <p className="text-danger">{formErrors.password}</p>
+              )}
             </div>
 
-              <div className="actionsAccountWrapper">
+            <div className="actionsAccountWrapper">
               <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
                 {registrationStatus === "error" ? (
                   <>
@@ -210,25 +242,25 @@ const CreateAccount = () => {
                 )}
               </div>
               <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
-              <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
+                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
               </Link>
-              </div>
+            </div>
 
-              <div className="d-flex align-items-center justify-content-center p-3">
+            <div className="d-flex align-items-center justify-content-center p-3">
               <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
               <Link to="/login">
-              <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
+                <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
               </Link>
-              </div>
+            </div>
 
-              <div className="text-center mt-4">
+            <div className="text-center mt-4">
               <p>o entra con:</p>
               <button type="button" className="btn btn-link btn-floating mx-1">
-              <FaFacebook />
+                <FaFacebook />
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
-              <FaGoogle />
+                <FaGoogle />
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
@@ -236,7 +268,7 @@ const CreateAccount = () => {
               </button>
 
               <button type="button" className="btn btn-link btn-floating mx-1">
-              <FaGithub />
+                <FaGithub />
               </button>
             </div>
           </form>

@@ -12,8 +12,14 @@ import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
 import TutorBankData from "./pages/TutorBankData";
+import AlumnoView from "./pages/AlumnoView";
+import TutorView from "./pages/TutorView";
+import CambiarEstadoTutor from './pages/CambiarEstadoTutor';
+import SolicitudEmparejamiento from './pages/SolicitudEmparejamiento';
+import ConfirmarSolicitud from './pages/ConfirmarSolicitud';
+import SolicitarFinalizacion from './pages/SolicitarFinalizacion';
 
-const WS = "http://localhost:8080/";
+const WS = "http://127.0.0.1:8080/";
 
 const Layout = () => {
   const { store, actions } = useContext(Context);
@@ -35,6 +41,12 @@ const Layout = () => {
           <Route path="/room" element={<Room />} />
           <Route path="/adminlogin" element={<AdminLogin />} />
           <Route path="/adminhome" element={<AdminHome />} />
+          <Route path="/alumnoview" element={<AlumnoView />} />
+          <Route path="/tutorview" element={<TutorView />} />
+          <Route path="/cambiar_estado_tutor" element={<CambiarEstadoTutor />} />
+          <Route path="/solicitud_emparejamiento" element={<SolicitudEmparejamiento />} />
+          <Route path="/confirmar_solicitud" element={<ConfirmarSolicitud />} />
+          <Route path="/solicitar_finalizacion" element={<SolicitarFinalizacion />} />
           <Route path="*" element={<Notfound />} />
         </Routes>
       </Router>
