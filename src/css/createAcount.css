@@ -22,28 +22,27 @@ div.col-6 {
 p.paragraph-m{color:var(--neutral-5)}
 
 
-
 #createAccountImg{
-    background-image: url('main-img.png');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: 80em;
-    padding: 0;
+  background-image: url('main-img.png');
+  background-position: bottom center;
+  background-repeat: no-repeat;
+  background-size: 80em;
+  padding: 0;
 }
 
 .contenido{
-    background: linear-gradient( rgba(255, 255, 255, 0) 40%, var(--primary-4)150%);
-    color: white;
-    padding: 8em;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    justify-content: end;
+  background: linear-gradient( rgba(255, 255, 255, 0) 40%, var(--primary-4)150%);
+  color: white;
+  padding: 8em;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: end;
 }
 
 #formContainer{
-    padding: 8em;
+  padding: 8em;
 }
 
 .actionsAccountWrapper{
@@ -80,3 +79,24 @@ p.paragraph-m{color:var(--neutral-5)}
         color: var(--danger-4);
     }
 }
+
+#selectionWrapper{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3em;
+
+
+  & .container-check{
+    width: fit-content;
+  }
+
+  }
+
+  .brandWrapper-account{
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: end;
+    height: 100%;
+  }

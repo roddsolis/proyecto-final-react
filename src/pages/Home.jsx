@@ -20,7 +20,6 @@ const Home = () => {
   .then(data => console.log(data))
   .catch()
 
-
   useEffect(() => {
     if (usuarioAutenticado) {
       setUserEmail(usuarioAutenticado.correo);
@@ -36,7 +35,7 @@ const Home = () => {
           <CardProfile userEmail={userEmail} userName={userName} userLastName={userLastName} />
         </div>
         <div className="col-9 p-5 h-100">
-          <Principal tipoDeCuenta={true} userName={userName} userLastName={userLastName} />
+          <Principal tipoDeCuenta={usuarioAutenticado.cuenta} userName={userName} userLastName={userLastName} />
         </div>
       </div>
     </>

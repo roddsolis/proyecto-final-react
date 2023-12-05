@@ -61,17 +61,20 @@ const Login = () => {
   return (
     <>
       <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6 bg-primary d-flex align-items-center justify-content-start p-5" id='loginImg'>
-          <div className="col">
-            <h1 className="title-sm mb-4">Bienvenido a Lorem ipsum</h1>
-            <p className="paragraph-l mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
+        <div className="col-6 bg-primary d-flex align-items-center justify-content-start p-0" id='loginImg'>
+        <div className="contenido">
+            <h1 className="title-sm">Conecta con más de 100,000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.</h1>
+            <p>Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.</p>
           </div>
         </div>
-        <div className="col-6 d-flex flex-column align-items-center justify-content-center">
-          <form className='w-100 h-100 d-flex flex-column justify-content-center' onSubmit={(e)=>{e.preventDefault(), validarDatosDeCuenta()}}>
+        <div className="col-6 d-flex flex-column align-items-center justify-content-center" id='formColumn'>
+          <div className="brandWrapper">
+            <img src="/metty-light.svg" alt="" />
+          </div>
+          <form className='w-100 h-100 d-flex flex-column justify-content-center' onSubmit={(e)=>{e.preventDefault(), validarDatosDeCuenta()}} >
             {/* <!--  EMAIL INPUT --> */}
             <div>
-              <h4 className="mb-4 subtitle-l">Ingresa tus datos</h4>
+              <h4 className="mb-4 subtitle-l">Inicia Sesión</h4>
             </div>
             <div className="mb-4">
               <input type="email" className="form-control" placeholder="e-mail" name="email" onChange={(e)=>{setEmail(e.target.value)}} />
@@ -98,15 +101,19 @@ const Login = () => {
 
       
           </form>
-
-          <p className='paragraph-m mb-0'>¿No tienes cuenta? crea una cuenta <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
           
-            <div className="text-center my-4 d-flex align-items-center spacing-m">
+            <div className="text-center my-4 d-flex align-items-center spacing-m h-100">
               <p className='paragraph-m mb-0 pe-3'>O entra con: </p>
               <div className="brandsWrapper"><FaFacebook /><FaGoogle /><FaSquareXTwitter /><FaGithub />
               </div>
             </div>
-          <div className="text-start my-3"><p className='paragraph-m'>Olvidaste tu contraseña?<a href="#" className="ms-2 btn-text-m">Recupérala aquí</a></p></div>
+         
+          <div className="linkCrearCuenta">
+          <p className='paragraph-m mb-0'>¿Olvidaste tu contraseña? <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
+          <hr />
+          <p className='paragraph-m mb-0'>¿No tienes cuenta? crea una cuenta? <Link to="/create-account"><Button btnText={"aquí"} className="btn-tertiary btn-l" /></Link></p>
+          </div>
+          
         </div>
       </div>
     </>

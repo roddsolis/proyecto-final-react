@@ -8,6 +8,12 @@ from flask_socketio import SocketIO, emit
 from flask import render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
+from flask_jwt_extended import JWTManager
+from flask_jwt_extended import create_access_token
+from flask_jwt_extended import get_jwt_identity
+from flask_jwt_extended import jwt_required
+
+
 
 load_dotenv()
 
@@ -16,12 +22,18 @@ app.config['DEBUG'] = True
 app.config['ENV'] = 'development'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASEURI')
+
+# esta linea maneja el json web token
+app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
+
 socketio = SocketIO(app, cors_allowed_origins='*', transports=['websocket', 'polling'])
+
 ultima_solicitud_dict = {}  # Variable global para almacenar la última solicitud en el servidor
 
 db.init_app(app)
 migrate = Migrate(app, db)
 CORS(app)
+jwt = JWTManager(app)
 
 @app.route('/')
 def main():
@@ -63,6 +75,19 @@ def getNewUser():
 
         except Exception as e:
             return jsonify({'error': str(e)})
+        
+
+
+# aca va la funcion que permite al usuario inciar sesion
+
+@app.route('/login', methods=['POST'])
+def login():
+    return print("login")
+# aca esta la funcion que maneja las rutas privadas
+
+@app.route('/private', methods=['GET'])
+def private():
+    return print("ruta privada")
         
 
 # Este es el enpoint que obtiene toda la lista de alumnos registrados
@@ -332,5 +357,4 @@ def obtener_ultima_solicitud_polling(tutor_id):
     
 """ Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':
-    socketio.run(app, port=8080)
-    app.run(debug=True)
+    socketio.run(app, debug=True, port=8080)

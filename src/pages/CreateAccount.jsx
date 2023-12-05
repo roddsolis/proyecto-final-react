@@ -140,35 +140,36 @@ const CreateAccount = () => {
     <>
       <div className="container-fluid d-flex p-0 h-100">
         <div className="col-6" id="createAccountImg">
+          
           <div className="contenido">
+          <div className="brandWrapper-account ">
+            <img src="/metty-img.svg" alt="" />
+          </div>
             <h1 className="title-sm">Conecta con más de 100,000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.</h1>
             <p>Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.</p>
           </div>
+
         </div>
 
         <div className="col-6 d-flex align-items-center justify-content-center" id="formContainer">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
-            <h3 className="title-sm">¿Que quieres hacer?</h3>
+            <h3 className="subtitle-m">¿Que quieres hacer?</h3>
 
             {/* DESDE AQUI */}
 
-            <div className="container d-flex justify-content-start p-4 mt-5 mb-5 border border-1 rounded-2">
-              <div className="container">
+            <div className=" p-4 mt-5 mb-5 border border-1 rounded-2" id='selectionWrapper'>
                 <div className="form-check">
                   <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
                   <label htmlFor="optionEnsenar" className="form-check-label mx-2">
                     Quiero enseñar
                   </label>
                 </div>
-              </div>
-              <div className="container">
                 <div className="form-check">
                   <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
                   <label htmlFor="optionAprender" className="form-check-label mx-2">
                     Quiero aprender
                   </label>
                 </div>
-              </div>
             </div>
 
             <div className="mb-4">

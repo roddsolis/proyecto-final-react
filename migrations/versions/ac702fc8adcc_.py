@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 53a597af76af
+Revision ID: ac702fc8adcc
 Revises: 
-Create Date: 2023-11-29 17:42:08.613540
+Create Date: 2023-12-04 12:09:54.960841
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '53a597af76af'
+revision = 'ac702fc8adcc'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,6 +25,7 @@ def upgrade():
     sa.Column('correo_electronico', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=120), nullable=False),
     sa.Column('tipo_de_cuenta', sa.Boolean(), nullable=True),
+    sa.Column('estado', sa.Boolean(), nullable=True),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('correo_electronico')
     )
@@ -35,6 +36,7 @@ def upgrade():
     sa.Column('correo_electronico', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=120), nullable=False),
     sa.Column('tipo_de_cuenta', sa.Boolean(), nullable=True),
+    sa.Column('estado', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('correo_electronico')
     )
@@ -93,8 +95,16 @@ def upgrade():
     op.create_table('salas',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('solicitud_sala_id', sa.Integer(), nullable=False),
+    sa.Column('alumno_id', sa.Integer(), nullable=False),
+    sa.Column('tutor_id', sa.Integer(), nullable=False),
+    sa.Column('estado_sala', sa.Boolean(), nullable=True),
+    sa.Column('finalizar_alumno', sa.Boolean(), nullable=True),
+    sa.Column('finalizar_tutor', sa.Boolean(), nullable=True),
+    sa.ForeignKeyConstraint(['alumno_id'], ['alumnos.id'], ),
     sa.ForeignKeyConstraint(['solicitud_sala_id'], ['solicitud_sala.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.ForeignKeyConstraint(['tutor_id'], ['tutores.id'], ),
+    sa.PrimaryKeyConstraint('id'),
+    sa.UniqueConstraint('solicitud_sala_id')
     )
     # ### end Alembic commands ###
 
