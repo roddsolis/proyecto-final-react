@@ -182,7 +182,7 @@ const CreateAccount = () => {
                 value={name}
                 onChange={handleNameChange}
               />
-              {formErrors.name && <p className="text-danger">{formErrors.name}</p>}
+              <div className="inputErrorText">{formErrors.name && <p className="paragraph-s text-danger mb-0">{formErrors.name}</p>}</div>
             </div>
 
             <div className="mb-4">
@@ -195,9 +195,7 @@ const CreateAccount = () => {
                 value={lastName}
                 onChange={handleLastNameChange}
               />
-              {formErrors.lastName && (
-                <p className="text-danger">{formErrors.lastName}</p>
-              )}
+              <div className="inputErrorText">{formErrors.lastName && (<p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>)}</div>
             </div>
             <div className="mb-4">
               <input
@@ -210,9 +208,7 @@ const CreateAccount = () => {
                   setEmail(e.target.value);
                 }}
               />
-              {formErrors.email && (
-                <p className="text-danger">{formErrors.email}</p>
-              )}
+              <div className="inputErrorText">{formErrors.email && (<p className="paragraph-s text-danger mb-0">{formErrors.email}</p>)}</div>              
             </div>
             <div className="mb-4">
               <input
@@ -225,9 +221,7 @@ const CreateAccount = () => {
                   setPassword(e.target.value);
                 }}
               />
-              {formErrors.password && (
-                <p className="text-danger">{formErrors.password}</p>
-              )}
+              <div className="inputErrorText">{formErrors.password && (<p className="paragraph-s text-danger mb-0">{formErrors.password}</p>)}</div>
             </div>
 
             <div className="actionsAccountWrapper">
@@ -243,7 +237,7 @@ const CreateAccount = () => {
                 )}
               </div>
               <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
-                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
+                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
               </Link>
             </div>
 

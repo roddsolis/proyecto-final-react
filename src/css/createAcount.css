@@ -3,20 +3,8 @@ svg {
   font-size: 28px;
 }
 
-.card {
-  border-radius: 0;
-}
-
-.businessText {
-  color: var(--danger-4);
-}
-
 .formWrapper {
   width: 100%;
-}
-
-div.col-6 {
-  padding: 8em;
 }
 
 p.paragraph-m{color:var(--neutral-5)}
@@ -62,10 +50,11 @@ p.paragraph-m{color:var(--neutral-5)}
     display: flex;
     align-items: center;
     width: 100%;
-    height: 56px;
+    height: 48px;
     padding: var(--medium);
     gap: 1em;
     font-weight: 600;
+    font-size: 0.9em;
 
     & svg{
         color: var(--success-4);
