@@ -6,7 +6,6 @@ import { Check, Ban } from "lucide-react";
 import BigCardProcess from "../components/BigCardProcess";
 
 const CreateAccount = () => {
-  
   let bigCardContent = {
     title: "Conecta con más de 5.000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.",
     paragraph: "Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.",
@@ -125,7 +124,7 @@ const CreateAccount = () => {
       if (registrationStatus === "success") {
         setButtonText("Siguiente");
       } else {
-        setButtonText("Crear Cuenta");
+        setButtonText("Crear cuenta");
       }
     }, 5000);
 
@@ -137,98 +136,88 @@ const CreateAccount = () => {
       <div className="createAccountContainer">
         <BigCardProcess titleContent={bigCardContent.title} paragraphContent={bigCardContent.paragraph} />
 
-        <div className="formContainer">
-          <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
+        <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
+          
+          <div className="inputsWrapper">
             
-            {/* DESDE AQUI */}
-
-            <div className="selectionWrapper">
               <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
-              <div className="checksWrappers">
-                <div className="form-check-1">
-                  <label htmlFor="optionEnsenar" className="form-check-label mx-2">
-                    Quiero enseñar
-                  </label>
-                  <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
-                </div>
-                <div className="form-check-2">
-                  <label htmlFor="optionAprender" className="form-check-label mx-2">
-                    Quiero aprender
-                  </label>
-                  <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
-                </div>
-              </div>
-            </div>
-            <div className="inputsWrapper">
-              <div className="mb-4">
-                <input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" value={name} onChange={handleNameChange} />
-                <div className="inputErrorText">{formErrors.name && <p className="paragraph-s text-danger mb-0">{formErrors.name}</p>}</div>
-              </div>
+            <div className="selectionWrapper">
+              <label htmlFor="optionEnsenar" className="form-check">
+                Quiero enseñar
+                <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
+              </label>
+              <label htmlFor="optionAprender" className="form-check">
+                Quiero aprender
+                <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
+              </label>
 
-              <div className="mb-4">
-                <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" value={lastName} onChange={handleLastNameChange} />
-                <div className="inputErrorText">{formErrors.lastName && <p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>}</div>
-              </div>
-              <div className="mb-4">
-                <input
-                  type="email"
-                  className="form-control"
-                  placeholder="e-mail"
-                  name="correo"
-                  id="correo"
-                  onChange={(e) => {
-                    setEmail(e.target.value);
-                  }}
-                />
-                <div className="inputErrorText">{formErrors.email && <p className="paragraph-s text-danger mb-0">{formErrors.email}</p>}</div>
-              </div>
-              <div className="mb-4">
-                <input
-                  type="password"
-                  className="form-control"
-                  placeholder="Contraseña"
-                  name="contraseña"
-                  id="contraseña"
-                  onChange={(e) => {
-                    setPassword(e.target.value);
-                  }}
-                />
-                <div className="inputErrorText">{formErrors.password && <p className="paragraph-s text-danger mb-0">{formErrors.password}</p>}</div>
-              </div>
-
-              <div className="actionsAccountWrapper">
-                <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
-                  {registrationStatus === "error" ? (
-                    <>
-                      <Ban /> Hubo un error, inténtalo nuevamente
-                    </>
-                  ) : (
-                    <>
-                      <Check /> ¡Tu cuenta fue creada con éxito!
-                    </>
-                  )}
-                </div>
-                <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
-                  <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
-                </Link>
-              </div>
-            </div>
-            <div className="googleBtnWrapper">
-              <p className="paragraph-s mb-0">O regístrate con Google</p>
-              <div className="googleBtn">
-                <img src="./google-icon.svg" alt="" />
-                <p className="btn-text-s mb-0">Usar mi cuenta de Google</p>
-              </div>
             </div>
 
-            <div className="goToLoginWrapper">
-              <p className="paragraph-m mb-0 me-2">¿Ya tienes una cuenta?</p>
-              <Link to="/login">
-                <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
+            <input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" value={name} onChange={handleNameChange} />
+            <div className="inputErrorText">{formErrors.name && <p className="paragraph-s text-danger mb-0">{formErrors.name}</p>}</div>
+
+            <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" value={lastName} onChange={handleLastNameChange} />
+            <div className="inputErrorText">{formErrors.lastName && <p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>}</div>
+
+            <input
+              type="email"
+              className="form-control"
+              placeholder="e-mail"
+              name="correo"
+              id="correo"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
+            <div className="inputErrorText">{formErrors.email && <p className="paragraph-s text-danger mb-0">{formErrors.email}</p>}</div>
+
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Contraseña"
+              name="contraseña"
+              id="contraseña"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
+            <div className="inputErrorText">{formErrors.password && <p className="paragraph-s text-danger mb-0">{formErrors.password}</p>}</div>
+
+            <div className="actionsAccountWrapper">
+              <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
+                {registrationStatus === "error" ? (
+                  <>
+                    <Ban /> Hubo un error, inténtalo nuevamente
+                  </>
+                ) : (
+                  <>
+                    <Check /> ¡Tu cuenta fue creada con éxito!
+                  </>
+                )}
+              </div>
+              <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
+                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
               </Link>
             </div>
-          </form>
-        </div>
+
+          <div className="googleBtnAccountWrapper">
+            <p className="paragraph-s mb-0">O regístrate con Google</p>
+            <div className="googleBtn">
+              <img src="./google-icon.svg" alt="" />
+              <p className="btn-text-s mb-0">Usar mi cuenta de Google</p>
+            </div>
+          </div>
+
+          </div>
+
+
+          <div className="goToLoginWrapper">
+            <p className="paragraph-m mb-0 me-2">¿Ya tienes una cuenta?</p>
+            <Link to="/login">
+              <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
+            </Link>
+          </div>
+        </form>
       </div>
     </>
   );

@@ -59,5 +59,6 @@
 
 input {
   height: 48px;
+  min-height: 48px;
   font-family: "Inter", sans-serif;
 }

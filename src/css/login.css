@@ -1,44 +1,92 @@
-#loginImg{
-    background-image: url('main-img.png');
-    background-position: bottom center;
-    background-repeat: no-repeat;
-    background-size: 80em;
+.loginContainer {
+  background-color: white;
+  background: radial-gradient(circle at -200% -200%, var(--primary-4) 0%, rgba(255, 255, 255, 0) 85%);
+  background-position: left top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 2em;
+  padding: 2em;
+  
 }
 
-.brandsWrapper{
+.formLoginWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: start;
+  /* background-color: chocolate; */
+  width: 100%;
+  height: 100%;
+  padding: 5em;
+  padding-bottom: 0em;
+  gap: 1em;
+
+  .actionsLoginWrapper {
+    display: flex;
+    width: 100%;
+    /* background-color: chartreuse; */
+  }
+
+  .linkPassRecovery{
     display: flex;
     align-items: center;
-    gap: 1em;
-    color: aquamarine;
-}
-
-.contenido{
-    padding: 4em;
-}
-
-.brandWrapper{
-    /* background-color: brown; */
+    justify-content: center;
     width: 100%;
     height: 100%;
-    display: flex;
-    align-items: start;
-    justify-content: center;
-}
+    color: var(--neutral-5);
+  }
 
-.linkCrearCuenta{
-    height: 100%;
+  .googleBtnLoginWrapper {
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 3em;
+    width: 100%;
+    height: 100%;
+    gap: 1em;
+    /* background-color: pink; */
+    color: var(--neutral-5);
+
+    & .googleBtn {
+      height: 48px;
+      background-color: white;
+      color: var(--neutral-6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1em;
+      gap: 1em;
+      border: 1px solid var(--neutral-3);
+      border-radius: var(--extra-large);
+      width: max-content;
+    }
+  }
 }
 
-#formColumn{
-    padding: 5em;
-}
-
-hr{
-    color: aqua;
-    border: 1px solid var(--neutral-5);
+.linkCrearCuenta {
+  /* background-color: burlywood; */
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
+  gap: 2em;
+  color: var(--neutral-5);
+  & hr{
+    background-color: var(--neutral-6);
+    width: 1px;
+    height: 16px;
+  }
+  & p{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5em;
     height: 24px;
+    text-wrap: nowrap;
+    /* background-color: aqua; */
+  }
 }

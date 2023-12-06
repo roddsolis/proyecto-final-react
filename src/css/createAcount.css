@@ -1,4 +1,4 @@
-.createAccountContainer{
+.createAccountContainer {
   background-color: white;
   background: radial-gradient(circle at -200% -200%, var(--primary-4) 0%, rgba(255, 255, 255, 0) 85%);
   background-position: left top;
@@ -6,57 +6,78 @@
   align-items: center;
   justify-content: center;
   height: 100vh;
-  gap: 1em;
+  gap: 2em;
   padding: 2em;
 }
 
-.formContainer{
-  width: 100%;
-  max-width: 800px;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
-}
-
 .formWrapper {
+  /* background-color: blueviolet; */
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
-  gap: 1.5em;
-  /* background-color: greenyellow; */
-  width: 100%;
-  & div{width: 100%;}
+
   & .inputsWrapper{
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    gap: 1em;
+    /* background-color: brown; */
+    width: 100%;
+    height: 100%;
+    padding: 4em;
+    & .selectionWrapper {
+      /* background-color: blue; */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      & label{
+        padding: 1em;
+        border: 1px solid var(--neutral-3);
+        border-radius: var(--extra-small);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: white;
+        width: 100%;
+        height: 48px;
+        margin-bottom: 1em;
+      }
+      
+    }
+    .actionsAccountWrapper {
+      display: flex;
+      /* background-color: aqua; */
+      gap: 1em;
+      & button {
+        width: 140px;
+      }
+    }
+  }
+  .googleBtnAccountWrapper {
     /* background-color: aquamarine; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1em;
+
+    & .googleBtn {
+      height: 48px;
+      background-color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1em;
+      gap: 1em;
+      border: 1px solid var(--neutral-3);
+      border-radius: var(--extra-large);
+      width: max-content;
+    }
   }
-}
-
-.googleBtnWrapper{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 2em;
-  height: 100%;
-}
-
-.actionsAccountWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1em;
-  & button {
-    width: 140px;
-  }
-}
-
-.goToLoginWrapper{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height:24px;
 }
 
 .createAccountMessage {
@@ -84,190 +105,96 @@
   }
 }
 
-.selectionWrapper {
+.goToLoginWrapper {
+  width: 100%;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: center;
-  /* background-color: blue; */
-  padding: 0em;
-  gap: 0.3em;
-  & .checksWrappers{
-    display: flex;
+  height: 24px;
+  color: var(--neutral-5);
+}
+
+
+
+
+@media screen and (max-width: 1328px) {
+  .createAccountContainer{
+    /* background-color: aqua; */
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+
+  .formWrapper {
+    max-width: none;
+    padding: 0;
+    height: fit-content;
+    & .inputsWrapper{
+      padding: 0;
+    }
+    .googleBtnAccountWrapper {
+      flex-direction: column;
+      justify-content: center;  
+      padding-bottom: 2em;
+   
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  
+}
+
+@media screen and (max-width: 768px) {
+}
+
+@media screen and (max-width: 480px) {
+  .createAccountContainer{
+    /* background-color: yellow; */
+    flex-direction: column;
+    justify-content: flex-start;
     gap: 1em;
-    & .form-check-1, .form-check-2{
-      border: 1px solid var(--neutral-3);
-      border-radius: var(--extra-small);
-      background-color: white;
-      padding: 1em;
-      display: flex;
-      & label{
-        display: flex;
-        justify-content: start;
-        width: 100%;
+    padding: 1em;
+  }
+
+  .formWrapper {
+    max-width: none;
+    padding: 0;
+    height: fit-content;
+    gap: 1em;
+    & .inputsWrapper{
+      padding: 0;
+      gap: 0.5em;
+      & .selectionWrapper {
+        /* background-color: blue; */
+        flex-direction: column;
+        gap: 0.5em;
+        & label{
+          margin-bottom: 0.5em;
+        }
       }
     }
   }
-
-}
-.googleBtnWrapper{
-  /* background-color: aquamarine; */
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  & div{
-    height: 16px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 1em;
-    & hr{
-      height: 1px;
-      width: 100%;
-    }
-  }
-  .googleBtn{
-    height: 48px;
-    background-color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1em;
-    gap: 1em;
-    border: 1px solid var(--neutral-3);
-    border-radius: var(--extra-large);
-    width: max-content;
-  }
-}
-
-@media screen and (max-width: 1328px){
-  .createAccountContainer{
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .formContainer {
-    /* background-color: red; */
-    height: 100%;
-    max-width: none;
-    align-items: stretch;
-  }
-
-  .inputsWrapper{
-    height: 100%;
-    /* background-color: blue; */
-    
-  }
-  .googleBtnWrapper{
-    flex-direction: column;
-    /* background-color: chartreuse; */
-    height: 100%;
-  }
-
-  .goToLoginWrapper{
-    height: 100%;
-    /* background-color: orange; */
-  }
-}
-
-@media screen and (max-width: 960px){
-
-  .createAccountContainer{
-    flex-direction: column;
-    justify-content: flex-start;
-  }
-  .formContainer {
-    /* background-color: red; */
-    width: 100%;
-    height: 100%;
-    align-items: stretch;
-  }
-
-  .inputsWrapper{
-    height: 100%;
-    /* background-color: blue; */
-  }
-  .googleBtnWrapper{
-    flex-direction: column;
-    /* background-color: chartreuse; */
-    height: 100%;
-  }
-
-  .goToLoginWrapper{
-    height: 100%;
-    /* background-color: orange; */
-  }
-
-}
-@media screen and (max-width: 768px){
-  .createAccountContainer{
-    padding: 1.5em;
-    gap: 1.5em;
-  }
-  .formContainer {
-    /* background-color: red; */
-    width: 100%;
-    padding: 0em;
-  }
-
-  .googleBtnWrapper{
-    padding: 0px;
-    gap: 0;
-  }
-  .actionsAccountWrapper{
+  .actionsAccountWrapper {
+    /* background-color: aqua; */
     flex-direction: column-reverse;
-    & button {
-      width: 100%;
-    }
-  }
-  .googleBtnWrapper{
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
+    align-items: end;
     gap: 1em;
-    & p{
-      margin-bottom: 0;
-    }
   }
 }
-@media screen and (max-width: 480px){
+
+@media screen and (max-width: 375px) {
   .createAccountContainer{
-    padding: 1em;
-    gap: 1em;
-  }
-  .formContainer {
-    background-color: orangered;
-    width: 100%;
-    padding: 0;
-    gap: 1em;
-  }
-  .checksWrappers{
+    /* background-color: yellow; */
     flex-direction: column;
-  }
-  .googleBtnWrapper{
-    flex-direction: column;
-    gap: 2em;
-    padding: 0px;
+    justify-content: flex-start;
     gap: 1em;
-    & p{
-      margin-bottom: 1em;
-    }
-  }
-
-}
-@media screen and (max-width: 375px){
-  .createAccountContainer{
     padding: 1em;
+  }
+
+  .actionsAccountWrapper {
+    /* background-color: aqua; */
+    flex-direction: column-reverse;
+    align-items: end;
     gap: 1em;
   }
-
-  .formContainer {
-    /* background-color: orangered; */
-    width: 100%;
-    padding: 0;
-  }
-  .inputsWrapper{
-    height: 100%;
-    /* background-color: blue; */
-  }
-
 }
