@@ -1,14 +1,17 @@
-import { FaFacebook, FaGoogle, FaGithub } from "react-icons/fa";
-import { FaTwitter } from "react-icons/fa";
 import { Link } from "react-router-dom";
 import Button from "../components/Button";
 import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 import { Check, Ban } from "lucide-react";
-
-
+import BigCardProcess from "../components/BigCardProcess";
 
 const CreateAccount = () => {
+  
+  let bigCardContent = {
+    title: "Conecta con más de 5.000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.",
+    paragraph: "Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.",
+  };
+
   const { store } = useContext(Context);
   const [name, setName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -55,7 +58,6 @@ const CreateAccount = () => {
     }
   };
 
-
   const crearUnaCuenta = async () => {
     try {
       const errors = {};
@@ -73,11 +75,8 @@ const CreateAccount = () => {
       }
       if (!password.trim()) {
         errors.password = "La contraseña es requerida";
-      } else if (
-        !/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)
-      ) {
-        errors.password =
-          "La contraseña debe tener al menos 8 caracteres, un número, una letra y un carácter especial";
+      } else if (!/(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/.test(password)) {
+        errors.password = "La contraseña debe tener al menos 8 caracteres, un número, una letra y un carácter especial";
       }
 
       setFormErrors(errors);
@@ -119,7 +118,6 @@ const CreateAccount = () => {
 
   useEffect(() => {
     const timer = setTimeout(() => {
-
       setShowMessage(false);
       setButtonText("Crear cuenta");
       // Restaurar el texto del botón a "Crear cuenta" después de ocultar el mensaje
@@ -129,142 +127,104 @@ const CreateAccount = () => {
       } else {
         setButtonText("Crear Cuenta");
       }
-
     }, 5000);
 
     return () => clearTimeout(timer);
-  }, [showMessage]);
-
+  }, [showMessage, registrationStatus]);
 
   return (
     <>
-      <div className="container-fluid d-flex p-0 h-100">
-        <div className="col-6" id="createAccountImg">
-          
-          <div className="contenido">
-          <div className="brandWrapper-account ">
-            <img src="/metty-img.svg" alt="" />
-          </div>
-            <h1 className="title-sm">Conecta con más de 100,000 tutores expertos. Explora tus intereses con profesionales listos para potenciar tu aprendizaje.</h1>
-            <p>Desbloquea tu potencial con sesiones personalizadas 1 a 1, junto a tutores expertos. Refuerza tus conocimientos, aprende de manera efectiva y resuelve tus dudas con los mejores en cada materia.</p>
-          </div>
-
-        </div>
+      <div className="container-fluid d-flex p-0 h-100" id="createAccountContainer">
+        <BigCardProcess titleContent={bigCardContent.title} paragraphContent={bigCardContent.paragraph} />
 
         <div className="col-6 d-flex align-items-center justify-content-center" id="formContainer">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
-            <h3 className="subtitle-m">¿Que quieres hacer?</h3>
-
             {/* DESDE AQUI */}
 
-            <div className=" p-4 mt-5 mb-5 border border-1 rounded-2" id='selectionWrapper'>
-                <div className="form-check">
-                  <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
+            <div className="selectionWrapper">
+              <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
+              <div className="checksWrappers">
+                <div className="form-check-1">
                   <label htmlFor="optionEnsenar" className="form-check-label mx-2">
                     Quiero enseñar
                   </label>
+                  <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
                 </div>
-                <div className="form-check">
-                  <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
+                <div className="form-check-2">
                   <label htmlFor="optionAprender" className="form-check-label mx-2">
                     Quiero aprender
                   </label>
+                  <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
                 </div>
-            </div>
-
-            <div className="mb-4">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Nombre"
-                name="nombre"
-                id="nombre"
-                value={name}
-                onChange={handleNameChange}
-              />
-              <div className="inputErrorText">{formErrors.name && <p className="paragraph-s text-danger mb-0">{formErrors.name}</p>}</div>
-            </div>
-
-            <div className="mb-4">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Apellido"
-                name="apellido"
-                id="apellido"
-                value={lastName}
-                onChange={handleLastNameChange}
-              />
-              <div className="inputErrorText">{formErrors.lastName && (<p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>)}</div>
-            </div>
-            <div className="mb-4">
-              <input
-                type="email"
-                className="form-control"
-                placeholder="e-mail"
-                name="correo"
-                id="correo"
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                }}
-              />
-              <div className="inputErrorText">{formErrors.email && (<p className="paragraph-s text-danger mb-0">{formErrors.email}</p>)}</div>              
-            </div>
-            <div className="mb-4">
-              <input
-                type="password"
-                className="form-control"
-                placeholder="Contraseña"
-                name="contraseña"
-                id="contraseña"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
-              />
-              <div className="inputErrorText">{formErrors.password && (<p className="paragraph-s text-danger mb-0">{formErrors.password}</p>)}</div>
-            </div>
-
-            <div className="actionsAccountWrapper">
-              <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
-                {registrationStatus === "error" ? (
-                  <>
-                    <Ban /> Hubo un error, inténtalo nuevamente
-                  </>
-                ) : (
-                  <>
-                    <Check /> ¡Tu cuenta fue creada con éxito!
-                  </>
-                )}
               </div>
-              <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
-                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
-              </Link>
+            </div>
+            <div className="inputsWrapper">
+              <div className="mb-4">
+                <input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" value={name} onChange={handleNameChange} />
+                <div className="inputErrorText">{formErrors.name && <p className="paragraph-s text-danger mb-0">{formErrors.name}</p>}</div>
+              </div>
+
+              <div className="mb-4">
+                <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" value={lastName} onChange={handleLastNameChange} />
+                <div className="inputErrorText">{formErrors.lastName && <p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>}</div>
+              </div>
+              <div className="mb-4">
+                <input
+                  type="email"
+                  className="form-control"
+                  placeholder="e-mail"
+                  name="correo"
+                  id="correo"
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                  }}
+                />
+                <div className="inputErrorText">{formErrors.email && <p className="paragraph-s text-danger mb-0">{formErrors.email}</p>}</div>
+              </div>
+              <div className="mb-4">
+                <input
+                  type="password"
+                  className="form-control"
+                  placeholder="Contraseña"
+                  name="contraseña"
+                  id="contraseña"
+                  onChange={(e) => {
+                    setPassword(e.target.value);
+                  }}
+                />
+                <div className="inputErrorText">{formErrors.password && <p className="paragraph-s text-danger mb-0">{formErrors.password}</p>}</div>
+              </div>
+
+              <div className="actionsAccountWrapper">
+                <div className={`createAccountMessage ${registrationStatus === "error" ? "error" : ""}`} style={{ opacity: showMessage ? "1" : "0", transition: "opacity 0.3s ease-in-out" }}>
+                  {registrationStatus === "error" ? (
+                    <>
+                      <Ban /> Hubo un error, inténtalo nuevamente
+                    </>
+                  ) : (
+                    <>
+                      <Check /> ¡Tu cuenta fue creada con éxito!
+                    </>
+                  )}
+                </div>
+                <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
+                  <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
+                </Link>
+              </div>
+            </div>
+            <div className="googleBtnWrapper">
+              <p className="paragraph-s">O regístrate con Google</p>
+              <div className="googleBtn">
+                <img src="./google-icon.svg" alt="" />
+                <p className="btn-text-s mb-0">Usar mi cuenta de Google</p>
+              </div>
             </div>
 
-            <div className="d-flex align-items-center justify-content-center p-3">
-              <p className="paragraph-m mb-0 me-3">¿Ya tienes una cuenta?</p>
+            <div className="goToLoginWrapper">
+              <p className="paragraph-m mb-0 me-2">¿Ya tienes una cuenta?</p>
               <Link to="/login">
                 <Button btnText={"ir al login"} className={"btn-tertiary btn-l"} />
               </Link>
-            </div>
-
-            <div className="text-center mt-4">
-              <p>o entra con:</p>
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaFacebook />
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaGoogle />
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaTwitter />
-              </button>
-
-              <button type="button" className="btn btn-link btn-floating mx-1">
-                <FaGithub />
-              </button>
             </div>
           </form>
         </div>

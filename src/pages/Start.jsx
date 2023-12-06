@@ -10,7 +10,7 @@ const Start = () => {
         <div className="contentWrapper">
           <h3 className="title-sm">Bienvenidos a <img src="./logo-metty-light.svg" alt="" /></h3>
           <p className="paragraph-m">
-            Descubre la primera plataforma de tutorías <strong>uno a uno</strong> que te conecta en tiempo real con más de <strong>100,000 expertos</strong>. Aquí, puedes compartir tus conocimientos, resolver dudas sobre temas de tu interés y, <strong>¿por qué no?</strong>, aprender algo
+            Descubre la primera plataforma de tutorías <strong>uno a uno</strong> que te conecta en tiempo real con más de <strong>5.000 expertos</strong>. Aquí, puedes compartir tus conocimientos, resolver dudas sobre temas de tu interés y, <strong>¿por qué no?</strong>, aprender algo
             completamente nuevo. ¡Inicia tu experiencia ahora y explora un mundo de posibilidades!
           </p>
           <div className="ctaContentWrapper">

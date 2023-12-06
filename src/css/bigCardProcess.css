@@ -1,0 +1,95 @@
+.bigCardWrapper{
+  height: 100%;
+  padding: 2em 0em 2em 2em;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  & .bigCardContentWrapper{
+    width: 100%;
+    height: 100%;
+    background-image: url("main-img.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 75em;
+    border-radius: var(--medium);
+    overflow: hidden;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    max-width: 1000px;
+    background-color: var(--primary-5);
+
+    & .bigCardInfo{
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      & p, h1{color: white;}
+    }
+  }
+}
+
+
+@media screen and (max-width: 960px){
+  .bigCardWrapper{
+    /* background-color: goldenrod; */
+    padding: 1em 1em 0em 1em;
+  & .bigCardContentWrapper{
+    background-position: bottom -110px left -50px;
+    background-size: 30em;
+    background-color: var(--primary-4);
+
+    & .bigCardInfo{
+      display: none;
+    }
+
+  }  
+
+  }
+}
+@media screen and (max-width: 768px){
+  .bigCardWrapper{
+    /* background-color: goldenrod; */
+    padding: 1em 1em 0em 1em;
+  & .bigCardContentWrapper{
+    background-position: bottom -50px left -50px;
+    background-size: 20em;
+    background-color: var(--primary-4);
+
+    & .bigCardInfo{
+      display: none;
+    }
+
+  }  
+
+  }
+}
+
+@media screen and (max-width: 480px){
+  .bigCardWrapper{
+    /* background-color: goldenrod; */
+    padding: 1em 1em 0em 1em;
+  & .bigCardContentWrapper{
+    background-position: bottom -50px left -50px;
+    background-size: 20em;
+    background-color: var(--primary-4);
+
+    & .bigCardInfo{
+      display: none;
+    }
+
+  }  
+
+  }
+}
+@media screen and (max-width: 375px){}
+
+
+
+
+/* @media screen and (max-width: 1328px){}
+@media screen and (max-width: 960px){}
+@media screen and (max-width: 768px){}
+@media screen and (max-width: 480px){}
+@media screen and (max-width: 375px){} */

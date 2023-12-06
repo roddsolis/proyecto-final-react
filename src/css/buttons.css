@@ -9,7 +9,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
   box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.3) inset,
     0px 1px 0px 0px rgba(255, 255, 255, 0.5) inset;
   font-weight: 600;
@@ -24,7 +23,6 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: fit-content;
   box-shadow: 0px -1px 0px 0px rgba(0, 0, 0, 0.1) inset,
     0px 0px 2px 0px #b1c3cc inset;
   font-weight: 600;
