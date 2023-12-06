@@ -142,6 +142,7 @@ const CreateAccount = () => {
             
               <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
             <div className="selectionWrapper">
+              
               <label htmlFor="optionEnsenar" className="form-check">
                 Quiero enseñar
                 <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />

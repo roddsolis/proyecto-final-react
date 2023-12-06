@@ -8,7 +8,6 @@
   height: 100vh;
   gap: 2em;
   padding: 2em;
-  
 }
 
 .formLoginWrapper {
@@ -22,6 +21,10 @@
   padding: 5em;
   padding-bottom: 0em;
   gap: 1em;
+
+  & input{
+    min-height: 48px;
+  }
 
   .actionsLoginWrapper {
     display: flex;
@@ -90,3 +93,43 @@
     /* background-color: aqua; */
   }
 }
+
+@media screen and (max-width:1328px) {
+  .loginContainer{
+    flex-direction: column;
+  }
+
+}
+@media screen and (max-width:960px) {
+ 
+}
+@media screen and (max-width:768px) {
+  .formLoginWrapper{
+    /* background-color: green; */
+    padding: 0px;
+  }
+}
+@media screen and (max-width:480px) {
+  .loginContainer{
+    padding: 1em;
+  }
+  .formLoginWrapper{
+    /* background-color: yellow; */
+    padding: 0px;
+  }
+  .linkPassRecovery{
+    align-items: center;
+    justify-content: center;
+    /* background-color: brown; */
+    & p{
+      text-align: center;
+    }
+  }
+}
+@media screen and (max-width:375px) {
+  .loginContainer{
+    padding: 1em;
+  }
+}
+
+
