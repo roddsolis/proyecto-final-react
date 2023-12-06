@@ -134,11 +134,12 @@ const CreateAccount = () => {
 
   return (
     <>
-      <div className="container-fluid d-flex p-0 h-100" id="createAccountContainer">
+      <div className="createAccountContainer">
         <BigCardProcess titleContent={bigCardContent.title} paragraphContent={bigCardContent.paragraph} />
 
-        <div className="col-6 d-flex align-items-center justify-content-center" id="formContainer">
+        <div className="formContainer">
           <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
+            
             {/* DESDE AQUI */}
 
             <div className="selectionWrapper">
@@ -213,7 +214,7 @@ const CreateAccount = () => {
               </div>
             </div>
             <div className="googleBtnWrapper">
-              <p className="paragraph-s">O regístrate con Google</p>
+              <p className="paragraph-s mb-0">O regístrate con Google</p>
               <div className="googleBtn">
                 <img src="./google-icon.svg" alt="" />
                 <p className="btn-text-s mb-0">Usar mi cuenta de Google</p>

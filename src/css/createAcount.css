@@ -1,18 +1,18 @@
-#createAccountContainer{
+.createAccountContainer{
   background-color: white;
   background: radial-gradient(circle at -200% -200%, var(--primary-4) 0%, rgba(255, 255, 255, 0) 85%);
   background-position: left top;
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
+  gap: 1em;
+  padding: 2em;
 }
 
-
-#formContainer {
-  /* background-color: brown; */
-  padding: 2em 5em;
+.formContainer{
   width: 100%;
-  max-width: 1000px;
+  max-width: 800px;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -41,7 +41,6 @@
   padding: 2em;
   height: 100%;
 }
-
 
 .actionsAccountWrapper {
   display: flex;
@@ -72,7 +71,6 @@
   gap: 1em;
   font-weight: 600;
   font-size: 0.9em;
-
   & svg {
     color: var(--success-4);
   }
@@ -143,38 +141,74 @@
 }
 
 @media screen and (max-width: 1328px){
-  #formContainer {
-    /* background-color: brown; */
-    padding: 2em 3em;
+  .createAccountContainer{
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .formContainer {
+    /* background-color: red; */
+    height: 100%;
+    max-width: none;
+    align-items: stretch;
+  }
+
+  .inputsWrapper{
+    height: 100%;
+    /* background-color: blue; */
+    
+  }
+  .googleBtnWrapper{
+    flex-direction: column;
+    /* background-color: chartreuse; */
+    height: 100%;
+  }
+
+  .goToLoginWrapper{
+    height: 100%;
+    /* background-color: orange; */
   }
 }
+
 @media screen and (max-width: 960px){
 
-  #createAccountContainer{
-    display: flex;
+  .createAccountContainer{
     flex-direction: column;
-   }
-
-  #formContainer {
-    /* background-color: yellow; */
-    width: 100%;
-    padding: 2em 3em;
+    justify-content: flex-start;
   }
-
-  .googleBtnWrapper{
-    padding: 0px;
-    gap: 0;
-  }
-}
-@media screen and (max-width: 768px){
-  #formContainer {
+  .formContainer {
     /* background-color: red; */
     width: 100%;
-    padding: 2em 3em;
+    height: 100%;
+    align-items: stretch;
   }
-  .checksWrappers{
+
+  .inputsWrapper{
+    height: 100%;
+    /* background-color: blue; */
+  }
+  .googleBtnWrapper{
     flex-direction: column;
+    /* background-color: chartreuse; */
+    height: 100%;
   }
+
+  .goToLoginWrapper{
+    height: 100%;
+    /* background-color: orange; */
+  }
+
+}
+@media screen and (max-width: 768px){
+  .createAccountContainer{
+    padding: 1.5em;
+    gap: 1.5em;
+  }
+  .formContainer {
+    /* background-color: red; */
+    width: 100%;
+    padding: 0em;
+  }
+
   .googleBtnWrapper{
     padding: 0px;
     gap: 0;
@@ -186,7 +220,7 @@
     }
   }
   .googleBtnWrapper{
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 1em;
@@ -196,12 +230,16 @@
   }
 }
 @media screen and (max-width: 480px){
-  #formContainer {
-    /* background-color: orangered; */
-    width: 100%;
-    padding: 1.5em 3em;
+  .createAccountContainer{
+    padding: 1em;
+    gap: 1em;
   }
-
+  .formContainer {
+    background-color: orangered;
+    width: 100%;
+    padding: 0;
+    gap: 1em;
+  }
   .checksWrappers{
     flex-direction: column;
   }
@@ -209,11 +247,27 @@
     flex-direction: column;
     gap: 2em;
     padding: 0px;
-    gap: 0;
+    gap: 1em;
     & p{
       margin-bottom: 1em;
     }
   }
 
 }
-@media screen and (max-width: 375px){}
+@media screen and (max-width: 375px){
+  .createAccountContainer{
+    padding: 1em;
+    gap: 1em;
+  }
+
+  .formContainer {
+    /* background-color: orangered; */
+    width: 100%;
+    padding: 0;
+  }
+  .inputsWrapper{
+    height: 100%;
+    /* background-color: blue; */
+  }
+
+}

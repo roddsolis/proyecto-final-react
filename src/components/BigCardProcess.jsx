@@ -1,5 +1,6 @@
 
 const BigCardProcess = ({titleContent, paragraphContent}) => {
+  
   return (
     <>
        <div className="bigCardWrapper">
