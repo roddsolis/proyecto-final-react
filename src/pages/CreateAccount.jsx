@@ -197,7 +197,7 @@ const CreateAccount = () => {
                 )}
               </div>
               <Link to={registrationStatus === "success" ? "/paymentmethod" : ""}>
-                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-m"} />
+                <Button btnOnClick={crearUnaCuenta} btnText={buttonText} className={"btn-primary btn-l"} />
               </Link>
             </div>
 
