@@ -169,49 +169,38 @@ const TutorView = ({ userName }) => {
   };
 
   return (
-    <div className="container">
-      <div className="contadores">
-        <ContadorUsuarios texto={"Alumnos en línea"} />
-        <ContadorUsuarios texto={"Alumnos en sala"} />
+    <>
+      <div className="topBarWrapper">
+        <ContadorUsuarios texto={"Alumnos en línea"} numero={200} />
+        <ContadorUsuarios texto={"Alumnos en sala"} numero={100} />
+        <div className="logoHomeWrapper">
+          <img src="logo-metty-light.svg" alt="" />
+        </div>
+      </div>
+      <div className="textContentWrapper">
+        <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres enseñar hoy?</h4>
+        <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>
       </div>
 
-      <div className="mainContent">
-        <h4 className="subtitle-sm">
-          Hola {userName} ¿Qué quieres enseñar hoy?
-        </h4>
-        <p className="paragraph-m">
-          Selecciona los temas que quieres enseñar para poder recibir
-          solicitudes de alumnos.
-        </p>
-      </div>
       <Categorias />
 
       <div className="sessionWrapper">
-        <>
-          <CircleSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
-          <div className={"tutorContent"}>
-            <p className="mb-0">
-              Para poder recibir solicitudes de alumnos debes establecer tu
-              estado como activo.
-            </p>
-            <CustomSwitch
-              isActive={isActive}
-              onSwitchChange={handleSwitchChange}
-            />
+        <CircleSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
+        <div className="tutorContent">
+          <p className="mb-0">Para poder recibir solicitudes de alumnos debes establecer tu estado como activo.</p>
+          <CustomSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
+        </div>
 
-          </div>
-          <div className="emptyState">Aun no tienes una sesión activa</div>
-          <input type="text" value={solicitudId || (ultimaSolicitud ? ultimaSolicitud.id : '')} onChange={handleInputChange} /><br /><br />
-          <button onClick={handleConfirmarSolicitud}>Confirmar Solicitud</button>
-          <button onClick={handleRechazarSolicitud} disabled={!solicitudId}>
-            Rechazar Solicitud
-          </button>
-        </>
+        <div className="emptyState">
+          Aún no tienes una sesión activa
+        </div>
+        <input type="text" value={solicitudId || (ultimaSolicitud ? ultimaSolicitud.id : '')} onChange={handleInputChange} />
+        <button onClick={handleConfirmarSolicitud}>Confirmar Solicitud</button>
+        <button onClick={handleRechazarSolicitud} disabled={!solicitudId}>
+          Rechazar Solicitud
+        </button>
       </div>
-      <div>
-      </div>
-
-    </div>
+    </>
   );
 };
 

@@ -104,59 +104,47 @@ const AlumnoView = ({ userName }) => {
   };
 
   return (
-    <div className="container">
-      <div className="contadores">
-        <ContadorUsuarios texto={"Alumnos en línea"} />
-        <ContadorUsuarios texto={"Alumnos en sala"} />
+    <>
+      <div className="topBarWrapper">
+        <ContadorUsuarios texto={"Alumnos en línea"} numero={200} />
+        <ContadorUsuarios texto={"Alumnos en sala"} numero={100} />
+        <div className="logoHomeWrapper">
+          <img src="logo-metty-light.svg" alt="" />
+        </div>
+      </div>
+      <div className="textContentWrapper">
+        <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres aprender hoy?</h4>
+        <p className="paragraph-m">Selecciona un tema de interés y luego busca un tutor en línea para poder acceder a una sala.</p>
       </div>
 
-      <div className="mainContent">
-        <h4 className="subtitle-sm">
-          Hola {userName} ¿Qué quieres aprender hoy?
-        </h4>
-        <p className="paragraph-m">
-          Selecciona un tema de interés y luego busca un tutor en línea para
-          poder acceder a una sala
-        </p>
-      </div>
       <Categorias />
 
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">
           <h4 className="subtitle-sm">Última sesión</h4>
-          <p className="paragraph-m">
-            Puedes acceder cuando quieras a tu sala, el historial de
-            conversaciones y archivos se mantiene hasta que se inicie otra
-            sesión.
-          </p>
-          <div className="emptyState">Aun no tienes una sesión activa</div>
+          <p className="paragraph-m">Puedes acceder cuando quieras a tu sala, el historial de conversaciones y archivos se mantiene hasta que se inicie otra sesión.</p>
+        </div>
 
-          <div className="actionWrapper">
-            <Button
-              btnText={buscandoTutor ? 'Detener búsqueda de tutor' : 'Buscar tutor en línea'}
-              className={"btn-primary btn-l"}
-              btnOnClick={() => setBuscandoTutor(!buscandoTutor)}
-            />
-          </div>
-          <div>
-            <br /><br />
-            <button onClick={handleConfirmarSolicitud} disabled={!tutorDisponible || !solicitudId}>
-              Confirmar Solicitud
-            </button>
+        <div className="emptyState">
+          Aún no tienes una sesión activa
+        </div>
 
-            {/* Verificar tutor disponible solo después de enviar la solicitud */}
-            {buscandoTutor && (
-              <div>
-                <p>Verificando la disponibilidad del tutor...</p>
-                <p>Estado actual: {tutorDisponible ? 'Tutor disponible' : 'No hay tutor disponible'}</p>
-              </div>
+        <div className="actionWrapper">
+          <Button btnText={buscandoTutor ? 'Detener búsqueda de tutor' : 'Buscar tutor en línea'} btnOnClick={() => setBuscandoTutor(!buscandoTutor)} className={"btn-primary btn-m"} />
+          <button onClick={handleConfirmarSolicitud} disabled={!tutorDisponible || !solicitudId}>
+            Confirmar Solicitud
+          </button>
 
-            )}
-          </div>
-
+          {/* Verificar tutor disponible solo después de enviar la solicitud */}
+          {buscandoTutor && (
+            <>
+              <p>Verificando la disponibilidad del tutor...</p>
+              <p>Estado actual: {tutorDisponible ? 'Tutor disponible' : 'No hay tutor disponible'}</p>
+            </>
+          )}
         </div>
       </div>
-    </div>
+    </>
   );
 };
 
