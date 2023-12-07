@@ -7,18 +7,9 @@ const Home = () => {
   const { store, actions } = useContext(Context);
   const usuarioAutenticado = store.usuarioAutenticado;
 
-  console.log(store, actions);
-
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userLastName, setUserLastName] = useState("");
-
-  console.log(usuarioAutenticado.cuenta);
-
-  fetch('https://api.dicebear.com/7.x/bottts-neutral/svg?eyes=bulging,dizzy,eva')
-  .then(response => response.json())
-  .then(data => console.log(data))
-  .catch()
 
   useEffect(() => {
     if (usuarioAutenticado) {

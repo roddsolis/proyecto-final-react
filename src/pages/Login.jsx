@@ -23,8 +23,6 @@ const Login = () => {
   const [opacity, setOpacity] = useState(0);
   const [errorType, setErrorType] = useState("");
 
-  console.log(store, actions);
-
   const validarDatosDeCuenta = async () => {
     try {
       const alumnosResponse = await fetch(`${store.apiURL}alumnos`).then((response) => response.json());
