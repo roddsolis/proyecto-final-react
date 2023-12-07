@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from flask_migrate import Migrate
 from flask_cors import CORS
 from models import db, Alumno, Tutor, Solicitud_sala, Sala
-from flask_socketio import SocketIO, emit
+from flask_socketio import SocketIO, emit, disconnect
 from flask import render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy.exc import SQLAlchemyError
@@ -39,6 +39,11 @@ jwt = JWTManager(app)
 @app.route('/')
 def main():
     return 'main'
+
+@socketio.on('clientError')
+def handle_client_error(e):
+    print('Error en el cliente:', e)
+    disconnect()
 
 @app.route('/create-account', methods=['GET', 'POST'])
 def getNewUser():
@@ -397,4 +402,4 @@ def obtener_ultima_solicitud_polling(tutor_id):
     
 """ Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':
-    socketio.run(app, debug=True, port=8080)
+    socketio.run(app, debug=True, port=8080 )
