@@ -129,6 +129,15 @@ def obtener_turores():
     print(tutor_json)
     return jsonify(tutor_json)
 
+@app.route('/estado_tutor/<int:tutor_id>', methods=['GET'])
+def estado_tutor(tutor_id):
+    tutor = Tutor.query.get(tutor_id)
+
+    if tutor:
+        return jsonify({'estado_tutor': tutor.estado})
+    else:
+        return jsonify({'error': 'Tutor no encontrado'}), 404
+
 @app.route('/cambiar_estado_tutor', methods=['POST'])
 def cambiar_estado_tutor():
     data = request.get_json()

@@ -27,6 +27,7 @@
 @import "./admintutores.css";
 @import "./adminestudiantes.css";
 @import "./bigCardProcess.css";
+@import "./home.css";
 
 * {
   margin: 0;

@@ -3,9 +3,14 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 0.5em;
-  border: 1px solid var(--neutral-3);
+  gap: 0.1em;
   padding: var(--medium);
-  border-radius: var(--extra-small);
-  box-shadow: 0px 12px 11px -6px var(--neutral-2);
+  border-radius: var(--small);
+  box-shadow: 0px 12px 12px -12px var(--neutral-2), 0px -2px 0px 0px var(--neutral-1) inset;
+  border: 1px solid var(--neutral-3);  
+
+  & h6{color: var(--primary-4);}
+  & p{
+    text-wrap: nowrap;
+  }
 }

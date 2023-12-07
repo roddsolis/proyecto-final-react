@@ -72,7 +72,7 @@ class Solicitud_sala(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     confirmacion_alumno = db.Column(db.Boolean, default=None, nullable=True)
     confirmacion_tutor = db.Column(db.Boolean, default=None, nullable=True)
-    estado = db.Column(db.Boolean, default=False)
+    estado = db.Column(db.Boolean, default=None, nullable=True)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False)
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False)
     def to_dict(self):
