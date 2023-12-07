@@ -12,6 +12,7 @@ from flask_jwt_extended import JWTManager
 from flask_jwt_extended import create_access_token
 from flask_jwt_extended import get_jwt_identity
 from flask_jwt_extended import jwt_required
+from sqlalchemy.sql import null
 
 
 
@@ -145,38 +146,46 @@ def cambiar_estado_tutor():
         db.session.rollback()
         return jsonify({'message': f'Error al cambiar el estado del tutor: {str(e)}'}), 500
 
+@app.route('/tutor_disponible', methods=['GET'])
+def tutor_disponible():
+    tutor_disponible = Tutor.query.filter_by(estado=True).first()
+
+    if tutor_disponible:
+        return jsonify({'tutor_disponible': True, 'tutor_id': tutor_disponible.id})
+    else:
+        return jsonify({'tutor_disponible': False})
 
 @app.route('/solicitud_emparejamiento', methods=['POST'])
 def solicitud_emparejamiento():
     data = request.get_json()
     alumno_id = data.get('alumno_id')
-    tutor_id = data.get('tutor_id')
 
-    tutor = Tutor.query.get(tutor_id)
+    # Buscar un tutor disponible con estado=True en la base de datos
+    tutor_disponible = Tutor.query.filter_by(estado=True).first()
 
     try:
-        if tutor and tutor.estado:
+        if tutor_disponible:
             solicitud_sala = Solicitud_sala(
                 confirmacion_alumno=False,
                 confirmacion_tutor=False,
-                estado=False,
+                estado=null(),  # Usar `null()` para representar el valor `None`
                 alumno_id=alumno_id,
-                tutor_id=tutor_id
+                tutor_id=tutor_disponible.id  # Asignar el ID del tutor disponible
             )
             db.session.add(solicitud_sala)
-            tutor.estado = False
+            tutor_disponible.estado = False
             db.session.commit()
 
             # Emitir un evento de solicitud de emparejamiento al tutor
             socketio.emit('solicitud_emparejamiento', {
                 'alumno_id': alumno_id,
-                'tutor_id': tutor_id,
+                'tutor_id': tutor_disponible.id,
                 'solicitud_id': solicitud_sala.id
-            }, room=f'tutor_{tutor_id}')
+            }, room=f'tutor_{tutor_disponible.id}')
 
             return jsonify({'message': 'Solicitud de emparejamiento exitoso', 'solicitud_id': solicitud_sala.id})
         else:
-            return jsonify({'message': 'Error en la solicitud de emparejamiento. Tutor no disponible'}), 400
+            return jsonify({'message': 'Error en la solicitud de emparejamiento. No hay tutor disponible'}), 400
 
     except SQLAlchemyError as e:
         db.session.rollback()
@@ -246,6 +255,37 @@ def confirmar_solicitud():
 
     else:
         return jsonify({'message': 'Solicitud no encontrada'}), 404
+    
+@app.route('/rechazar_solicitud', methods=['POST'])
+def rechazar_solicitud():
+    data = request.get_json()
+    solicitud_id = data.get('solicitud_id')
+
+    if not solicitud_id:
+        return jsonify({'message': 'ID de solicitud no válido'}), 400
+
+    solicitud = Solicitud_sala.query.get(solicitud_id)
+
+    try:
+        if solicitud:
+            # Cambiar el estado de la solicitud a 'rechazada'
+            solicitud.estado = False  # Asegúrate de asignar un valor booleano aquí
+            db.session.commit()
+
+            # Obtener al tutor asociado a la solicitud y cambiar su estado a True (disponible)
+            tutor = Tutor.query.get(solicitud.tutor_id)
+            tutor.estado = True
+            db.session.commit()
+
+            mensaje = f'Solicitud rechazada exitosamente. Tutor disponible nuevamente.'
+            return jsonify({'message': mensaje})
+        else:
+            return jsonify({'message': 'Solicitud no encontrada'}), 404
+
+    except Exception as e:
+        db.session.rollback()
+        print(f'Error detallado: {str(e)}')  # Agregamos este registro para obtener más información
+        return jsonify({'message': f'Error al rechazar la solicitud: {str(e)}'}), 500
     
 @app.route('/verificar_confirmaciones', methods=['GET'])
 def verificar_confirmaciones():
