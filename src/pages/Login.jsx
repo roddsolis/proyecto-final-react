@@ -68,6 +68,10 @@ const Login = () => {
                   className="form-control"
                   placeholder="e-mail"
                   name="email"
+                  onClick={() => {
+                    setOpacity(0);
+                    setErrorType("");
+                  }}
                   onChange={(e) => {
                     setEmail(e.target.value);
                   }}
@@ -78,6 +82,10 @@ const Login = () => {
                   className="form-control"
                   placeholder="Contraseña"
                   name="password"
+                  onClick={() => {
+                    setOpacity(0);
+                    setErrorType("");
+                  }}
                   onChange={(e) => {
                     setPassword(e.target.value);
                   }}

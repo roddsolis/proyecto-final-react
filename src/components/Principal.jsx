@@ -6,7 +6,7 @@ import CustomSwitch from "./CustomSwitch";
 import Button from "./Button";
 import "./../css/principal.css";
 
-const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
+const PrincipalTutor = ({ tipoDeCuenta, userName }) => {
   const [isActive, setIsActive] = useState(false);
 
   const handleSwitchChange = () => {
@@ -15,30 +15,25 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
 
   let usuario = tipoDeCuenta;
 
-  let nombre = userName
-  let apellido = userLastName
-  console.log(nombre, apellido)
-  console.log(nombre.charAt(0).toUpperCase()+nombre.charAt())
-  console.log(apellido)
   
 
   return (
     <>
-      <div className="container">
-      <div className="contadores">
-        <ContadorUsuarios texto={"Alumnos en línea"} />
-        <ContadorUsuarios texto={"Alumnos en sala"} />
+      <div className="topBarWrapper">
+        <ContadorUsuarios texto={"Alumnos en línea"} numero={200}/>
+        <ContadorUsuarios texto={"Alumnos en sala"} numero={100}/>
+        <div className="logoHomeWrapper">
+          <img src="logo-metty-light.svg" alt="" />
+        </div>
       </div>
-
-      <div className="mainContent">
-        
+      <div className="textContentWrapper">
         <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres {usuario === true ? 'aprender': 'enseñar'} hoy?</h4>
         {usuario === true ? 
         <p className="paragraph-m">Selecciona un tema de interes y luego busca un tutor en linea para poder acceder a una sala</p>
         :
-        <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>
-        }
+        <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>}
       </div>
+
       <Categorias />
         
       <div className="sessionWrapper">
@@ -63,14 +58,12 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
 
         {usuario === true ? (
           <div className="actionWrapper">
-            <Button btnText={"Buscar tutor en linea"} className={"btn-primary btn-l"} />
+            <Button btnText={"Buscar tutor en línea"} className={"btn-primary btn-m"} />
           </div>
         ) : (
           ""
-        )}
-      </div>
-      </div>
-      
+          )}
+      </div>      
     </>
   );
 };

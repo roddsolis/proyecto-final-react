@@ -9,33 +9,35 @@
     box-shadow: 0px 0px 0px 6px white;
   }
 }
-.container{
-  overflow-y: hidden;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  padding:0;
-}
-.contadores {
+
+.topBarWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
   gap: 1em;
+  & .logoHomeWrapper{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+    & img{
+      height: 40px;
+    }
+  }
 }
 
-.mainContent {
-  padding-top: var(--extra-large);
-  padding-bottom: var(--extra-large);
+.textContentWrapper{
   display: flex;
   flex-direction: column;
   justify-content: center;
-  height: 100%;
+  gap: 0.5em;
   width: 100%;
-  & p {
+  height: 100%;
+  & h4{margin-bottom: 0em;} 
+  & p{
+    margin-bottom: 0em;
     color: var(--neutral-5);
-    margin-bottom: 0;
   }
 }
 

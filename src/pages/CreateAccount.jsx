@@ -160,28 +160,10 @@ const CreateAccount = () => {
             <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" value={lastName} onChange={handleLastNameChange} />
             <div className="inputErrorText">{formErrors.lastName && <p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>}</div>
 
-            <input
-              type="email"
-              className="form-control"
-              placeholder="e-mail"
-              name="correo"
-              id="correo"
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-            />
+            <input type="email" className="form-control" placeholder="e-mail" name="correo" id="correo" onChange={(e) => { setEmail(e.target.value);}} />
             <div className="inputErrorText">{formErrors.email && <p className="paragraph-s text-danger mb-0">{formErrors.email}</p>}</div>
 
-            <input
-              type="password"
-              className="form-control"
-              placeholder="Contraseña"
-              name="contraseña"
-              id="contraseña"
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-            />
+            <input type="password" className="form-control" placeholder="Contraseña" name="contraseña" id="contraseña" onChange={(e) => { setPassword(e.target.value); }} />
             <div className="inputErrorText">{formErrors.password && <p className="paragraph-s text-danger mb-0">{formErrors.password}</p>}</div>
 
             <div className="actionsAccountWrapper">
