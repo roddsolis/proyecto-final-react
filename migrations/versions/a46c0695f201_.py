@@ -1,8 +1,8 @@
-"""Inicialización de la base de datos
+"""empty message
 
-Revision ID: a8de527b24c6
+Revision ID: a46c0695f201
 Revises: 
-Create Date: 2023-12-09 05:50:55.554847
+Create Date: 2023-12-09 15:58:58.638902
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a8de527b24c6'
+revision = 'a46c0695f201'
 down_revision = None
 branch_labels = None
 depends_on = None
