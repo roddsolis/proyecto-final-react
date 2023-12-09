@@ -51,7 +51,7 @@ let completeCharge = true;
 
     : 
 
-    <div className="cardWrapper charge">
+    <div className="cardWrapper">
         <div className="profileImgWrapper ">
           <div className="inicialAvatar ">
           </div>
