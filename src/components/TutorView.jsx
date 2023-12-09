@@ -2,10 +2,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../store/AppContext';
 import ContadorUsuarios from "./ContadorUsuarios";
-import Categorias from "./Categorias";
 import CircleSwitch from "./CircleSwitch";
 import CustomSwitch from "./CustomSwitch";
+<<<<<<< HEAD
+import UserSelectionModule from './UserSelectionModule'
+
+=======
 import MensajeSolicitudTutor from "./MensajeSolicitudTutor"; // Importa el componente MensajeSolicitud
+>>>>>>> 30b0f698b4cf3c93ff6f6f673756421a9945d3c7
 
 const TutorView = ({ userName }) => {
   const { store } = useContext(Context);
@@ -232,7 +236,7 @@ const TutorView = ({ userName }) => {
         <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>
       </div>
 
-      <Categorias />
+      <UserSelectionModule />
 
       <div className="sessionWrapper">
         <CircleSwitch isActive={isActive} onSwitchChange={handleSwitchChange} />
