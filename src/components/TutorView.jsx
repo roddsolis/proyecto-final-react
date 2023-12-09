@@ -4,8 +4,12 @@ import { Context } from '../store/AppContext';
 import ContadorUsuarios from "./ContadorUsuarios";
 import CircleSwitch from "./CircleSwitch";
 import CustomSwitch from "./CustomSwitch";
+<<<<<<< HEAD
 import UserSelectionModule from './UserSelectionModule'
 
+=======
+import MensajeSolicitudTutor from "./MensajeSolicitudTutor"; // Importa el componente MensajeSolicitud
+>>>>>>> 30b0f698b4cf3c93ff6f6f673756421a9945d3c7
 
 const TutorView = ({ userName }) => {
   const { store } = useContext(Context);
@@ -13,60 +17,15 @@ const TutorView = ({ userName }) => {
   const [solicitudId, setSolicitudId] = React.useState('');
   const [ultimaSolicitud, setUltimaSolicitud] = React.useState(null);
   const [estadoActualDelTutor, setEstadoActualDelTutor] = useState(false);
-
+  const [isActive, setIsActive] = useState(estadoActualDelTutor);
+  const [informacionSolicitud, setInformacionSolicitud] = useState(null);
   const navigate = useNavigate();
-
-  const [isActive, setIsActive] = useState(true);
 
   const handleSwitchChange = () => {
     setIsActive((prevIsActive) => !prevIsActive);
-
+    console.log('Nuevo estado de isActive:', !isActive); // Agrega este log
     handleChangeEstado();
   };
-
-  useEffect(() => {
-    console.log("Tutor ID:", tutorId);
-
-    const fetchUltimaSolicitud = async () => {
-      try {
-        const response = await fetch(`http://127.0.0.1:8080/obtener_ultima_solicitud_polling/${tutorId}`);
-
-        if (!response.ok) {
-          throw new Error(`Error al obtener la última solicitud_sala. Código de estado: ${response.status}`);
-        }
-
-        const data = await response.json();
-
-        if (data.error) {
-          console.error('Error al obtener la última solicitud_sala:', data.error);
-        } else {
-          const ultimaSolicitud = data.ultimaSolicitud;
-
-          if (ultimaSolicitud && ultimaSolicitud.estado === null) {
-            setUltimaSolicitud(ultimaSolicitud);
-            setSolicitudId(ultimaSolicitud.id.toString());
-          } else {
-            // Si no hay solicitud en estado None, limpiar los estados
-            setUltimaSolicitud(null);
-            setSolicitudId('');
-          }
-        }
-      } catch (error) {
-        console.error('Error al obtener la última solicitud_sala:', error.message);
-      }
-    };
-
-    if (tutorId !== null) {
-      // Llama a fetchUltimaSolicitud inmediatamente
-      fetchUltimaSolicitud();
-
-      // Establece el intervalo de polling
-      const pollingInterval = setInterval(fetchUltimaSolicitud, 1000);
-
-      // Limpia el intervalo cuando el componente se desmonta
-      return () => clearInterval(pollingInterval);
-    }
-  }, [store.usuarioAutenticado, tutorId]);
 
   const handleEstadoActual = async () => {
     try {
@@ -77,16 +36,113 @@ const TutorView = ({ userName }) => {
       setEstadoActualDelTutor(data.estado_tutor);
 
       console.log(`Estado actual del tutor: ${data.estado_tutor}`);
+      console.log('Nuevo estado de estadoActualDelTutor:', data.estado_tutor); // Agrega este log
     } catch (error) {
       console.error('Error al obtener el estado actual del tutor:', error);
     }
   };
 
+  const fetchInformacionSolicitud = async (solicitudId) => {
+    try {
+      const response = await fetch(`http://127.0.0.1:8080/obtener_informacion_solicitud/${solicitudId}`);
+      const data = await response.json();
+
+      if (response.ok) {
+        setInformacionSolicitud(data.informacion_solicitud);
+      } else {
+        console.error('Error al obtener información de la solicitud:', data.message);
+      }
+    } catch (error) {
+      console.error('Error al procesar la solicitud:', error);
+    }
+  };
+
+  const fetchUltimaSolicitud = async () => {
+    try {
+      console.log('Iniciando fetchUltimaSolicitud');
+      const response = await fetch(`http://127.0.0.1:8080/obtener_ultima_solicitud_polling/${tutorId}`);
+
+      if (!response.ok) {
+        const responseData = await response.json();
+
+        if (response.status === 404) {
+          // Si el estado es 404, mostrar el mensaje específico en la consola
+          console.log(responseData.message);
+          // También podrías manejar este caso de manera específica en tu lógica
+        } else {
+          throw new Error(`Código de estado: ${response.status}`);
+        }
+      } else {
+        const data = await response.json();
+        const ultimaSolicitud = data.ultimaSolicitud;
+
+        console.log('Valor de ultimaSolicitud:', ultimaSolicitud); // Agregar este log
+
+
+        if (ultimaSolicitud) {
+          console.log('Solicitud encontrada con estado None. Actualizando estados...');
+          setUltimaSolicitud(ultimaSolicitud);
+          setSolicitudId(ultimaSolicitud.id.toString());
+          handleEstadoActual(); // Llama a handleEstadoActual después de actualizar ultimaSolicitud
+          fetchInformacionSolicitud(ultimaSolicitud.id); // Llama a fetchInformacionSolicitud con el nuevo ID de solicitud
+        } else {
+          // Si no hay solicitud en estado None, limpiar los estados
+          console.log('No hay solicitud en estado None. Limpiando estados...');
+          setUltimaSolicitud(null);
+          setSolicitudId('');
+          setInformacionSolicitud(null); // Limpia también la información de la solicitud
+        }
+      }
+    } catch (error) {
+      console.warn('Error al obtener la última solicitud_sala:', error.message);
+    }
+  };
+
+
+  useEffect(() => {
+    const fetchTutorAndSetState = async () => {
+      try {
+        // Obtener el estado actual del tutor
+        await handleEstadoActual();
+
+        // Si el estado del tutor es activo, entonces realizar el resto de la lógica
+        if (isActive) {
+          // Después de obtener el estado actual, establecer el estado isActive
+          setIsActive(estadoActualDelTutor);
+          console.log("handleEstadoActual llamado. Nuevo estado de isActive:", estadoActualDelTutor);
+
+          // Continuar con el resto de tu lógica, por ejemplo, fetchUltimaSolicitud
+          fetchUltimaSolicitud();
+        } else {
+          // Si el estado del tutor no es activo, puedes realizar alguna acción adicional o simplemente salir
+          console.log("El estado del tutor no es activo. No se realizará el polling interval.");
+        }
+      } catch (error) {
+        console.error('Error al obtener el estado actual del tutor:', error);
+      }
+    };
+
+    if (tutorId !== null) {
+      // Llama a fetchTutorAndSetState inmediatamente
+      fetchTutorAndSetState();
+
+      // Si el estado del tutor es activo, establece el intervalo de polling
+      if (isActive) {
+        const pollingInterval = setInterval(fetchUltimaSolicitud, 1000);
+
+        // Limpia el intervalo cuando el componente se desmonta
+        return () => clearInterval(pollingInterval);
+      }
+    }
+  }, [store.usuarioAutenticado, tutorId, isActive]);
+
   useEffect(() => {
     // Este efecto se dispara cada vez que estadoActualDelTutor cambia
     // Actualiza el estado isActive basado en estadoActualDelTutor
     setIsActive(estadoActualDelTutor);
+    console.log("handleEstadoActual llamado. Nuevo estado de isActive:", estadoActualDelTutor);
   }, [estadoActualDelTutor]);
+
 
   const handleChangeEstado = async () => {
     try {
@@ -159,14 +215,11 @@ const TutorView = ({ userName }) => {
       if (data.message === 'Solicitud rechazada exitosamente') {
         setUltimaSolicitud(null);
         setSolicitudId('');
+        console.log('Estado después de rechazar la solicitud:', ultimaSolicitud);
       }
     } catch (error) {
       console.error('Error al rechazar la solicitud:', error);
     }
-  };
-
-  const handleInputChange = (event) => {
-    setSolicitudId(event.target.value);
   };
 
   return (
@@ -193,13 +246,13 @@ const TutorView = ({ userName }) => {
         </div>
 
         <div className="emptyState">
-          Aún no tienes una sesión activa
-        </div>
-        <input type="text" value={solicitudId || (ultimaSolicitud ? ultimaSolicitud.id : '')} onChange={handleInputChange} />
-        <button onClick={handleConfirmarSolicitud}>Confirmar Solicitud</button>
-        <button onClick={handleRechazarSolicitud} disabled={!solicitudId}>
-          Rechazar Solicitud
-        </button>
+        <MensajeSolicitudTutor
+          informacionSolicitud={informacionSolicitud}
+          onConfirmarSolicitud={handleConfirmarSolicitud}
+          onRechazarSolicitud={handleRechazarSolicitud}
+          sinSolicitudes={ultimaSolicitud === null}
+        />
+    </div>
       </div>
     </>
   );

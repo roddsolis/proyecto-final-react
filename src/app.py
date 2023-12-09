@@ -1,20 +1,20 @@
+# Imports relacionados con el sistema y el entorno
 import os
-from flask import Flask, jsonify, request
 from dotenv import load_dotenv
+
+# Imports relacionados con Flask
+from flask import Flask, jsonify, request, render_template, send_from_directory
+from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
-from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia
 from flask_socketio import SocketIO, emit, disconnect
-from flask import render_template, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
+from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
+
+# Imports relacionados con SQLAlchemy
+from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia
 from sqlalchemy.exc import SQLAlchemyError
-from flask_jwt_extended import JWTManager
-from flask_jwt_extended import create_access_token
-from flask_jwt_extended import get_jwt_identity
-from flask_jwt_extended import jwt_required
 from sqlalchemy.sql import null
-
-
+from sqlalchemy.orm.exc import NoResultFound
 
 load_dotenv()
 
@@ -145,24 +145,24 @@ def cambiar_estado_tutor():
 
     tutor = Tutor.query.get(tutor_id)
 
-    try:
-        if tutor:
-            estado_anterior = tutor.estado  # Guarda el estado actual antes de cambiarlo
-            tutor.estado = not tutor.estado  # Cambia el estado del tutor (True a False y viceversa)
+    if tutor:
+        tutor.estado = not tutor.estado  # Cambia el estado del tutor (True a False y viceversa)
+
+        try:
             db.session.commit()
 
             mensaje = f'Estado del tutor cambiado exitosamente. Ahora está {"conectado" if tutor.estado else "desconectado"}'
             return jsonify({'message': mensaje})
-        else:
-            return jsonify({'message': 'Tutor no encontrado'}), 404
 
-    except SQLAlchemyError as e:
-        db.session.rollback()
-        return jsonify({'message': f'Error al cambiar el estado del tutor: {str(e)}'}), 500
+        except SQLAlchemyError as e:
+            db.session.rollback()
+            return jsonify({'message': f'Error al cambiar el estado del tutor: {str(e)}'}), 500
+
+    return jsonify({'message': 'Tutor no encontrado'}), 404
 
 @app.route('/tutor_disponible', methods=['GET'])
 def tutor_disponible():
-    tutor_disponible = Tutor.query.filter_by(estado=True).first()
+    tutor_disponible = Tutor.query.filter_by(estado=True, solicitud_entrante=False).first()
 
     if tutor_disponible:
         return jsonify({'tutor_disponible': True, 'tutor_id': tutor_disponible.id})
@@ -174,20 +174,35 @@ def solicitud_emparejamiento():
     data = request.get_json()
     alumno_id = data.get('alumno_id')
 
+    alumno = Alumno.query.get(alumno_id)
+    if alumno and alumno.solicitud_saliente:
+        return jsonify({'message': 'No se puede enviar la solicitud, ya hay una solicitud saliente activa.'}), 400
+
+    # Buscar una solicitud pendiente con estado=None para el alumno en la base de datos
+    solicitud_pendiente = Solicitud_sala.query.filter(
+        Solicitud_sala.alumno_id == alumno_id,
+        Solicitud_sala.estado.is_(None),
+        Alumno.solicitud_saliente.is_(False)  # Agrega esta condición
+
+    ).first()
+
+    if solicitud_pendiente:
+        return jsonify({'message': 'Ya tienes una solicitud pendiente. No se puede enviar otra.'}), 400
+
     # Buscar un tutor disponible con estado=True en la base de datos
-    tutor_disponible = Tutor.query.filter_by(estado=True).first()
+    tutor_disponible = Tutor.query.filter_by(estado=True, solicitud_entrante=False).first()
 
     try:
         if tutor_disponible:
             solicitud_sala = Solicitud_sala(
-                confirmacion_alumno=False,
                 confirmacion_tutor=False,
-                estado=null(),  # Usar `null()` para representar el valor `None`
+                estado=null(),
                 alumno_id=alumno_id,
-                tutor_id=tutor_disponible.id  # Asignar el ID del tutor disponible
+                tutor_id=tutor_disponible.id
             )
             db.session.add(solicitud_sala)
-            tutor_disponible.estado = False
+            tutor_disponible.solicitud_entrante = True
+            alumno.solicitud_saliente = True  # Establecer solicitud_saliente a True
             db.session.commit()
 
             # Emitir un evento de solicitud de emparejamiento al tutor
@@ -196,6 +211,9 @@ def solicitud_emparejamiento():
                 'tutor_id': tutor_disponible.id,
                 'solicitud_id': solicitud_sala.id
             }, room=f'tutor_{tutor_disponible.id}')
+
+            alumno.solicitud_saliente = True
+            db.session.commit()
 
             return jsonify({'message': 'Solicitud de emparejamiento exitoso', 'solicitud_id': solicitud_sala.id})
         else:
@@ -229,22 +247,22 @@ def confirmar_solicitud():
     if not solicitud_id:
         return jsonify({'message': 'ID de solicitud no válido'}), 400
 
-    solicitud = Solicitud_sala.query.filter_by(id=solicitud_id).first()
+    solicitud = Solicitud_sala.query.get(solicitud_id)
 
     if solicitud:
-        if tipo_usuario == 'alumno':
-            solicitud.confirmacion_alumno = True
-        elif tipo_usuario == 'tutor':
+        if tipo_usuario == 'tutor':
             solicitud.confirmacion_tutor = True
 
-        if solicitud.confirmacion_alumno and solicitud.confirmacion_tutor:
-            solicitud.estado = True
+            if solicitud.confirmacion_tutor:
+                solicitud.estado = True
 
-            # Verificar si ambos han confirmado antes de generar la sala
-            if solicitud.confirmacion_alumno and solicitud.confirmacion_tutor:
                 try:
                     # Crear una nueva sala en la tabla Sala
-                    nueva_sala = Sala(solicitud_sala_id=solicitud.id, alumno_id=solicitud.alumno_id, tutor_id=solicitud.tutor_id)
+                    nueva_sala = Sala(
+                        solicitud_sala_id=solicitud.id,
+                        alumno_id=solicitud.alumno_id,
+                        tutor_id=solicitud.tutor_id
+                    )
                     db.session.add(nueva_sala)
                     db.session.commit()
 
@@ -257,18 +275,9 @@ def confirmar_solicitud():
                     db.session.rollback()
                     return jsonify({'message': f'Error al confirmar la solicitud y generar la sala: {str(e)}'}), 500
 
-            return jsonify({'message': 'Solicitud de confirmación enviada'})
-        else:
-            try:
-                db.session.commit()
-                return jsonify({'message': 'Solicitud de confirmación enviada'})
-            
-            except SQLAlchemyError as e:
-                db.session.rollback()
-                return jsonify({'message': f'Error al enviar la solicitud de confirmación: {str(e)}'}), 500
+        return jsonify({'message': 'Solicitud confirmada por el tutor'})
 
-    else:
-        return jsonify({'message': 'Solicitud no encontrada'}), 404
+    return jsonify({'message': 'Solicitud no encontrada'}), 404
     
 @app.route('/rechazar_solicitud', methods=['POST'])
 def rechazar_solicitud():
@@ -284,15 +293,20 @@ def rechazar_solicitud():
         if solicitud:
             # Cambiar el estado de la solicitud a 'rechazada'
             solicitud.estado = False  # Asegúrate de asignar un valor booleano aquí
-            db.session.commit()
 
             # Obtener al tutor asociado a la solicitud y cambiar su estado a True (disponible)
             tutor = Tutor.query.get(solicitud.tutor_id)
-            tutor.estado = True
+            tutor.solicitud_entrante = False
+
+            # Obtener al alumno asociado a la solicitud y cambiar su solicitud_saliente a False
+            alumno = Alumno.query.get(solicitud.alumno_id)
+            alumno.solicitud_saliente = False
+
+            # Realizar los cambios en la base de datos
             db.session.commit()
 
             mensaje = f'Solicitud rechazada exitosamente. Tutor disponible nuevamente.'
-            return jsonify({'message': mensaje})
+            return jsonify({'message': mensaje, 'tutor_rechazo': True})
         else:
             return jsonify({'message': 'Solicitud no encontrada'}), 404
 
@@ -309,7 +323,6 @@ def verificar_confirmaciones():
     if solicitud:
         return jsonify({
             'tutor_confirmado': solicitud.confirmacion_tutor,
-            'alumno_confirmado': solicitud.confirmacion_alumno
         })
 
     return jsonify({'error': 'Solicitud no encontrada'}), 404
@@ -388,14 +401,14 @@ def obtener_ultima_solicitud_polling(tutor_id):
     try:
         ultima_solicitud = (
             db.session.query(Solicitud_sala)
-            .filter_by(tutor_id=tutor_id)
+            .filter_by(tutor_id=tutor_id, estado=None)
             .order_by(Solicitud_sala.id.desc())
             .limit(1)
             .first()
         )
 
         if not ultima_solicitud:
-            return jsonify({'error': 'No se encontraron solicitudes para el tutor.'}), 404
+            return jsonify({'message': 'No hay solicitudes pendientes para el tutor con estado None.'}), 404
 
         print(f'ID de la última solicitud: {ultima_solicitud.id}')  # Agregar esta línea para depuración
 
@@ -407,8 +420,25 @@ def obtener_ultima_solicitud_polling(tutor_id):
     except Exception as e:
         print(f'Error en el servidor: {str(e)}')
         return jsonify({'error': f'Error al obtener la última solicitud_sala: {str(e)}'}), 500
-    
 
+@app.route('/obtener_informacion_solicitud/<int:solicitud_id>', methods=['GET'])
+def obtener_informacion_solicitud(solicitud_id):
+    # Obtener la información de la solicitud_sala con la ID proporcionada
+    solicitud = Solicitud_sala.query.filter_by(id=solicitud_id).first()
+
+    if solicitud:
+        # Crear un diccionario con la información que deseas enviar al frontend
+        informacion_solicitud = {
+            'alumno_id': solicitud.alumno_id,
+            'tutor_id': solicitud.tutor_id,
+            'confirmacion_tutor': solicitud.confirmacion_tutor,
+            'estado': solicitud.estado,
+            # Agregar más campos según sea necesario
+        }
+
+        return jsonify({'informacion_solicitud': informacion_solicitud})
+    else:
+        return jsonify({'message': 'Solicitud no encontrada'}), 404
 
 # Endpoint para obtener todas las áreas
 @app.route('/areas', methods=['GET'])
@@ -443,9 +473,7 @@ def obtener_materias(tema_id):
         return jsonify({'materias': materias_data})
     else:
         return jsonify({'error': 'Tema no encontrado'}), 404
-
-
-
     
+""" Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=8080 )
