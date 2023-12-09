@@ -54,81 +54,83 @@ const Login = () => {
 
   return (
     <>
-      <div className="loginContainer">
-        <BigCardProcess titleContent={bigCardContent.title} paragraphContent={bigCardContent.paragraph} />
-
-        <form
-          className="formLoginWrapper"
-          onSubmit={(e) => {
-            e.preventDefault(), validarDatosDeCuenta();
-          }}
-        >
-          {/* <!--  EMAIL INPUT --> */}
-
-          <h4 className="subtitle-sm">Inicia Sesión</h4>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="e-mail"
-            name="email"
-            onClick={() => {
-              setOpacity(0);
-              setErrorType("");
+      <div className="container-fluid d-flex p-0 h-100">
+        <div className="col-6 bg-primary d-flex align-items-center justify-content-start p-5" id="loginImg">
+          <div className="col">
+            <h1 className="title-sm mb-4">Bienvenido a Lorem ipsum</h1>
+            <p className="paragraph-l mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eveniet, itaque accusantium odio, soluta, corrupti aliquam quibusdam tempora at cupiditate quis eum maiores libero veritatis? Dicta facilis sint aliquid ipsum atque?</p>
+          </div>
+        </div>
+        <div className="col-6 d-flex flex-column align-items-center justify-content-center">
+          <form
+            className="w-100 h-100 d-flex flex-column justify-content-center"
+            onSubmit={(e) => {
+              e.preventDefault(), validarDatosDeCuenta();
             }}
-            onChange={(e) => {
-              setEmail(e.target.value);
-            }}
-          />
-          {/* <!--  PASSWORD INPUT --> */}
-          <input
-            type="password"
-            className="form-control"
-            placeholder="Contraseña"
-            name="password"
-            onClick={() => {
-              setOpacity(0);
-              setErrorType("");
-            }}
-            onChange={(e) => {
-              setPassword(e.target.value);
-            }}
-          />
-
-          <div className="actionsLoginWrapper">
-            <div className="createAccountMessage error" style={{ opacity: opacity }}>
-              <Ban /> <p className="btn-text-s mb-0">{errorType === "credenciales" ? "Credenciales incorrectas. Si no tienes cuenta, regístrate." : errorType === "servidor" ? "Hubo un error. Inténtalo más tarde." : ""}</p>
+          >
+            {/* <!--  EMAIL INPUT --> */}
+            <div>
+              <h4 className="mb-4 subtitle-l">Ingresa tus datos</h4>
             </div>
-            <Link to={""}>
-              <Button btnText={"Iniciar sesión"} btnOnClick={validarDatosDeCuenta} className="btn-primary btn-l" />
+            <div className="mb-4">
+              <input
+                type="email"
+                className="form-control"
+                placeholder="e-mail"
+                name="email"
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+              />
+            </div>
+            {/* <!--  PASSWORD INPUT --> */}
+            <div className="mb-4">
+              <input
+                type="password"
+                className="form-control"
+                placeholder="Contraseña"
+                name="password"
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+              />
+            </div>
+
+            <div className="actionsAccountWrapper">
+              <div className="createAccountMessage error" style={{ opacity: opacity }}>
+                <Ban /> <p className="btn-text-s mb-0">{errorType === "credenciales" ? "Credenciales incorrectas. Si no tienes cuenta, regístrate." : errorType === "servidor" ? "Hubo un error. Inténtalo más tarde." : ""}</p>
+              </div>
+              <Link to={""}>
+                <Button btnText={"Iniciar sesión"} btnOnClick={validarDatosDeCuenta} className="btn-primary btn-l" />
+              </Link>
+            </div>
+          </form>
+
+          <p className="paragraph-m mb-0">
+            ¿No tienes cuenta? crea una cuenta{" "}
+            <Link to="/create-account">
+              <Button btnText={"aquí"} className="btn-tertiary btn-l" />
             </Link>
-          </div>
+          </p>
 
-          <div className="linkPassRecovery">
-            <p className="paragraph-m mb-0">
-              ¿Olvidaste tu contraseña? recupera tu contraseña{" "}
-              <Link to="/create-account">
-                <Button btnText={"aquí"} className="btn-tertiary btn-l" />
-              </Link>
-            </p>
-          </div>
-
-          <div className="googleBtnLoginWrapper">
-            <p className="paragraph-s mb-0">O inicia sesión con Google </p>
-            <div className="googleBtn">
-              <img src="./google-icon.svg" alt="" />
-              <p className="btn-text-s mb-0">Iniciar sesión</p>
+          <div className="text-center my-4 d-flex align-items-center spacing-m">
+            <p className="paragraph-m mb-0 pe-3">O entra con: </p>
+            <div className="brandsWrapper">
+              <FaFacebook />
+              <FaGoogle />
+              <FaSquareXTwitter />
+              <FaGithub />
             </div>
           </div>
-
-          <div className="linkCrearCuenta">
-            <p className="paragraph-m mb-0">
-              ¿No tienes cuenta? crea una cuenta?{" "}
-              <Link to="/create-account">
-                <Button btnText={"aquí"} className="btn-tertiary btn-l" />
-              </Link>
+          <div className="text-start my-3">
+            <p className="paragraph-m">
+              Olvidaste tu contraseña?
+              <a href="#" className="ms-2 btn-text-m">
+                Recupérala aquí
+              </a>
             </p>
           </div>
-        </form>
+        </div>
       </div>
     </>
   );

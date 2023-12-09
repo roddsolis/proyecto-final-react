@@ -1,4 +1,20 @@
-.cardWappper{
+
+@keyframes gradientAnimation {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 70%;
+  }
+  100% {
+    opacity: 100%;
+  }
+  
+}
+
+
+
+.cardWrapper{
   background-color: white;
   width: 100%;
   height: 100%;
@@ -11,16 +27,29 @@
   border: 1px solid var(--neutral-3);
   border-radius: var(--medium);
   background: linear-gradient(white 90%, var(--neutral-3) 150%);
-  box-shadow: 0px 12px 11px -8px var(--neutral-3);
-
+  box-shadow: 0px 12px 8px -12px var(--neutral-3);
+  padding-bottom: 0;
 }
 
 .profileImgWrapper{
-  /* background-color: red; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  & .inicialAvatar{
+    border: 1px solid var(--primary-2);
+    border-radius: 1000px;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--primary-1);
+    width: 6em;
+    height: 6em;
+    & h6{
+      color:var(--primary-5)
+    }
+  }
   & img{
     width: 104px;
     border-radius: 200px;
@@ -52,7 +81,7 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: var(--small) var(--large);
+    padding: var(--extra-small) var(--large);
     border-bottom: 1px solid var(--neutral-3);
     & p {
       color: var(--neutral-6);
@@ -65,9 +94,91 @@
 
 .infoNotification{
   background-color: var(--info-1);
-  border: 1px solid var(--info-3);
+  border: 1px solid var(--info-2);
   border-radius: var(--small);
   padding: var(--large);
   width: 100%;
   & p{color: var(--info-4);}
+}
+
+.versionWrapper{
+& p{
+  color: var(--neutral-4);
+}
+}
+
+
+
+
+
+.charge{
+
+  animation: gradientAnimation 1.3s ease-in-out infinite ;
+
+  .inicialAvatar{
+    background-color:var(--neutral-3);
+    border: none;
+  }
+
+  .profileImgWrapper {
+    gap: 0.9em;
+    height: 144px;
+  }
+
+  & button{ 
+    background:var(--neutral-3);
+    color: transparent;
+    box-shadow: none;
+  }
+  button:hover{
+    background-color:var(--neutral-3);
+    color: transparent;
+  }
+  
+  & ul {
+    border: 1px solid var(--neutral-3);
+  }
+
+  & li{
+    height: 72px;
+    border-bottom: 1px solid var(--neutral-3);
+  }
+
+  & li > button{ 
+    background-color:var(--neutral-3);
+    color: transparent;
+    height: 16px;
+  }
+
+  & div > button{ 
+    background-color:var(--neutral-3);
+    color: transparent;
+    height: 16px;
+  }
+
+  & h5{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+
+  }
+
+  & p{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+  }
+  & li > p{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+  }
+
+  & .infoNotification{
+    background-color:var(--neutral-3);
+    border: none;
+  }
+
+ 
+
 }

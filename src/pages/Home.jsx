@@ -4,16 +4,12 @@ import { useEffect, useState, useContext } from "react";
 import { Context } from "../store/AppContext";
 
 const Home = () => {
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
   const usuarioAutenticado = store.usuarioAutenticado;
-
-  console.log(store, actions);
 
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userLastName, setUserLastName] = useState("");
-
-  console.log(usuarioAutenticado.cuenta);
 
   useEffect(() => {
     if (usuarioAutenticado) {
@@ -23,15 +19,26 @@ const Home = () => {
     }
   }, [usuarioAutenticado]);
 
+  let inicialNombre = userName.charAt(0).toUpperCase()
+  let inicialApellido = userLastName.charAt(0).toUpperCase()
+
+  let iniciales = inicialNombre+inicialApellido
+
+  console.log(iniciales)
+
+
   return (
     <>
-      <div className="fluid d-flex" style={{ height: "100vh" }}>
-        <div className="col-3 bg-light d-flex align-item-center justify-content-center p-4">
-          <CardProfile userEmail={userEmail} userName={userName} userLastName={userLastName} />
+      <div className="homeWrapper">
+
+        <div className="profileWrapper">
+          <CardProfile userEmail={userEmail} userName={userName} userLastName={userLastName} iniciales={iniciales}/>
         </div>
-        <div className="col-9 p-5">
-          <Principal tipoDeCuenta={usuarioAutenticado.cuenta} userName={userName} userLastName={userLastName} />
+
+        <div className="mainWrapper">
+        <Principal tipoDeCuenta={usuarioAutenticado.cuenta} userName={userName} userLastName={userLastName} />
         </div>
+
       </div>
     </>
   );

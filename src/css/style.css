@@ -1,6 +1,6 @@
 /* todos los imports de css deben estar al inicio */
 /* ejemplo: @import 'mi-archivo-style.css' */
-@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap";
+@import "https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap";
 @import "./foundations.css";
 @import "./buttons.css";
 @import "./cardprofile.css";
@@ -26,6 +26,9 @@
 @import "./login.css";
 @import "./admintutores.css";
 @import "./adminestudiantes.css";
+@import "./bigCardProcess.css";
+@import "./home.css";
+@import "./userSelectionModule.css";
 
 * {
   margin: 0;
