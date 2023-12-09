@@ -1,3 +1,19 @@
+
+@keyframes gradientAnimation {
+  0% {
+    opacity: 100%;
+  }
+  50% {
+    opacity: 70%;
+  }
+  100% {
+    opacity: 100%;
+  }
+  
+}
+
+
+
 .cardWrapper{
   background-color: white;
   width: 100%;
@@ -89,4 +105,80 @@
 & p{
   color: var(--neutral-4);
 }
+}
+
+
+
+
+
+.charge{
+
+  animation: gradientAnimation 1.3s ease-in-out infinite ;
+
+  .inicialAvatar{
+    background-color:var(--neutral-3);
+    border: none;
+  }
+
+  .profileImgWrapper {
+    gap: 0.9em;
+    height: 144px;
+  }
+
+  & button{ 
+    background:var(--neutral-3);
+    color: transparent;
+    box-shadow: none;
+  }
+  button:hover{
+    background-color:var(--neutral-3);
+    color: transparent;
+  }
+  
+  & ul {
+    border: 1px solid var(--neutral-3);
+  }
+
+  & li{
+    height: 72px;
+    border-bottom: 1px solid var(--neutral-3);
+  }
+
+  & li > button{ 
+    background-color:var(--neutral-3);
+    color: transparent;
+    height: 16px;
+  }
+
+  & div > button{ 
+    background-color:var(--neutral-3);
+    color: transparent;
+    height: 16px;
+  }
+
+  & h5{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+
+  }
+
+  & p{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+  }
+  & li > p{
+    background-color:var(--neutral-3);
+    color: transparent;
+    border-radius: 100px;
+  }
+
+  & .infoNotification{
+    background-color:var(--neutral-3);
+    border: none;
+  }
+
+ 
+
 }

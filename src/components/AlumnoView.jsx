@@ -123,14 +123,13 @@ const AlumnoView = ({ userName }) => {
 
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">
-          <h4 className="subtitle-sm">Última sesión</h4>
-          <p className="paragraph-m">Puedes acceder cuando quieras a tu sala, el historial de conversaciones y archivos se mantiene hasta que se inicie otra sesión.</p>
+          <h4 className="subtitle-sm"><div className="stepBadge">Paso 2</div>Busca un tutor y entra a una sala</h4>
+          <p className="paragraph-m">Presiona el boton <strong>buscar un tutor en línea</strong> y espera hasta que un tutor acepte la solicitud.</p>
         </div>
 
         <div className="emptyState">
-          Aún no tienes una sesión activa
+          <p className='paragraph-xs mb-0'> Aún no entras a una sala, en este espacio se mostrara tu última sesión y podras acceder a la conversacion y los documentos hasta que inicies otra sala.</p>
         </div>
-
         <div className="actionWrapper">
           <Button btnText={buscandoTutor ? 'Detener búsqueda de tutor' : 'Buscar tutor en línea'} btnOnClick={() => setBuscandoTutor(!buscandoTutor)} className={"btn-primary btn-m"} />
           <button onClick={handleConfirmarSolicitud} disabled={!tutorDisponible || !solicitudId}>

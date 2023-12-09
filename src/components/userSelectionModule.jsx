@@ -52,7 +52,7 @@ const UserSelectionModule = () => {
     <>
       <div className="SelectionModuleWrapper">
         <div className="selectionModuleTextContainer">
-          <h6 className='subtitle-sm'>Configura tu búsqueda</h6>
+          <h6 className='subtitle-sm'><div className="stepBadge">Paso 1</div>Configura tu búsqueda</h6>
           <p className='paragraph-m'>Para encontrar un tutor que se adapte de manera más precisa a tus necesidades, debes seleccionar una area, un tema y una materia específica.</p>
         </div>
         <form action="" className='selectorWrapper'>
