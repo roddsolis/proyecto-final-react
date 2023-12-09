@@ -4,7 +4,7 @@ import { useEffect, useState, useContext } from "react";
 import { Context } from "../store/AppContext";
 
 const Home = () => {
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
   const usuarioAutenticado = store.usuarioAutenticado;
 
   const [userEmail, setUserEmail] = useState("");
@@ -25,6 +25,7 @@ const Home = () => {
   let iniciales = inicialNombre+inicialApellido
 
   console.log(iniciales)
+
 
   return (
     <>

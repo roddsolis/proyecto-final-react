@@ -1,9 +1,11 @@
-import React, { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Context } from '../store/AppContext';
 import ContadorUsuarios from "./ContadorUsuarios";
 import Categorias from "./Categorias";
 import Button from "./Button";
+import UserSelectionModule from './UserSelectionModule'
+
 
 const AlumnoView = ({ userName }) => {
   const { store } = useContext(Context);
@@ -116,8 +118,8 @@ const AlumnoView = ({ userName }) => {
         <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres aprender hoy?</h4>
         <p className="paragraph-m">Selecciona un tema de interés y luego busca un tutor en línea para poder acceder a una sala.</p>
       </div>
-
-      <Categorias />
+      <UserSelectionModule />
+      {/* <Categorias /> */}
 
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">

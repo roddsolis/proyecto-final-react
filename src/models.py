@@ -15,7 +15,7 @@ class Alumno(db.Model):
     estado = db.Column(db.Boolean, default=False)
     profile = db.relationship('Perfil', backref='alumno', uselist=False)
     datos_de_pago = db.relationship('Metodo_de_pago', backref='alumno', uselist=False )
-    materia_seleccionada = db.relationship('Materia', backref='alumno', uselist=False )
+    materia_seleccionada = db.relationship('Category', backref='alumno', uselist=False )
 
     def to_dict(self):
         return {
@@ -38,7 +38,7 @@ class Tutor(db.Model):
     estado = db.Column(db.Boolean, default=False, nullable=False)
     profile = db.relationship('Perfil', backref='tutor', uselist=False)
     datos_bancarios = db.relationship('Cuenta_bancaria', backref='tutor', uselist=False )
-    materia_seleccionada = db.relationship('Materia', backref='tutor')
+    materia_seleccionada = db.relationship('Category', backref='tutor')
 
     def to_dict(self):
         return {
@@ -60,8 +60,8 @@ class Perfil(db.Model):
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False )
 
 
-class Materia(db.Model):
-    __tablename__ = 'materias'
+class Category(db.Model):
+    __tablename__ = 'categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre_materia = db.Column(db.String, nullable=False, unique=True)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False )
@@ -113,3 +113,23 @@ class Cuenta_bancaria(db.Model):
     banco = db.Column(db.ARRAY(db.String))
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False )
     
+""" aca estaran las tablas que manejan los temas que puede seleccionar el alumno y que permiter hacer el match con un tutor en linea """
+
+
+class Area(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False, unique=True)
+
+    temas = db.relationship('Tema', backref='area', lazy=True)
+
+class Tema(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    area_id = db.Column(db.Integer, db.ForeignKey('area.id'), nullable=False)
+
+    materias = db.relationship('Materia', backref='tema', lazy=True)    
+
+class Materia(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    tema_id = db.Column(db.Integer, db.ForeignKey('tema.id'), nullable=False)
