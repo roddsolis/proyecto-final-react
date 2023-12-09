@@ -11,7 +11,7 @@ from flask_socketio import SocketIO, emit, disconnect
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 
 # Imports relacionados con SQLAlchemy
-from models import db, Alumno, Tutor, Solicitud_sala, Sala
+from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import null
 from sqlalchemy.orm.exc import NoResultFound
@@ -420,8 +420,6 @@ def obtener_ultima_solicitud_polling(tutor_id):
     except Exception as e:
         print(f'Error en el servidor: {str(e)}')
         return jsonify({'error': f'Error al obtener la última solicitud_sala: {str(e)}'}), 500
-    
-from flask import jsonify
 
 @app.route('/obtener_informacion_solicitud/<int:solicitud_id>', methods=['GET'])
 def obtener_informacion_solicitud(solicitud_id):
@@ -442,6 +440,39 @@ def obtener_informacion_solicitud(solicitud_id):
     else:
         return jsonify({'message': 'Solicitud no encontrada'}), 404
 
+# Endpoint para obtener todas las áreas
+@app.route('/areas', methods=['GET'])
+def obtener_areas():
+    try:
+        areas = Area.query.all()
+        areas_data = [{'id': area.id, 'name': area.name} for area in areas]
+        print('Áreas:', areas_data)
+        return jsonify({'areas': areas_data})
+    except Exception as e:
+        print(f'Error al obtener áreas: {e}')
+        return jsonify({'error': 'Error al obtener áreas'}), 500
+
+# Endpoint para obtener temas dado un ID de área
+@app.route('/temas/<int:area_id>', methods=['GET'])
+def obtener_temas(area_id):
+    area = Area.query.get(area_id)
+    if area:
+        temas = Tema.query.filter_by(area_id=area_id).all()
+        temas_data = [{'id': tema.id, 'name': tema.name} for tema in temas]
+        return jsonify({'temas': temas_data})
+    else:
+        return jsonify({'error': 'Área no encontrada'}), 404
+
+# Endpoint para obtener materias dado un ID de tema
+@app.route('/materias/<int:tema_id>', methods=['GET'])
+def obtener_materias(tema_id):
+    tema = Tema.query.get(tema_id)
+    if tema:
+        materias = Materia.query.filter_by(tema_id=tema_id).all()
+        materias_data = [{'id': materia.id, 'name': materia.name} for materia in materias]
+        return jsonify({'materias': materias_data})
+    else:
+        return jsonify({'error': 'Tema no encontrado'}), 404
     
 """ Agregar host. Buscar que acepte conexiones con otro ip """
 if __name__ == '__main__':

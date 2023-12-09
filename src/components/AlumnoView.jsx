@@ -4,6 +4,7 @@ import { Context } from '../store/AppContext';
 import ContadorUsuarios from "./ContadorUsuarios";
 import Categorias from "./Categorias";
 import Button from "./Button";
+import UserSelectionModule from './UserSelectionModule'
 
 const AlumnoView = ({ userName }) => {
   const { store } = useContext(Context);
@@ -62,11 +63,11 @@ const AlumnoView = ({ userName }) => {
         console.log('Enviando solicitud de emparejamiento...');
         // Obtener la información del alumno
         const alumno = store.usuarioAutenticado;
-  
+
         // Verificar si hay tutor disponible antes de enviar la solicitud
         const responseTutor = await fetch('http://127.0.0.1:8080/tutor_disponible');
         const dataTutor = await responseTutor.json();
-  
+
         if (dataTutor.tutor_disponible) {
           console.log('Tutor disponible. Enviando la solicitud...');
           // Si hay un tutor disponible, enviar la solicitud
@@ -79,14 +80,14 @@ const AlumnoView = ({ userName }) => {
               alumno_id: alumno.id,
             }),
           });
-  
+
           const dataSolicitud = await responseSolicitud.json();
           console.log('Respuesta de la solicitud de emparejamiento:', dataSolicitud);
-  
+
           if (dataSolicitud.message === 'Error en la solicitud de emparejamiento. No hay tutor disponible') {
             console.log('Tutor no disponible. Notificar al alumno.');
             // Aquí puedes mostrar un mensaje al alumno, actualizar el estado, o realizar otras acciones según tu necesidad.
-  
+
             // Si el tutor rechazó la solicitud, establecer buscandoTutor en true nuevamente
             if (dataSolicitud.tutor_rechazo) {
               console.log('El tutor rechazó la solicitud. Volviendo a buscar tutor...');
@@ -100,7 +101,7 @@ const AlumnoView = ({ userName }) => {
           console.log('No hay tutor disponible');
           // Puedes mostrar un mensaje al alumno o realizar otras acciones según tu necesidad.
         }
-  
+
       } catch (error) {
         console.error('Error en el emparejamiento:', error);
       }
@@ -123,13 +124,13 @@ const AlumnoView = ({ userName }) => {
         <h4 className="subtitle-sm">Hola {userName} ¿Qué quieres aprender hoy?</h4>
         <p className="paragraph-m">Selecciona un tema de interés y luego busca un tutor en línea para poder acceder a una sala.</p>
       </div>
-
-      <Categorias />
+      <UserSelectionModule />
+      {/* <Categorias /> */}
 
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">
-          <h4 className="subtitle-sm">Última sesión</h4>
-          <p className="paragraph-m">Puedes acceder cuando quieras a tu sala, el historial de conversaciones y archivos se mantiene hasta que se inicie otra sesión.</p>
+          <h4 className="subtitle-sm"><div className="stepBadge">Paso 2</div>Busca un tutor y entra a una sala</h4>
+          <p className="paragraph-m">Presiona el boton <strong>buscar un tutor en línea</strong> y espera hasta que un tutor acepte la solicitud.</p>
         </div>
 
         <div className="emptyState">

@@ -1,8 +1,6 @@
 from flask_sqlalchemy import SQLAlchemy
 
-
 db = SQLAlchemy()
-
 
 class Alumno(db.Model):
     __tablename__ = 'alumnos'
@@ -58,7 +56,6 @@ class Tutor(db.Model):
             'tutor_en_sala': self.tutor_en_sala,
         }   
 
-
 class Perfil(db.Model):
     __tablename__ = 'perfiles'
     id = db.Column(db.Integer, primary_key=True)
@@ -66,9 +63,8 @@ class Perfil(db.Model):
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False )
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False )
 
-
-class Materia(db.Model):
-    __tablename__ = 'materias'
+class Category(db.Model):
+    __tablename__ = 'categorias'
     id = db.Column(db.Integer, primary_key=True)
     nombre_materia = db.Column(db.String, nullable=False, unique=True)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False )
@@ -89,7 +85,6 @@ class Solicitud_sala(db.Model):
             'alumno_id': self.alumno_id,
             'tutor_id': self.tutor_id,
         }
-    
 
 class Sala(db.Model):
     __tablename__ = 'salas'
@@ -117,4 +112,23 @@ class Cuenta_bancaria(db.Model):
     numero_cuenta = db.Column(db.Integer, nullable=False, unique=True)
     banco = db.Column(db.ARRAY(db.String))
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False )
-    
+
+""" aca estaran las tablas que manejan los temas que puede seleccionar el alumno y que permiter hacer el match con un tutor en linea """
+
+class Area(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False, unique=True)
+
+    temas = db.relationship('Tema', backref='area', lazy=True)
+
+class Tema(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    area_id = db.Column(db.Integer, db.ForeignKey('area.id'), nullable=False)
+
+    materias = db.relationship('Materia', backref='tema', lazy=True)    
+
+class Materia(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), nullable=False)
+    tema_id = db.Column(db.Integer, db.ForeignKey('tema.id'), nullable=False)
