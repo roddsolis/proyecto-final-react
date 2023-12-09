@@ -15,7 +15,7 @@ class Alumno(db.Model):
     alumno_en_sala = db.Column(db.Boolean, default=False, nullable=False)
     profile = db.relationship('Perfil', backref='alumno', uselist=False)
     datos_de_pago = db.relationship('Metodo_de_pago', backref='alumno', uselist=False )
-    materia_seleccionada = db.relationship('Materia', backref='alumno', uselist=False )
+    materia_seleccionada = db.relationship('Category', backref='alumno', uselist=False )
 
     def to_dict(self):
         return {
@@ -40,8 +40,8 @@ class Tutor(db.Model):
     solicitud_entrante = db.Column(db.Boolean, default=False, nullable=False)
     tutor_en_sala = db.Column(db.Boolean, default=False, nullable=False)
     profile = db.relationship('Perfil', backref='tutor', uselist=False)
-    datos_bancarios = db.relationship('Cuenta_bancaria', backref='tutor', uselist=False )
-    materia_seleccionada = db.relationship('Materia', backref='tutor')
+    datos_bancarios = db.relationship('Cuenta_bancaria', backref='tutor', uselist=False)
+    materia_seleccionada = db.relationship('Category', backref='tutor', uselist=False)
 
     def to_dict(self):
         return {
