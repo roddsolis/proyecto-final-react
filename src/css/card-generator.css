@@ -28,5 +28,6 @@ label {
 }
 
 input {
-  width: 300px; /* Ajusta el ancho según tu preferencia */
+  width: 300px;
+  border-radius: 7px;
 }

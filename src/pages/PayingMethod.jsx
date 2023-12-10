@@ -45,7 +45,7 @@ function PayingMethod() {
             </div>
           </div>
 
-          <div className="row gy-3 mb-5">
+          <div className="col-11 d-flex align-items-center justify-content-center">
             <CardGenerator />
           </div>
 
