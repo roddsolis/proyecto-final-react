@@ -1,5 +1,6 @@
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
+import CardGenerator from "../components/Card-Generator";
 
 function PayingMethod() {
   return (
@@ -45,30 +46,9 @@ function PayingMethod() {
           </div>
 
           <div className="row gy-3 mb-5">
-            <div className="col-md-6">
-              <label htmlFor="cc-name" className="form-label"></label>
-              <input type="text" className="form-control" id="cc-name" placeholder="Nombre del titular" required />
-              <div className="invalid-feedback">Se requiere el nombre en la tarjeta</div>
-            </div>
-
-            <div className="col-md-6">
-              <label htmlFor="cc-number" className="form-label"></label>
-              <input type="text" className="form-control" id="cc-number" placeholder=" Número de tarjeta" required />
-              <div className="invalid-feedback">Se requiere número de tarjeta de crédito</div>
-            </div>
-
-            <div className="col-md-3">
-              <label htmlFor="cc-expiration" className="form-label"></label>
-              <input type="text" className="form-control" id="cc-expiration" placeholder="mm/aa" required />
-              <div className="invalid-feedback">Fecha de vencimiento requerida</div>
-            </div>
-
-            <div className="col-md-3">
-              <label htmlFor="cc-cvv" className="form-label"></label>
-              <input type="text" className="form-control" id="cc-cvv" placeholder="cvv" required />
-              <div className="invalid-feedback">Código de seguridad requerido</div>
-            </div>
+            <CardGenerator />
           </div>
+
           <hr className="my-0" />
           <div className="row gy-3  d-flex justify-content-between">
             <div className="containerBtn">
