@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Ban } from "lucide-react";
 import BigCardProcess from "../components/BigCardProcess";
+import GoogleButton from "../components/GoogleButton";
 
 const Login = () => {
   let bigCardContent = {
@@ -114,10 +115,7 @@ const Login = () => {
 
           <div className="googleBtnLoginWrapper">
             <p className="paragraph-s mb-0">O inicia sesión con Google </p>
-            <div className="googleBtn">
-              <img src="./google-icon.svg" alt="" />
-              <p className="btn-text-s mb-0">Iniciar sesión</p>
-            </div>
+            <GoogleButton />
           </div>
 
           <div className="linkCrearCuenta">
