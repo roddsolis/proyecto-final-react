@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Cards from "react-credit-cards-2";
-import "react-credit-cards-2/dist/es/styles-compiled.css";
+import Cards from "react-credit-cards-2"; //ESTO NO SE TIENE QUE MOVER
+import "react-credit-cards-2/dist/es/styles-compiled.css"; //ESTO NO SE TIENE QUE MOVER
 import "./../css/card-generator.css";
 
 const CardGenerator = () => {
