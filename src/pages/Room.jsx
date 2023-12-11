@@ -7,8 +7,6 @@ import VideoRoomActions from '../components/VideoRoomActions'
 import {Context} from '../store/AppContext'
 
 
-// import { Mic, Video  } from 'lucide-react';
-
 const Room = () => {
 
 

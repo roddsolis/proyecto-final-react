@@ -15,14 +15,11 @@ import TutorBankData from "./pages/TutorBankData";
 import AlumnoView from "./components/AlumnoView";
 import TutorView from "./components/TutorView";
 
-const WS = "http://127.0.0.1:8080/";
 
 const Layout = () => {
+  
   const { store, actions } = useContext(Context);
 
-  useEffect(() => {
-    socketIO(WS);
-  }, []);
 
   return (
     <>

@@ -27,7 +27,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASEURI')
 # esta linea maneja el json web token
 app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
 
-socketio = SocketIO(app, cors_allowed_origins='*', transports=['websocket', 'polling'])
+socketio = SocketIO(app, cors_allowed_origins='http://localhost:8080', transports=['websocket', 'polling'])
 
 ultima_solicitud_dict = {}  # Variable global para almacenar la última solicitud en el servidor
 
