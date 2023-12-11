@@ -40,6 +40,7 @@
     .inicialAvatar {
       background-color: var(--neutral-3);
       border: none;
+      & h6{color: transparent;}
     }
 
     .profileImgWrapper {

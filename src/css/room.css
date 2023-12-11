@@ -95,7 +95,7 @@
         p{color: var(--neutral-6);}
     }
 
-    & .mainWrapper{
+    & .chatMainWrapper{
         height: 100%;
         width: 100%;
         overflow-y: visible;

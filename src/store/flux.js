@@ -10,11 +10,9 @@ const getState = ({ getStore, getActions, setStore }) => {
     },
     actions: {
       setUsuarioAutenticado: (usuario) => {
-        const store = getStore();
         setStore({ usuarioAutenticado: usuario });
       },
       setAreas: (areas) => {
-        const store = getStore();
         setStore({ areas: areas });
       },
     },
