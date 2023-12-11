@@ -11,7 +11,7 @@ from flask_socketio import SocketIO, emit, disconnect
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 
 # Imports relacionados con SQLAlchemy
-from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia
+from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia, ChatBox
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import null
 from sqlalchemy.orm.exc import NoResultFound
@@ -27,14 +27,19 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASEURI')
 # esta linea maneja el json web token
 app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
 
+<<<<<<< HEAD
 socketio = SocketIO(app, cors_allowed_origins='http://localhost:8080', transports=['websocket', 'polling'])
+=======
+>>>>>>> 03d6212b0e4e20bf8559af0fcf081e53be4eadba
 
 ultima_solicitud_dict = {}  # Variable global para almacenar la última solicitud en el servidor
 
 db.init_app(app)
 migrate = Migrate(app, db)
-CORS(app)
 jwt = JWTManager(app)
+CORS(app)
+
+socketio = SocketIO(app, cors_allowed_origins='*', transports=['websocket', 'polling'])
 
 @app.route('/')
 def main():
@@ -128,6 +133,7 @@ def obtener_turores():
     
     print(tutor_json)
     return jsonify(tutor_json)
+
 
 @app.route('/estado_tutor/<int:tutor_id>', methods=['GET'])
 def estado_tutor(tutor_id):
@@ -474,6 +480,38 @@ def obtener_materias(tema_id):
     else:
         return jsonify({'error': 'Tema no encontrado'}), 404
     
-""" Agregar host. Buscar que acepte conexiones con otro ip """
+
+
+
+# aca se manejan los mensajes del chatbox que se realizan en la sala
+
+@socketio.on('usuario_autenticado', namespace='/chat')
+def handle_usuario_autenticado(usuario_data):
+    print('Usuario autenticado:', usuario_data)
+
+
+@socketio.on('new_message', namespace='/chat')
+def handle_new_message(message_data):
+    try:
+        new_message = ChatBox(
+            user_message=message_data['user_message'],
+            alumno_id=message_data['alumno_id'],
+            tutor_id=message_data['tutor_id']
+        )
+        db.session.add(new_message)
+        db.session.commit()
+    except Exception as e:
+        print(f"Error al guardar el mensaje en la base de datos: {str(e)}")
+
+    emit('new_message', message_data, namespace='/chat')
+
+
+#activar o descativar camara    
+@socketio.on('toggle_camera', namespace='/chat')
+def handle_toggle_camera(data):
+    emit('camera_toggled', data, broadcast=True)
+
+
+    
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=8080 )
