@@ -142,11 +142,11 @@ const CreateAccount = () => {
             <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
             <div className="selectionWrapper">
               <label htmlFor="optionEnsenar" className="form-check">
-                Quiero enseñar
+                <p className='btn-text-m mb-0'>Quiero enseñar</p>
                 <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
               </label>
               <label htmlFor="optionAprender" className="form-check">
-                Quiero aprender
+                <p className='btn-text-m mb-0'>Quiero aprender</p>
                 <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
               </label>
             </div>
