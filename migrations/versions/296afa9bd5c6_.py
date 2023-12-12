@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 0906e367c8a5
+Revision ID: 296afa9bd5c6
 Revises: 
-Create Date: 2023-12-11 18:56:08.857809
+Create Date: 2023-12-11 21:09:18.346630
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '0906e367c8a5'
+revision = '296afa9bd5c6'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -59,6 +59,16 @@ def upgrade():
     sa.ForeignKeyConstraint(['tutor_id'], ['tutores.id'], ),
     sa.PrimaryKeyConstraint('id'),
     sa.UniqueConstraint('nombre_materia')
+    )
+    op.create_table('chat_box',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('user_message', sa.String(), nullable=True),
+    sa.Column('message_time', sa.DateTime(), nullable=True),
+    sa.Column('alumno_id', sa.Integer(), nullable=True),
+    sa.Column('tutor_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['alumno_id'], ['alumnos.id'], ),
+    sa.ForeignKeyConstraint(['tutor_id'], ['tutores.id'], ),
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_table('cuentas_bancarias',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -141,6 +151,7 @@ def downgrade():
     op.drop_table('perfiles')
     op.drop_table('metodos_de_pago')
     op.drop_table('cuentas_bancarias')
+    op.drop_table('chat_box')
     op.drop_table('categorias')
     op.drop_table('tutores')
     op.drop_table('area')

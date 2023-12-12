@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 import StatusTag from "../components/StatusTag"
 import Avatar from "../components/Avatar"
 import {useEffect, useState,useContext} from 'react'
@@ -7,16 +6,6 @@ import { Plus } from 'lucide-react';
 import VideoRoomActions from '../components/VideoRoomActions'
 import {Context} from '../store/AppContext'
 
-=======
-import StatusTag from "../components/StatusTag";
-import Avatar from "../components/Avatar";
-import { useEffect, useState, useContext } from "react";
-import ChatRoomMessage from "../components/ChatRoomMessage";
-import { Plus } from "lucide-react";
-import VideoRoomActions from "../components/VideoRoomActions";
-import { Context } from "../store/AppContext";
-import io from "socket.io-client";
->>>>>>> 03d6212b0e4e20bf8559af0fcf081e53be4eadba
 
 const Room = () => {
   const { store, actions } = useContext(Context);

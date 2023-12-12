@@ -26,12 +26,8 @@
     "react-icons": "^4.12.0",
     "react-router": "^6.19.0",
     "react-router-dom": "^6.19.0",
-<<<<<<< HEAD
     "socket.io": "^2.5.0",
     "socket.io-client": "^4.7.2",
-=======
-    "socket.io-client": "^2.4.0",
->>>>>>> 03d6212b0e4e20bf8559af0fcf081e53be4eadba
     "socketio": "^1.0.0"
   },
   "devDependencies": {

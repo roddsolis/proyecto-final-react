@@ -53,15 +53,9 @@ let completeCharge = true;
 
     <div className="cardWrapper">
         <div className="profileImgWrapper ">
-<<<<<<< HEAD
         <div className="inicialAvatar">
           <h6 className='subtitle-m mb-0'>{iniciales}</h6>
         </div>
-=======
-          <div className="inicialAvatar ">
-          <h6 className='subtitle-m mb-0'>{iniciales}</h6>
-          </div>
->>>>>>> 03d6212b0e4e20bf8559af0fcf081e53be4eadba
           <Button btnText={"Cambiar"} className={"btn-tertiary btn-m"} />
         </div>
 
