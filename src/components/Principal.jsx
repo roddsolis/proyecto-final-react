@@ -7,10 +7,7 @@ const PrincipalTutor = ({ tipoDeCuenta, userName, userLastName }) => {
   let usuario = tipoDeCuenta;
   let nombre = userName;
   let apellido = userLastName;
-  console.log(nombre, apellido);
-  console.log(nombre.charAt(0).toUpperCase() + nombre.slice(1));
-  console.log(apellido);
-
+  
   if (usuario === true) {
     return (
       <>

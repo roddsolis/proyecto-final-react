@@ -1,18 +1,22 @@
+import React from "react";
 import PropTypes from "prop-types";
 import Switch from "@mui/material/Switch";
 
-const CustomSwitch = ({ isActive, onSwitchChange }) => {
+const CustomSwitch = ({ estadoTutor, handleChangeEstado }) => {
   const handleSwitchChange = () => {
     // Lógica para cambiar el estado o realizar alguna acción
-    onSwitchChange(!isActive);
+    handleChangeEstado(!estadoTutor.estado);
   };
 
-  return <Switch checked={isActive} onChange={handleSwitchChange} />;
+  return <Switch checked={estadoTutor} onChange={handleSwitchChange} />;
 };
 
 CustomSwitch.propTypes = {
-  isActive: PropTypes.bool.isRequired,
-  onSwitchChange: PropTypes.func.isRequired,
+  estadoTutor: PropTypes.shape({
+    estado: PropTypes.bool.isRequired,
+    // otras propiedades si las hay
+  }).isRequired,
+  handleChangeEstado: PropTypes.func.isRequired,
 };
 
 export default CustomSwitch;

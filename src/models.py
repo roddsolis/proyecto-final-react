@@ -10,7 +10,8 @@ class Alumno(db.Model):
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=True, nullable=False)
-    estado = db.Column(db.Boolean, default=False)
+    conectado = db.Column(db.Boolean, default=False, nullable=False)
+    estado = db.Column(db.Boolean, default=False, nullable=False)
     solicitud_saliente = db.Column(db.Boolean, default=False, nullable=False)
     alumno_en_sala = db.Column(db.Boolean, default=False, nullable=False)
     profile = db.relationship('Perfil', backref='alumno', uselist=False)
@@ -36,6 +37,7 @@ class Tutor(db.Model):
     correo_electronico = db.Column(db.String(120), nullable=False, unique=True)
     password = db.Column(db.String(120), nullable=False)
     tipo_de_cuenta = db.Column(db.Boolean, default=False, nullable=False)
+    conectado = db.Column(db.Boolean, default=False, nullable=False)
     estado = db.Column(db.Boolean, default=False, nullable=False)
     solicitud_entrante = db.Column(db.Boolean, default=False, nullable=False)
     tutor_en_sala = db.Column(db.Boolean, default=False, nullable=False)
@@ -73,7 +75,7 @@ class Category(db.Model):
 class Solicitud_sala(db.Model):
     __tablename__ = 'solicitud_sala'
     id = db.Column(db.Integer, primary_key=True)
-    confirmacion_tutor = db.Column(db.Boolean, default=None, nullable=False)
+    confirmacion_tutor = db.Column(db.Boolean, default=None)
     estado = db.Column(db.Boolean, default=None)
     alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'), nullable=False)
     tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'), nullable=False)

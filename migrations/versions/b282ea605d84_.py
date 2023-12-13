@@ -1,8 +1,8 @@
-"""Inicialización de la base de datos
+"""empty message
 
-Revision ID: a8de527b24c6
+Revision ID: b282ea605d84
 Revises: 
-Create Date: 2023-12-09 05:50:55.554847
+Create Date: 2023-12-12 05:44:58.467742
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a8de527b24c6'
+revision = 'b282ea605d84'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -25,7 +25,8 @@ def upgrade():
     sa.Column('correo_electronico', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=120), nullable=False),
     sa.Column('tipo_de_cuenta', sa.Boolean(), nullable=False),
-    sa.Column('estado', sa.Boolean(), nullable=True),
+    sa.Column('conectado', sa.Boolean(), nullable=False),
+    sa.Column('estado', sa.Boolean(), nullable=False),
     sa.Column('solicitud_saliente', sa.Boolean(), nullable=False),
     sa.Column('alumno_en_sala', sa.Boolean(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
@@ -44,6 +45,7 @@ def upgrade():
     sa.Column('correo_electronico', sa.String(length=120), nullable=False),
     sa.Column('password', sa.String(length=120), nullable=False),
     sa.Column('tipo_de_cuenta', sa.Boolean(), nullable=False),
+    sa.Column('conectado', sa.Boolean(), nullable=False),
     sa.Column('estado', sa.Boolean(), nullable=False),
     sa.Column('solicitud_entrante', sa.Boolean(), nullable=False),
     sa.Column('tutor_en_sala', sa.Boolean(), nullable=False),
@@ -93,7 +95,7 @@ def upgrade():
     )
     op.create_table('solicitud_sala',
     sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('confirmacion_tutor', sa.Boolean(), nullable=False),
+    sa.Column('confirmacion_tutor', sa.Boolean(), nullable=True),
     sa.Column('estado', sa.Boolean(), nullable=True),
     sa.Column('alumno_id', sa.Integer(), nullable=False),
     sa.Column('tutor_id', sa.Integer(), nullable=False),

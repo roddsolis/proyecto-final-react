@@ -25,7 +25,8 @@
     "react-router": "^6.19.0",
     "react-router-dom": "^6.19.0",
     "socket.io-client": "^4.7.2",
-    "socketio": "^1.0.0"
+    "socketio": "^1.0.0",
+    "ws": "^8.15.0"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",
