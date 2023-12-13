@@ -44,11 +44,9 @@ function PayingMethod() {
               </div>
             </div>
           </div>
-
           <div className="col-11 d-flex align-items-center justify-content-center">
             <CardGenerator />
           </div>
-
           <hr className="my-0" />
           <div className="row gy-3  d-flex justify-content-between">
             <div className="containerBtn">
