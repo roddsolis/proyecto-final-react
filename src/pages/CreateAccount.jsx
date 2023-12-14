@@ -4,6 +4,7 @@ import { useContext, useState, useEffect } from "react";
 import { Context } from "../store/AppContext";
 import { Check, Ban } from "lucide-react";
 import BigCardProcess from "../components/BigCardProcess";
+import GoogleButton from "../components/GoogleButton";
 
 const CreateAccount = () => {
   let bigCardContent = {
@@ -137,21 +138,17 @@ const CreateAccount = () => {
         <BigCardProcess titleContent={bigCardContent.title} paragraphContent={bigCardContent.paragraph} />
 
         <form action="" method="post" className="formWrapper" onSubmit={(e) => e.preventDefault()}>
-          
           <div className="inputsWrapper">
-            
-              <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
+            <h3 className="subtitle-sm w-100">¿Qué quieres hacer?</h3>
             <div className="selectionWrapper">
-              
               <label htmlFor="optionEnsenar" className="form-check">
-                Quiero enseñar
+                <p className='btn-text-m mb-0'>Quiero enseñar</p>
                 <input type="radio" className="form-check-input" id="optionEnsenar" name="opcion" value="Quiero enseñar" />
               </label>
               <label htmlFor="optionAprender" className="form-check">
-                Quiero aprender
+                <p className='btn-text-m mb-0'>Quiero aprender</p>
                 <input type="radio" className="form-check-input" id="optionAprender" name="opcion" value="Quiero aprender" />
               </label>
-
             </div>
 
             <input type="text" className="form-control" placeholder="Nombre" name="nombre" id="nombre" value={name} onChange={handleNameChange} />
@@ -160,10 +157,28 @@ const CreateAccount = () => {
             <input type="text" className="form-control" placeholder="Apellido" name="apellido" id="apellido" value={lastName} onChange={handleLastNameChange} />
             <div className="inputErrorText">{formErrors.lastName && <p className="paragraph-s text-danger mb-0">{formErrors.lastName}</p>}</div>
 
-            <input type="email" className="form-control" placeholder="e-mail" name="correo" id="correo" onChange={(e) => { setEmail(e.target.value);}} />
+            <input
+              type="email"
+              className="form-control"
+              placeholder="e-mail"
+              name="correo"
+              id="correo"
+              onChange={(e) => {
+                setEmail(e.target.value);
+              }}
+            />
             <div className="inputErrorText">{formErrors.email && <p className="paragraph-s text-danger mb-0">{formErrors.email}</p>}</div>
 
-            <input type="password" className="form-control" placeholder="Contraseña" name="contraseña" id="contraseña" onChange={(e) => { setPassword(e.target.value); }} />
+            <input
+              type="password"
+              className="form-control"
+              placeholder="Contraseña"
+              name="contraseña"
+              id="contraseña"
+              onChange={(e) => {
+                setPassword(e.target.value);
+              }}
+            />
             <div className="inputErrorText">{formErrors.password && <p className="paragraph-s text-danger mb-0">{formErrors.password}</p>}</div>
 
             <div className="actionsAccountWrapper">
@@ -183,16 +198,13 @@ const CreateAccount = () => {
               </Link>
             </div>
 
-          <div className="googleBtnAccountWrapper">
-            <p className="paragraph-s mb-0">O regístrate con Google</p>
-            <div className="googleBtn">
-              <img src="./google-icon.svg" alt="" />
-              <p className="btn-text-s mb-0">Usar mi cuenta de Google</p>
+            <div className="googleBtnAccountWrapper">
+              <p className="paragraph-s mb-0">O regístrate con Google</p>
+              {/* <img src="./google-icon.svg" alt="" />
+                <p className="btn-text-s mb-0">Usar mi cuenta de Google</p> */}
+              <GoogleButton />
             </div>
           </div>
-
-          </div>
-
 
           <div className="goToLoginWrapper">
             <p className="paragraph-m mb-0 me-2">¿Ya tienes una cuenta?</p>

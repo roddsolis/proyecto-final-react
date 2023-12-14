@@ -1,6 +1,7 @@
 # Imports relacionados con el sistema y el entorno
 import os
 from dotenv import load_dotenv
+import logging
 
 # Imports relacionados con Flask
 from flask import Flask, jsonify, request, render_template, send_from_directory
@@ -11,7 +12,7 @@ from flask_socketio import SocketIO, emit, disconnect, join_room, leave_room
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
 
 # Imports relacionados con SQLAlchemy
-from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia
+from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia, ChatBox
 from sqlalchemy import and_, or_
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import null
@@ -27,6 +28,9 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASEURI')
 
 # esta linea maneja el json web token
 app.config['JWT_SECRET_KEY'] = os.getenv('SECRET_KEY')
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 socketio = SocketIO(app, cors_allowed_origins='*', transports=['websocket', 'polling'])
 
@@ -691,6 +695,38 @@ def obtener_materias(tema_id):
     else:
         return jsonify({'error': 'Tema no encontrado'}), 404
     
-""" Agregar host. Buscar que acepte conexiones con otro ip """
+
+
+
+# aca se manejan los mensajes del chatbox que se realizan en la sala
+
+@socketio.on('usuario_autenticado', namespace='/chat')
+def handle_usuario_autenticado(usuario_data):
+    print('Usuario autenticado:', usuario_data)
+
+
+@socketio.on('new_message', namespace='/chat')
+def handle_new_message(message_data):
+    try:
+        new_message = ChatBox(
+            user_message=message_data['user_message'],
+            alumno_id=message_data['alumno_id'],
+            tutor_id=message_data['tutor_id']
+        )
+        db.session.add(new_message)
+        db.session.commit()
+    except Exception as e:
+        print(f"Error al guardar el mensaje en la base de datos: {str(e)}")
+
+    emit('new_message', message_data, namespace='/chat')
+
+
+#activar o descativar camara    
+@socketio.on('toggle_camera', namespace='/chat')
+def handle_toggle_camera(data):
+    emit('camera_toggled', data, broadcast=True)
+
+
+    
 if __name__ == '__main__':
     socketio.run(app, debug=True, port=8080 )

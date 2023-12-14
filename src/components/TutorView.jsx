@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from '../store/AppContext';
 import io from 'socket.io-client';
 import ContadorUsuarios from "./ContadorUsuarios";
-import Categorias from "./Categorias";
 import CircleSwitch from "./CircleSwitch";
 import CustomSwitch from "./CustomSwitch";
 
@@ -229,7 +228,7 @@ const TutorView = ({ userName }) => {
         <p className="paragraph-m">Selecciona los temas que quieres enseñar para poder recibir solicitudes de alumnos.</p>
       </div>
 
-      <Categorias />
+      <UserSelectionModule />
 
       <div className="sessionWrapper">
         <CircleSwitch estadoTutor={estadoTutor} />

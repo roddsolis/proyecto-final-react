@@ -10,8 +10,13 @@ const Home = () => {
   const [userEmail, setUserEmail] = useState("");
   const [userName, setUserName] = useState("");
   const [userLastName, setUserLastName] = useState("");
+  const [ homeCharge, setHomeCharge] = useState("charge")
 
+  
   useEffect(() => {
+    setTimeout(() => {
+      setHomeCharge("")
+    }, 4000);
     if (usuarioAutenticado) {
       setUserEmail(usuarioAutenticado.correo);
       setUserName(usuarioAutenticado.nombre);
@@ -26,7 +31,7 @@ const Home = () => {
 
   return (
     <>
-      <div className="homeWrapper">
+      <div className={`homeWrapper ${homeCharge}`}>
 
         <div className="profileWrapper">
           <CardProfile userEmail={userEmail} userName={userName} userLastName={userLastName} iniciales={iniciales}/>

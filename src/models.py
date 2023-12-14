@@ -1,6 +1,12 @@
 from flask_sqlalchemy import SQLAlchemy
+from datetime import datetime
+from flask_socketio import SocketIO
+
+
+
 
 db = SQLAlchemy()
+socketio = SocketIO()
 
 class Alumno(db.Model):
     __tablename__ = 'alumnos'
@@ -134,3 +140,24 @@ class Materia(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(255), nullable=False)
     tema_id = db.Column(db.Integer, db.ForeignKey('tema.id'), nullable=False)
+
+
+class ChatBox(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_message = db.Column(db.String)
+    message_time = db.Column(db.DateTime, default=datetime.utcnow)
+    alumno_id = db.Column(db.Integer, db.ForeignKey('alumnos.id'))
+    tutor_id = db.Column(db.Integer, db.ForeignKey('tutores.id'))
+    
+    def to_dict(self):
+        message_data = {
+            'id': self.id,
+            'user_message': self.user_message,
+            'message_time': self.message_time.strftime("%Y-%m-%d %H:%M:%S"),
+            'alumno_id': self.alumno_id,
+            'tutor_id': self.tutor_id,
+        }
+
+        # Emitir el mensaje a través de Socket.IO
+        socketio.emit('new_message', message_data, namespace='/chat')
+        return message_data

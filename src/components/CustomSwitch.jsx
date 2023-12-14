@@ -8,7 +8,7 @@ const CustomSwitch = ({ estadoTutor, handleChangeEstado }) => {
     handleChangeEstado(!estadoTutor.estado);
   };
 
-  return <Switch checked={estadoTutor} onChange={handleSwitchChange} />;
+  return <Switch checked={estadoTutor.estado} onChange={handleSwitchChange} />;
 };
 
 CustomSwitch.propTypes = {

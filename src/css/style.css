@@ -29,6 +29,7 @@
 @import "./bigCardProcess.css";
 @import "./home.css";
 @import "./userSelectionModule.css";
+@import "./payingMethod.css";
 
 * {
   margin: 0;
@@ -45,12 +46,12 @@
     font-family: "Inter", sans-serif;
     font-size: 1rem;
   }
-  & ul, li {
+  & ul,
+  li {
     list-style: none;
     padding-left: 0px;
     margin-bottom: 0px;
   }
-
 }
 
 #root {

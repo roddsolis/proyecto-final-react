@@ -1,0 +1,75 @@
+.payingMethodContainer {
+  background-color: white;
+  background: radial-gradient(circle at -200% -200%, var(--primary-4) 0%, rgba(255, 255, 255, 0) 85%);
+  background-position: left top;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 2em;
+  padding: 2em;
+}
+
+.payFormWrapper {
+    /* background-color: blueviolet; */
+    height: 100%;
+    width: 100%;
+    max-width: 1000px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5em;
+    gap: 3em;
+
+    & .paymentInfoWrapper{
+        display: flex;
+        align-items: start;
+        justify-content: flex-start;
+        width: 100%;
+        & h3{margin-bottom: 0;}
+    }
+}
+
+
+
+.payingInputsWrapper{
+    /* background-color: yellow; */
+    display: flex;
+    /* flex-direction: column; */
+    gap: 3em;
+    width: 100%;
+
+    & .creditCardData{
+        /* background-color: red; */
+        display: flex;
+        flex-direction: column;
+        gap: 1em;
+        & .twoColumns{
+            display: flex;
+            /* background-color: green; */
+            gap: 1em;
+        }
+    }
+}
+
+.inforWarning{
+    display: flex;
+    align-items: center;
+    background-color: var(--warning-1);
+    padding: 1.5em;
+    border: 1px solid var(--warning-3);
+    border-radius: var(--small);
+    & p{
+        color: var(--neutral-6);
+        margin-bottom: 0;
+        font-weight: 500;
+    }
+}
+
+.paymentMethodActions{
+    display: flex;
+    justify-content: flex-end;
+    gap: 1em;
+    width: 100%;
+}

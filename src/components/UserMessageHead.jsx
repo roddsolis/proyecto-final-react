@@ -1,8 +1,9 @@
 /* eslint-disable react/prop-types */
 import Avatar from "./Avatar";
 
-const UserMessageHead = ( {img, avatarSize, align, tutorName, chatImgScale, accountType} ) => {
+const UserMessageHead = ( {img, avatarSize, align, tutorName, chatImgScale, accountType, time} ) => {
 
+  console.log(time)
 
   return (
     <>
