@@ -1,11 +1,11 @@
-import StatusTag from "../components/StatusTag"
-import Avatar from "../components/Avatar"
-import {useEffect, useState,useContext} from 'react'
-import ChatRoomMessage from '../components/ChatRoomMessage'
-import { Plus } from 'lucide-react';
-import VideoRoomActions from '../components/VideoRoomActions'
-import {Context} from '../store/AppContext'
-
+import StatusTag from "../components/StatusTag";
+import Avatar from "../components/Avatar";
+import { useEffect, useState, useContext } from "react";
+import ChatRoomMessage from "../components/ChatRoomMessage";
+import { Plus } from "lucide-react";
+import VideoRoomActions from "../components/VideoRoomActions";
+import { Context } from "../store/AppContext";
+import io from "socket.io-client";
 
 const Room = () => {
   const { store, actions } = useContext(Context);
@@ -49,16 +49,14 @@ const Room = () => {
     socket.emit("usuario_autenticado", usuarioAutenticado);
 
     socket.on("new_message", (messageData) => {
-        console.log("Nuevo mensaje recibido:", messageData);
-        setChatMessages((prevMessages) => [...prevMessages, messageData]);
+      console.log("Nuevo mensaje recibido:", messageData);
+      setChatMessages((prevMessages) => [...prevMessages, messageData]);
     });
 
     return () => {
-        socket.disconnect();
+      socket.disconnect();
     };
-}, [socket, store.usuarioAutenticado]);
-
-  
+  }, [socket, store.usuarioAutenticado]);
 
   const handleSendMessage = () => {
     console.log("Enviando mensaje:", newMessage);
@@ -82,7 +80,7 @@ const Room = () => {
     setIsCameraActive(!isCameraActive);
 
     // Emitir el evento a través de Socket.IO
-    socket.emit('toggle_camera', { active: !isCameraActive });
+    socket.emit("toggle_camera", { active: !isCameraActive });
   };
 
   return (
@@ -118,7 +116,14 @@ const Room = () => {
                 <button className={`actionIconWraper ${btnFocus ? "focused" : ""}`} onClick={activateSendFiles} onFocus={() => btnFocusActive(true)} onBlur={() => btnFocusActive(false)}>
                   <Plus size={18} />
                 </button>
-                <form action="" method="post" onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}>
+                <form
+                  action=""
+                  method="post"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }}
+                >
                   <input type="text" placeholder={`Envía un mensaje a ${userFirstName}`} className="paragraph-s" onChange={(e) => setNewMessage(e.target.value)} value={newMessage} />
                 </form>
               </div>
