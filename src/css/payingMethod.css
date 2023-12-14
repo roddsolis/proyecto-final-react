@@ -60,6 +60,7 @@
     padding: 1.5em;
     border: 1px solid var(--warning-3);
     border-radius: var(--small);
+    gap: 1em;
     & p{
         color: var(--neutral-6);
         margin-bottom: 0;

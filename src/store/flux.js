@@ -5,7 +5,7 @@ const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
       apiURL: 'http://127.0.0.1:8080/',
-      usuarioAutenticado: null,
+      usuarioAutenticado: true,
       areas: [], // Nuevo estado para almacenar las áreas
     },
     actions: {

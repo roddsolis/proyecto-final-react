@@ -1,4 +1,6 @@
 import Button from "./Button";
+import { AlertTriangle  } from 'lucide-react';
+
 
 const CardProfile = ({iniciales,userName,userLastName,userEmail}) => {
 
@@ -41,7 +43,7 @@ let completeCharge = true;
       </ul>
 
       <div className="infoNotification">
-        <p className="paragraph-s mb-0">Para acceder a una sala y poder recibir una tutoría personalizada debes agregar un método de pago desde tu perfil.</p>
+        <p className="paragraph-s mb-0">Para acceder a una sala y poder recibir una tutoría personalizada debes agregar un método de pago.</p>
       </div>
       <Button btnText={"Cerrar sesion"} className={"btn-secondary btn-m"} />
       <div className="versionWrapper">
@@ -79,6 +81,7 @@ let completeCharge = true;
         </ul>
 
         <div className="infoNotification">
+        <AlertTriangle size={56} color="#c78709" />
           <p className="paragraph-s mb-0">Para acceder a una sala y poder recibir una tutoría personalizada debes agregar un método de pago desde tu perfil.</p>
         </div>
         <Button btnText={"Cerrar sesion"} className={"btn-secondary btn-m"} />

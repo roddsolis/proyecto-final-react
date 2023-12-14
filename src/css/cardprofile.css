@@ -79,12 +79,16 @@
 }
 
 .infoNotification{
-  background-color: var(--info-1);
-  border: 1px solid var(--info-2);
+  display: flex;
+  align-items: start;
+  justify-content: flex-start;
+  gap: 1em;
   border-radius: var(--small);
   padding: var(--large);
   width: 100%;
-  & p{color: var(--info-4);}
+  background-color: var(--warning-1);
+  border: 1px solid var(--warning-3);
+  & p{color: var(--neutral-6);}
 }
 
 .versionWrapper{

@@ -20,7 +20,6 @@ const UserSelectionModule = () => {
       .catch(error => console.error('Error fetching areas:', error));
   }, []);
   
-
   useEffect(() => {
     // Obtener temas cuando se selecciona un área
     if (selectedArea) {
@@ -67,6 +66,7 @@ const UserSelectionModule = () => {
             }}
           >
             <option value="">Seleccionar área</option>
+            {console.log('Areas:', store.areas)}
             {store.areas.map(area => (
               <option key={area.id} value={area.id.toString()}>{area.name}</option>
             ))}

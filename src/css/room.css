@@ -94,12 +94,13 @@
         box-shadow: 0px -12px 24px var(--neutral-4);
         p{color: var(--neutral-6);}
     }
-
+    
     & .chatMainWrapper{
-        height: 100%;
         width: 100%;
-        overflow-y: visible;
-        padding: var(--large);
+        height: 773px;
+        overflow-y: scroll;
+        padding: var(--medium);
+        /* background-color: chocolate */
     }
 
     & .actionsWrapper{
@@ -170,3 +171,20 @@
 
 }
 
+/* Estilos generales para todos los navegadores */
+.chatMainWrapper::-webkit-scrollbar {
+    width: 6px; /* Ancho de la barra de desplazamiento */
+    margin: 2px;
+  }
+  
+  .chatMainWrapper::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-3); /* Color de la parte desplazable de la barra */
+    border-radius: 6px; /* Bordes redondeados */
+  }
+  
+  .chatMainWrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+    width: 12px;
+     /* Color de fondo de la barra de desplazamiento */
+  }
+  
