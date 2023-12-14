@@ -193,64 +193,82 @@ const AlumnoView = ({ userName }) => {
         <div className="emptyState">
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">Aún no tienes solicitudes</p>
+              <div className="sinSolicitudes">
+                Aún no tienes solicitudes
+              </div>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
+              <div className="sinSolicitudes">
                 Estamos buscando un tutor en línea. Esto puede tardar unos minutos...
-              </p>
+              </div>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === true && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
+              <div className="sinSolicitudes">
                 Encontramos un tutor en línea. Esperando su confirmación...
-              </p>
+              </div>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === true && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-              <p className="paragraph-m">
+              <div className="paragraph-m">
                 {String(solicitudAlumno.tutor_nombre)} aceptó tu solicitud. ¿Quieres entrar a la sala?
-              </p>
+              </div>
+              <button
+                className="btn-m btn-primary">
+                Ir a la sala
+              </button>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === false && solicitudAlumno?.confirmacion_tutor === false && (
             <>
-              <p className="paragraph-m">
+              <div className="sinSolicitudes">
                 El tutor no pudo aceptar tu solicitud. Seguimos buscando...
-              </p>
+              </div>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-              <p className="paragraph-m">
-                {String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ir a la sala o cancelar
-              </p>
+              <div className="paragraph-m">
+              {String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ¿Quieres entrar a la sala?
+              </div>
+              <button
+                className="btn-m btn-primary">
+                Ir a la sala
+              </button>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
-                Actualmente tienes una sala activa, haz click para ir a la sala
-              </p>
+              <div className="paragraph-m">
+                Actualmente tienes una sala abierta
+              </div>
+              <button
+                className="btn-m btn-primary">
+                Ir a la sala
+              </button>
             </>
           )}
         </div>
 
         <div className="actionWrapper">
           <button
-            onClick={handleChangeEstado}
-            className={estadoAlumno.estado ? "btn-m btn-secondary" : "btn-m btn-primary"}>
-            {estadoAlumno.estado ? "Cancelar" : "Buscar un tutor"}
+            onClick={() => {
+              if (!estadoAlumno.alumno_en_sala) {
+                handleChangeEstado();
+              }
+            }}
+            className={estadoAlumno.alumno_en_sala ? "btn-m btn-secondary text-black-50" : estadoAlumno.estado ? "btn-m btn-secondary" : "btn-m btn-primary"}>
+            {estadoAlumno.alumno_en_sala ? "Buscar un tutor" : estadoAlumno.estado ? "Cancelar" : "Buscar un tutor"}
           </button>
         </div>
       </div>

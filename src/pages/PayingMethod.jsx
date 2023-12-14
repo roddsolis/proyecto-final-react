@@ -34,4 +34,3 @@ function PayingMethod() {
 }
 
 export default PayingMethod;
-*/

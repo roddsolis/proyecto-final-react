@@ -233,7 +233,11 @@ const TutorView = ({ userName }) => {
         <CircleSwitch estadoTutor={estadoTutor} />
         <div className="tutorContent">
           <p className="mb-0">Para poder recibir solicitudes de alumnos debes establecer tu estado como conectado.</p>
-          <CustomSwitch estadoTutor={estadoTutor.estado} handleChangeEstado={handleChangeEstado} />
+          {estadoTutor.tutor_en_sala ? (
+            <CustomSwitch estadoTutor={estadoTutor} handleChangeEstado={() => { }} />
+          ) : (
+            <CustomSwitch estadoTutor={estadoTutor} handleChangeEstado={handleChangeEstado} />
+          )}
         </div>
         {/*<div className="estadosActuales">
           estadoTutor.estado={String(estadoTutor.estado)} /
@@ -246,61 +250,86 @@ const TutorView = ({ userName }) => {
         <div className="emptyState">
           {estadoTutor?.estado === false && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === false && solicitudTutor?.estado === null && solicitudTutor?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
+              <div className="sinSolicitudes">
                 Aún no tienes solicitudes
-              </p>
+              </div>
             </>
           )}
 
           {estadoTutor?.estado === true && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === false && solicitudTutor?.estado === null && solicitudTutor?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
-                Aún no tienes solicitudes
-              </p>
+              <div className="sinSolicitudes">
+                Aún no tienes solicitudes. Buscando...
+              </div>
             </>
           )}
 
           {estadoTutor?.estado === true && estadoTutor?.solicitud_entrante === true && estadoTutor?.tutor_en_sala === false && solicitudTutor?.estado === null && solicitudTutor?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
-                {String(solicitudTutor.alumno_nombre)} está esperando un tutor 
-                <strong onClick={() => handleRechazarSolicitud(tutorId)}>Cancelar</strong> 
-                <strong onClick={() => handleAceptarSolicitud(tutorId)}>Aceptar</strong>
-              </p>
+              <div className="mb-0">
+                <strong>{String(solicitudTutor.alumno_nombre)}</strong> está esperando un tutor </div>
+
+              <div className="emptyStateButtons"><button
+                onClick={() => handleRechazarSolicitud(tutorId)}
+                className="btn-m btn-secondary">
+                Cancelar
+              </button>
+                <button
+                  onClick={() => handleAceptarSolicitud(tutorId)}
+                  className="btn-m btn-primary">
+                  Aceptar
+                </button>
+              </div>
+
             </>
           )}
 
           {estadoTutor?.estado === false && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === true && solicitudTutor?.estado === true && solicitudTutor?.confirmacion_tutor === true && (
             <>
-              <p className="paragraph-m">
-                Tienes una sala activa. Ir a la sala
-              </p>
+              <div className="paragraph-m">
+                Aceptaste la solicitud con {String(solicitudTutor.alumno_nombre)}
+              </div>
+              <button
+                className="btn-m btn-primary">
+                Ir a la sala
+              </button>
             </>
           )}
 
           {estadoTutor?.estado === false && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === false && solicitudTutor?.estado === false && solicitudTutor?.confirmacion_tutor === false && (
             <>
-              <p className="paragraph-m">
+              <div className="paragraph-m">
                 Rechazaste la solicitud, ¿intentar buscar nuevamente?
-                <strong onClick={handleChangeEstado}>Seguir buscando</strong>
-              </p>
+              </div>
+              <div>
+                <button onClick={handleChangeEstado}
+                  className="btn-m btn-primary">
+                  Seguir buscando</button>
+              </div>
             </>
           )}
 
           {estadoTutor?.estado === false && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === true && solicitudTutor?.estado === null && solicitudTutor?.confirmacion_tutor === true && (
             <>
-              <p className="paragraph-m">
-                Aceptaste la solicitud con {String(solicitudTutor.alumno_nombre)}, ir a la sala<br />
+              <div className="paragraph-m">
+                Aceptaste la solicitud con {String(solicitudTutor.alumno_nombre)}, ir a la sala
+              </div>
+              <button
+                className="btn-m btn-primary">
                 Ir a la sala
-              </p>
+              </button>
             </>
           )}
 
           {estadoTutor?.estado === false && estadoTutor?.solicitud_entrante === false && estadoTutor?.tutor_en_sala === true && solicitudTutor?.estado === null && solicitudTutor?.confirmacion_tutor === null && (
             <>
-              <p className="paragraph-m">
-                Actualmente tienes una sala activa, haz click para ir a la sala
-              </p>
+              <div className="paragraph-m">
+                Actualmente tienes una sala abierta
+              </div>
+              <button
+                className="btn-m btn-primary">
+                Ir a la sala
+              </button>
             </>
           )}
 
