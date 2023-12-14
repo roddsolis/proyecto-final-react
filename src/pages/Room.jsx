@@ -1,11 +1,11 @@
-import StatusTag from "../components/StatusTag"
-import Avatar from "../components/Avatar"
-import {useEffect, useState,useContext} from 'react'
-import ChatRoomMessage from '../components/ChatRoomMessage'
-import { Plus } from 'lucide-react';
-import VideoRoomActions from '../components/VideoRoomActions'
-import {Context} from '../store/AppContext'
-import io from 'socket.io-client';
+import StatusTag from "../components/StatusTag";
+import Avatar from "../components/Avatar";
+import { useEffect, useState, useContext } from "react";
+import ChatRoomMessage from "../components/ChatRoomMessage";
+import { Plus } from "lucide-react";
+import VideoRoomActions from "../components/VideoRoomActions";
+import { Context } from "../store/AppContext";
+import io from "socket.io-client";
 
 const Room = () => {
   const { store, actions } = useContext(Context);
@@ -37,25 +37,25 @@ const Room = () => {
       })
       .catch((err) => console.error(err));
 
-      socket.on('user_joined', (data)=>{console.log(data)})
+    socket.on("user_joined", (data) => {
+      console.log(data);
+    });
 
-      socket.on("receive_message", (data)=> {
-        console.log("Nuevo mensaje recibido:", data)
-        setChatMessages((prevMessages) => [...prevMessages, data])
-      })
+    socket.on("receive_message", (data) => {
+      console.log("Nuevo mensaje recibido:", data);
+      setChatMessages((prevMessages) => [...prevMessages, data]);
+    });
 
-      socket.emit("join", {room: "room-1"})
+    socket.emit("join", { room: "room-1" });
   }, []);
 
-  
-  console.log(store.usuarioAutenticado.tipo)
+  console.log(store.usuarioAutenticado.tipo);
 
   const handleSendMessage = () => {
     console.log("Enviando mensaje:", newMessage);
-    socket.emit("new_message", {message: newMessage})
+    socket.emit("new_message", { message: newMessage });
     setNewMessage("");
   };
-
 
   return (
     <>
@@ -68,7 +68,7 @@ const Room = () => {
           </div>
           <div className="videoWrapper">
             <Avatar img={userImg} avatarSize={128} chatImgScale={100} />
-            <VideoRoomActions/>
+            <VideoRoomActions />
           </div>
         </div>
         <div className="chatColumn">
@@ -78,7 +78,7 @@ const Room = () => {
             </div>
             <div className="chatMainWrapper">
               {chatMessages.map((data, index) => (
-                <ChatRoomMessage key={index} message={data.message} align={"right"}img={userImg} avatarSize={32} accountType={true} chatImgScale={30} />
+                <ChatRoomMessage key={index} message={data.message} align={"right"} img={userImg} avatarSize={32} accountType={true} chatImgScale={30} />
               ))}
             </div>
             <div className="actionsWrapper">
@@ -90,7 +90,14 @@ const Room = () => {
                 <button className={`actionIconWraper ${btnFocus ? "focused" : ""}`} onClick={activateSendFiles} onFocus={() => btnFocusActive(true)} onBlur={() => btnFocusActive(false)}>
                   <Plus size={18} />
                 </button>
-                <form action="" method="post" onSubmit={(e) => { e.preventDefault(); handleSendMessage(); }}>
+                <form
+                  action=""
+                  method="post"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }}
+                >
                   <input type="text" placeholder={`Envía un mensaje a ${userFirstName}`} className="paragraph-s" onChange={(e) => setNewMessage(e.target.value)} value={newMessage} />
                 </form>
               </div>
