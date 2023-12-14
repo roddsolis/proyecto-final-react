@@ -64,4 +64,28 @@ export default PayingMethod;
                 </label>
               </div>
             </div>
-          </div> */
+          </div>
+
+          <div className="col-11 d-flex align-items-center justify-content-center">
+            <CardGenerator />
+          </div>
+
+          <hr className="my-0" />
+          <div className="row gy-3  d-flex justify-content-between">
+            <div className="containerBtn">
+              <Link to="/login">
+                <Button btnText={"Omitir"} className={"btn-secondary btn-m mt-5"} />
+              </Link>
+
+              <Link to="#">
+                <Button btnText={"Guardar"} className={"btn-primary btn-m mt-5"} />
+              </Link>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+}
+
+export default PayingMethod;
