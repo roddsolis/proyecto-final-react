@@ -10,6 +10,8 @@ const ChatRoomMessage = (  {img, avatarSize, message, align, tutorName, chatImgS
     "img": img,
   }
 
+  console.log(accountType)
+
   console.log(propiedades)
 
   return (

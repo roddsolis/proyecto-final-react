@@ -5,7 +5,7 @@ import ChatRoomMessage from '../components/ChatRoomMessage'
 import { Plus } from 'lucide-react';
 import VideoRoomActions from '../components/VideoRoomActions'
 import {Context} from '../store/AppContext'
-
+import io from 'socket.io-client';
 
 const Room = () => {
   const { store, actions } = useContext(Context);
@@ -18,7 +18,6 @@ const Room = () => {
 
   const [chatMessages, setChatMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  const [isCameraActive, setIsCameraActive] = useState(false);
 
   const socket = io(store.apiURL, { transports: ["websocket"] });
 
@@ -37,53 +36,26 @@ const Room = () => {
         setUserFirstName(firstName);
       })
       .catch((err) => console.error(err));
+
+      socket.on('user_joined', (data)=>{console.log(data)})
+
+      socket.on("receive_message", (data)=> {
+        console.log("Nuevo mensaje recibido:", data)
+        setChatMessages((prevMessages) => [...prevMessages, data])
+      })
+
+      socket.emit("join", {room: "room-1"})
   }, []);
 
-  useEffect(() => {
-    const socket = io(store.apiURL, { transports: ["websocket"] });
-
-    // Obtener datos del usuario autenticado, supongamos que están en store.usuarioAutenticado
-    const usuarioAutenticado = store.usuarioAutenticado;
-
-    // Emitir evento 'usuario_autenticado' con los datos del usuario al servidor
-    socket.emit("usuario_autenticado", usuarioAutenticado);
-
-    socket.on("new_message", (messageData) => {
-        console.log("Nuevo mensaje recibido:", messageData);
-        setChatMessages((prevMessages) => [...prevMessages, messageData]);
-    });
-
-    return () => {
-        socket.disconnect();
-    };
-}, [socket, store.usuarioAutenticado]);
-
   
+  console.log(store.usuarioAutenticado.tipo)
 
   const handleSendMessage = () => {
     console.log("Enviando mensaje:", newMessage);
-
-    // Verificar que store.usuarioAutenticado sea un objeto válido y tiene la propiedad 'id'
-    if (store.usuarioAutenticado && store.usuarioAutenticado.id) {
-      socket.emit("new_message", {
-        user_message: newMessage,
-        alumno_id: store.usuarioAutenticado.id,
-        // tutor_id: tutorId, // Ajusta esto según tu lógica
-      });
-    } else {
-      console.error("El usuario autenticado no tiene un ID válido.");
-    }
-
+    socket.emit("new_message", {message: newMessage})
     setNewMessage("");
   };
 
-  const activateCamera = () => {
-    // Cambia el estado local
-    setIsCameraActive(!isCameraActive);
-
-    // Emitir el evento a través de Socket.IO
-    socket.emit('toggle_camera', { active: !isCameraActive });
-  };
 
   return (
     <>
@@ -96,7 +68,7 @@ const Room = () => {
           </div>
           <div className="videoWrapper">
             <Avatar img={userImg} avatarSize={128} chatImgScale={100} />
-            <VideoRoomActions videoOnClick={activateCamera} />
+            <VideoRoomActions/>
           </div>
         </div>
         <div className="chatColumn">
@@ -105,8 +77,8 @@ const Room = () => {
               <p className="btn-text-s mb-0">Conversación con {userFirstName}</p>
             </div>
             <div className="chatMainWrapper">
-              {chatMessages.map((message, index) => (
-                <ChatRoomMessage key={index} message={message.user_message} time={message.message_time} img={userImg} avatarSize={32} accountType={true} chatImgScale={30} />
+              {chatMessages.map((data, index) => (
+                <ChatRoomMessage key={index} message={data.message} align={"right"}img={userImg} avatarSize={32} accountType={true} chatImgScale={30} />
               ))}
             </div>
             <div className="actionsWrapper">

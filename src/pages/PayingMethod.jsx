@@ -1,7 +1,9 @@
 import Button from "../components/Button";
 import { Link } from "react-router-dom";
 import CardGenerator from "../components/Card-Generator";
-import BigCardProcess from '../components/BigCardProcess'
+import BigCardProcess from '../components/BigCardProcess';
+import { AlertTriangle  } from 'lucide-react';
+
 
 function PayingMethod() {
   return (
@@ -24,6 +26,7 @@ function PayingMethod() {
               </Link>
             </div>
             <div className="inforWarning">
+            <AlertTriangle size={40} color="#c78709" />
               <p className='paragraph-xs'>Los cobros por cada sesión finalizada con éxito serán cargados a tu tarjeta de crédito. Puedes omitir este paso, pero ten en cuenta que no podrás ingresar a una sala si no agregas un método de pago.</p>
             </div>
         </form>
