@@ -388,6 +388,7 @@ def cambiar_estado_alumno():
                             # Emitir un evento de socket para actualizar el estado del tutor en tiempo real
                             print('Enviando evento actualizar_estado_alumno:', alumno_id)
                             socketio.emit('actualizar_estado_alumno', alumno_id)
+                            socketio.emit('actualizar_estado_tutor', tutor_id)
 
                 # Confirmar los cambios en la base de datos
                 db.session.commit()
@@ -459,6 +460,8 @@ def cambiar_estado_tutor():
                             # Emitir un evento de socket para actualizar el estado del alumno en tiempo real
                             print('Enviando evento actualizar_estado_tutor:', tutor_id)
                             socketio.emit('actualizar_estado_tutor', tutor_id)
+                            socketio.emit('actualizar_estado_alumno', alumno_id)
+
 
                 # Confirmar los cambios en la base de datos
                 db.session.commit()

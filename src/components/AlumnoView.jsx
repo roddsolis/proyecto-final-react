@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom';
 import { Context } from '../store/AppContext';
 import io from 'socket.io-client';
 import ContadorUsuarios from "./ContadorUsuarios";
-import Button from "./Button";
 import UserSelectionModule from './UserSelectionModule';
 
 const AlumnoView = ({ userName }) => {
@@ -177,64 +176,82 @@ const AlumnoView = ({ userName }) => {
         <p className="paragraph-m">Selecciona un tema de interés y luego busca un tutor en línea para poder acceder a una sala.</p>
       </div>
       <UserSelectionModule />
-
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">
           <h4 className="subtitle-sm"><div className="stepBadge">Paso 2</div>Busca un tutor y entra a una sala</h4>
           <p className="paragraph-m">Presiona el botón <strong>buscar un tutor en línea</strong> y espera hasta que un tutor acepte la solicitud.</p>
-          <p>estadoAlumno.estado {String(estadoAlumno.estado)}</p>
-          <p>estadoAlumno.solicitud_saliente {String(estadoAlumno.solicitud_saliente)}</p>
-          <p>estadoAlumno.alumno_en_sala {String(estadoAlumno.alumno_en_sala)}</p>
-          <p>solicitudAlumno.estado {String(solicitudAlumno.estado)}</p>
-          <p>solicitudAlumno.confirmacion_tutor {String(solicitudAlumno.confirmacion_tutor)}</p>
-          <p>solicitudAlumno.tutor_nombre {String(solicitudAlumno.tutor_nombre)}</p>
+          {/*<div className="estadosActuales">
+            estadoAlumno.estado={String(estadoAlumno.estado)} /
+            estadoAlumno.solicitud_saliente={String(estadoAlumno.solicitud_saliente)} /
+            estadoAlumno.alumno_en_sala={String(estadoAlumno.alumno_en_sala)} /
+            solicitudAlumno.estado={String(solicitudAlumno.estado)} /
+            solicitudAlumno.confirmacion_tutor={String(solicitudAlumno.confirmacion_tutor)} /
+            solicitudAlumno.tutor_nombre={String(solicitudAlumno.tutor_nombre)}
+          </div>*/}
         </div>
 
         <div className="emptyState">
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
-            <p>Aún no tienes solicitudes</p>
+            <>
+              <p className="paragraph-m">Aún no tienes solicitudes</p>
+            </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-            Estamos buscando un tutor en línea. Esto puede tardar unos minutos... <span onClick={handleChangeEstado}>Cancelar</span>
+              <p className="paragraph-m">
+                Estamos buscando un tutor en línea. Esto puede tardar unos minutos...
+              </p>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === true && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-            Encontramos un tutor en línea. Esperando su confirmación...
+              <p className="paragraph-m">
+                Encontramos un tutor en línea. Esperando su confirmación...
+              </p>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === true && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-            {String(solicitudAlumno.tutor_nombre)} aceptó tu solicitud. ¿Quieres entrar a la sala?
+              <p className="paragraph-m">
+                {String(solicitudAlumno.tutor_nombre)} aceptó tu solicitud. ¿Quieres entrar a la sala?
+              </p>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === false && solicitudAlumno?.confirmacion_tutor === false && (
             <>
-            El tutor no pudo aceptar tu solicitud. Seguimos buscando....
+              <p className="paragraph-m">
+                El tutor no pudo aceptar tu solicitud. Seguimos buscando...
+              </p>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-            {String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ir a la sala o cancelar
+              <p className="paragraph-m">
+                {String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ir a la sala o cancelar
+              </p>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-            Actualmente tienes una sala activa, haz click para ir a la sala
+              <p className="paragraph-m">
+                Actualmente tienes una sala activa, haz click para ir a la sala
+              </p>
             </>
           )}
         </div>
 
         <div className="actionWrapper">
-          <button onClick={() => {if (!estadoAlumno.estado) {
-          handleChangeEstado();}}} className={"btn-primary btn-m disabled"}>Buscar un tutor</button>
+          <button
+            onClick={handleChangeEstado}
+            className={estadoAlumno.estado ? "btn-m btn-secondary" : "btn-m btn-primary"}>
+            {estadoAlumno.estado ? "Cancelar" : "Buscar un tutor"}
+          </button>
         </div>
       </div>
     </>

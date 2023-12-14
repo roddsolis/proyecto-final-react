@@ -89,3 +89,4 @@ export default PayingMethod;
 }
 
 export default PayingMethod;
+*/
