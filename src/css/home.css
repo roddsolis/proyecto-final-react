@@ -102,6 +102,7 @@
     & .infoNotification {
       background-color: var(--neutral-3);
       border: none;
+      & svg{opacity: 0;}
     }
   }
 
@@ -172,8 +173,9 @@
                 color: transparent;}
         }
         & .emptyState{
-            background-color: var(--neutral-1);
+            background-color: var(--neutral-3);
             border: none;
+            color: transparent;
     
         }
         & .actionWrapper{

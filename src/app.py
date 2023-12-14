@@ -7,14 +7,16 @@ from flask import Flask, jsonify, request, render_template, send_from_directory
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_cors import CORS
-from flask_socketio import SocketIO, emit, disconnect
+from flask_socketio import SocketIO, join_room, leave_room, emit
 from flask_jwt_extended import JWTManager, create_access_token, get_jwt_identity, jwt_required
+
 
 # Imports relacionados con SQLAlchemy
 from models import db, Alumno, Tutor, Solicitud_sala, Sala, Area, Tema, Materia, ChatBox
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy.sql import null
 from sqlalchemy.orm.exc import NoResultFound
+
 
 load_dotenv()
 
@@ -114,7 +116,6 @@ def obtener_alumnos():
     print(alumnos_json)
     return jsonify(alumnos_json)
 
-
 # Este es el enpoint que obtiene toda la lista de tutores registrados
 
 @app.route('/tutores',methods=['GET'])
@@ -130,7 +131,6 @@ def obtener_turores():
     
     print(tutor_json)
     return jsonify(tutor_json)
-
 
 @app.route('/estado_tutor/<int:tutor_id>', methods=['GET'])
 def estado_tutor(tutor_id):
@@ -507,6 +507,25 @@ def handle_new_message(message_data):
 @socketio.on('toggle_camera', namespace='/chat')
 def handle_toggle_camera(data):
     emit('camera_toggled', data, broadcast=True)
+
+#     
+
+@socketio.on('connect')
+def handle_connect():
+    print('User connected ID:', request.sid)
+    # print(request)
+@socketio.on('join')
+def handle_join(data):
+    print(f"User with ID: {request.sid} joined room: {data['room']}")
+    join_room(data['room'])
+    emit('user_joined', data, room="room-1")
+@socketio.on('new_message')
+def handle_new_message(data):
+    print("nuevo mensaje")
+    emit('receive_message', data, room="room-1")
+@socketio.on('disconnect')
+def handle_disconnect():
+    print('User Disconnected', request.sid)
 
 
     

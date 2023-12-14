@@ -3,7 +3,7 @@ import Avatar from "./Avatar";
 
 const UserMessageHead = ( {img, avatarSize, align, tutorName, chatImgScale, accountType, time} ) => {
 
-  console.log(time)
+  console.log(accountType)
 
   return (
     <>
