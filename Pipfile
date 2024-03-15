@@ -10,6 +10,8 @@ flask-sqlalchemy = "*"
 flask-cors = "*"
 python-dotenv = "*"
 psycopg2-binary = "*"
+flask-jwt-extended = "*"
+cloudinary = "*"
 
 [dev-packages]
 

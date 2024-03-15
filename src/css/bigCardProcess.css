@@ -1,0 +1,106 @@
+.bigCardWrapper{
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  max-width: 1000px;
+  & .bigCardContentWrapper{
+    width: 100%;
+    height: 100%;
+    background-image: url("main-img.png");
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: 75em;
+    border-radius: var(--medium);
+    overflow: hidden;
+    padding: 3em;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: end;
+    background-color: var(--primary-5);
+
+    & .bigCardInfo{
+      display: flex;
+      flex-direction: column;
+      gap: 1.5em;
+      & p, h1{color: white;}
+    }
+  }
+}
+
+@media screen and (max-width:1328px){
+  .bigCardWrapper{
+    max-width: none;
+    max-height: 20%;
+    justify-content: center;
+    padding: 0;
+    & .bigCardContentWrapper{
+    background-position: bottom -60px left -60px;
+    justify-content: center;
+    background-size: 22em;
+    background-color: var(--primary-4);
+    width: 100%;
+    max-width: none;
+    & .bigCardInfo{display: none;}}  
+  }
+}
+
+@media screen and (max-width: 960px){
+  .bigCardWrapper{
+    max-height: 20%;
+  & .bigCardContentWrapper{
+    background-position: bottom -50px left -60px;
+    justify-content: center;
+    background-size: 20em;
+    background-color: var(--primary-4);
+    & .bigCardInfo{display: none;}}  
+  }
+}
+
+@media screen and (max-width: 768px){
+  .bigCardWrapper{
+    padding: 0;
+  & .bigCardContentWrapper{
+    background-position: bottom -50px left -50px;
+    background-size: 20em;
+    background-color: var(--primary-4);
+    & .bigCardInfo{display: none;}}  
+  }
+}
+
+@media screen and (max-width: 480px){
+  .bigCardWrapper{
+    padding: 0;
+  & .bigCardContentWrapper{
+    background-position: bottom -50px left -50px;
+    background-size: 20em;
+    background-color: var(--primary-4);
+    & .bigCardInfo{display: none;}}  
+  }
+}
+@media screen and (max-width: 375px){
+
+  .bigCardWrapper{
+    max-height: 15%;
+    padding: 0;
+  & .bigCardContentWrapper{
+    background-position: bottom -40px left -60px;
+    justify-content: center;
+    background-size: 20em;
+    background-color: var(--primary-4);
+    & .bigCardInfo{display: none;}}  
+  }
+
+
+}
+
+
+
+
+/* @media screen and (max-width: 1328px){}
+@media screen and (max-width: 960px){}
+@media screen and (max-width: 768px){}
+@media screen and (max-width: 480px){}
+@media screen and (max-width: 375px){} */

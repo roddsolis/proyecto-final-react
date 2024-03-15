@@ -1,0 +1,190 @@
+
+@keyframes sendifile {
+    0% {transform:translateY(16px); opacity: 0;}
+    50% { transform: translateY(0px); opacity: 100;}
+}
+
+.roomWrapper{
+    /* background-color: aquamarine; */
+    width: 100%;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: 1fr;
+    column-gap: 1em;
+    padding: 1em;
+    overflow: hidden;
+    background:linear-gradient(var(--primary-1) 0%, white 40%);
+    
+}
+
+.callColumn{
+    /* background-color: yellow; */
+    grid-column: 1 / 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.chatColumn{
+    /* background-color: pink; */
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    grid-column: 10 / 13;
+    
+}
+
+.userStatusWrapper{
+    /* background-color: red; */
+    width: 100%;
+    max-width: 1440px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding: var(--medium);
+    height: auto;
+    gap: 0.8em;
+    & h4{
+        margin-bottom: 0;
+    }   
+}
+.videoWrapper{
+    background: var(--video-surface-inactive) ;
+    height: 100%;
+    width: 100%;
+    max-width: 1440px;
+    border-radius: var(--large);
+    aspect-ratio: 16 / 9;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    padding: 1em;
+    /* background: url('https://img.freepik.com/foto-gratis/hombre-auriculares-videollamada_23-2148854889.jpg?w=1380&t=st=1700774902~exp=1700775502~hmac=e407cd51bc437342c9e1f4348b298b40e183e55505357e0b8ab04ce858773aed'); */
+    background-position: top center;
+    background-repeat: no-repeat;
+    background-size: 1700px;
+    overflow: hidden;
+}
+.chatWrapper{
+    background: linear-gradient(white 90%, var(--neutral-3) 150%);
+    width: 400px;
+    height: 100%;
+    border-radius: var(--medium);
+    border: 1px solid var(--neutral-3);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0px 12px 11px -8px var(--neutral-3);
+    overflow: hidden;
+
+
+    & .headWrapper{
+        background-color: white;
+        border-bottom: 1px solid var(--neutral-3);
+        height: 56px;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        padding: var(--medium);
+        box-shadow: 0px -12px 24px var(--neutral-4);
+        p{color: var(--neutral-6);}
+    }
+    
+    & .chatMainWrapper{
+        width: 100%;
+        height: 773px;
+        overflow-y: scroll;
+        padding: var(--medium);
+        /* background-color: chocolate */
+    }
+
+    & .actionsWrapper{
+        /* background-color: yellow; */
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 0px var(--small) var(--small) var(--small);
+        position: relative;
+        
+        .sendFilesWrapper{
+            bottom: 52px ;
+            left: 36px;
+            position: absolute;
+            background-color: white;
+            border: 1px solid var(--neutral-3);
+            padding: var(--large);
+            border-radius: var(--small) var(--small) var(--small) 0;
+            box-shadow: 0px 24px 32px -8px hsla(210, 15%, 51%, 0.5);
+            animation-name: sendifile;
+            animation-duration: 0.2s;
+
+        }
+        
+        & .chatActionContainer{
+            background-color: white;
+            width: 100%;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            gap: 1em;
+            border: 1px solid var(--neutral-3);
+            border-radius:var(--extra-small);
+            padding: 0px 0px 0px 8px ;
+            overflow: hidden;
+            
+            & .actionIconWraper{
+                background-color: var(--primary-4);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 32px;
+                height: 32px;
+                aspect-ratio: 1 / 1;
+                border-radius: 100px;
+                transition: transform 0.2s;
+                & svg{color: white;}
+            }
+            .actionIconWraper.focused{
+                transform: rotate(45deg);
+            }   
+
+
+            & input{
+                /* background-color: aquamarine; */
+                border: none;
+                width: 100%;
+            }
+            & ::placeholder{
+                color: var(--neutral-4);
+            }
+        }
+
+
+
+    }
+
+}
+
+/* Estilos generales para todos los navegadores */
+.chatMainWrapper::-webkit-scrollbar {
+    width: 6px; /* Ancho de la barra de desplazamiento */
+    margin: 2px;
+  }
+  
+  .chatMainWrapper::-webkit-scrollbar-thumb {
+    background-color: var(--neutral-3); /* Color de la parte desplazable de la barra */
+    border-radius: 6px; /* Bordes redondeados */
+  }
+  
+  .chatMainWrapper::-webkit-scrollbar-track {
+    background-color: transparent;
+    width: 12px;
+     /* Color de fondo de la barra de desplazamiento */
+  }
+  

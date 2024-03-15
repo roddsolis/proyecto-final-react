@@ -2,11 +2,11 @@
 :root {
   /* colores primarios */
 
-  --primary-5: #0E4FC8;
-  --primary-4: #3a7af1;
-  --primary-3: #81adfd;
-  --primary-2: #cfdffc;
-  --primary-1: #e7effd;
+  --primary-5: #0061C2;
+  --primary-4: #007BF5;
+  --primary-3: #81BFFD;
+  --primary-2: #CFE5FC;
+  --primary-1: #E7F2FD;
 
   /* colores neutrales estos se deben aplicar a bordes, sombras, fondos, tipografia*/
 
@@ -16,7 +16,7 @@
   --neutral-3: #d8e1e6;
   --neutral-2: #e5ebef;
   --neutral-1: #f0f4f7;
-
+  --neutral-0: #fcfdfd;
 
   /* estos son colores de sistema y se usan para alertas, mensajes de error, informacion, etc */
 
@@ -25,6 +25,7 @@
   --danger-2: #fbd3da;
   --danger-1: #feeef1;
 
+  --warning-5: #c78709;
   --warning-4: #febd3b;
   --warning-3: #fed789;
   --warning-2: #fff2d8;
@@ -52,6 +53,7 @@
   /* button secondary surface */
   --button-surface-secondary: linear-gradient(180deg, white 0%, var(--neutral-1) 100%);
   --button-surface-secondary-hover: linear-gradient(180deg, var(--neutral-1) 0%, var(--neutral-2) 100%);
+  --video-surface-inactive: linear-gradient(180deg, var(--neutral-6) 30%, var(--neutral-5) 1000%);
   
   /* sizes */
 
@@ -95,13 +97,13 @@
   letter-spacing: -0.3px;
 }
 .subtitle-m {
-  font-size: 28px;
+  font-size: 25px;
   font-weight: 600;
   line-height: 30.8px; /* 110% */
   letter-spacing: -0.28px;
 }
 .subtitle-sm {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
   line-height: 26.4px; /* 120% */
   letter-spacing: -0.22px;
