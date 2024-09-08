@@ -1,9 +1,9 @@
-import React, { useState, useEffect, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Context } from '../store/AppContext';
-import io from 'socket.io-client';
+import React, { useState, useEffect, useContext } from "react";
+import { useNavigate } from "react-router-dom";
+import { Context } from "../store/AppContext";
+import io from "socket.io-client";
 import ContadorUsuarios from "./ContadorUsuarios";
-import UserSelectionModule from './UserSelectionModule';
+import UserSelectionModule from "./userSelectionModule.jsx";
 
 const AlumnoView = ({ userName }) => {
   const { store } = useContext(Context);
@@ -20,11 +20,10 @@ const AlumnoView = ({ userName }) => {
   });
   const [socket, setSocket] = useState(null);
 
-
   const navigate = useNavigate();
 
   const obtenerEstadoAlumno = async () => {
-    console.log('Llamando a obtenerEstadoAlumno');
+    console.log("Llamando a obtenerEstadoAlumno");
     try {
       const response = await fetch(`http://127.0.0.1:8080/estado/alumno/${alumnoId}`);
       const data = await response.json();
@@ -33,29 +32,29 @@ const AlumnoView = ({ userName }) => {
         const { estado, solicitud_saliente, alumno_en_sala } = data.estado_alumno;
 
         // Utiliza el estado previo para asegurarte de que esté actualizado
-        setEstadoAlumno(prevState => ({
+        setEstadoAlumno((prevState) => ({
           estado: estado,
           solicitud_saliente: solicitud_saliente,
-          alumno_en_sala: alumno_en_sala
+          alumno_en_sala: alumno_en_sala,
         }));
-        console.log('Estado actual del alumno:', data.estado_alumno);
+        console.log("Estado actual del alumno:", data.estado_alumno);
       } else {
-        console.error('Error al obtener el estado actual del alumno:', data.error);
+        console.error("Error al obtener el estado actual del alumno:", data.error);
       }
     } catch (error) {
-      console.error('Error al procesar la solicitud:', error);
+      console.error("Error al procesar la solicitud:", error);
     }
   };
 
   const handleChangeEstado = async () => {
-    const endpoint = 'alumno';
+    const endpoint = "alumno";
     const url = `http://127.0.0.1:8080/cambiar_estado/${endpoint}`;
 
     try {
       const cambiarEstadoResponse = await fetch(url, {
-        method: 'POST',
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ [`${endpoint}_id`]: alumnoId }),
       });
@@ -69,21 +68,21 @@ const AlumnoView = ({ userName }) => {
           // Llamada directa a verificar_y_emparejar solo si el estado cambió a true
           const url = `http://127.0.0.1:8080/verificar_y_emparejar`;
           const verificarResponse = await fetch(url, {
-            method: 'POST',
+            method: "POST",
             headers: {
-              'Content-Type': 'application/json',
+              "Content-Type": "application/json",
             },
-            body: JSON.stringify({ usuario_id: alumnoId, tipo_usuario: 'alumno' }),
+            body: JSON.stringify({ usuario_id: alumnoId, tipo_usuario: "alumno" }),
           });
 
           if (verificarResponse.ok) {
             const verificarData = await verificarResponse.json();
-            console.log('Respuesta completa de verificar y emparejar:', verificarData);
+            console.log("Respuesta completa de verificar y emparejar:", verificarData);
             if (verificarData.message) {
-              console.log('Respuesta de verificar y emparejar:', verificarData.message);
+              console.log("Respuesta de verificar y emparejar:", verificarData.message);
             }
           } else {
-            console.error('Error al verificar y emparejar:', verificarResponse.statusText);
+            console.error("Error al verificar y emparejar:", verificarResponse.statusText);
           }
         } else {
           console.log(`El estado del ${endpoint} se estableció en false.`);
@@ -110,46 +109,45 @@ const AlumnoView = ({ userName }) => {
 
   useEffect(() => {
     const conectarSocket = () => {
-      const newSocket = io('http://127.0.0.1:8080', {
-        transports: ['websocket'],
+      const newSocket = io("http://127.0.0.1:8080", {
+        transports: ["websocket"],
         withCredentials: true,
         reconnectionAttempts: 5,
         reconnectionDelay: 1000,
       });
 
-      newSocket.on('connect', () => {
-        console.log('Conectado al servidor WebSocket');
+      newSocket.on("connect", () => {
+        console.log("Conectado al servidor WebSocket");
 
         // Una vez conectado, unir al tutor a la sala adecuada
         if (alumnoId !== null) {
-          console.log('Uniendo al alumno a la sala:', alumnoId);
-          newSocket.emit('join_room', { room: alumnoId });
+          console.log("Uniendo al alumno a la sala:", alumnoId);
+          newSocket.emit("join_room", { room: alumnoId });
         }
       });
 
-      newSocket.on('disconnect', () => {
-        console.log('Desconectado del servidor WebSocket');
+      newSocket.on("disconnect", () => {
+        console.log("Desconectado del servidor WebSocket");
       });
-
 
       // Manejador para actualizar el estado del tutor
       const onActualizarEstadoAlumno = (data) => {
-        console.log('Recibido evento actualizar_estado_alumno:', data);
+        console.log("Recibido evento actualizar_estado_alumno:", data);
         obtenerEstadoAlumno();
         setSolicitudAlumno({
           estado: data.estado_sala !== undefined ? data.estado_sala : null,
           confirmacion_tutor: data.confirmacion_tutor !== undefined ? data.confirmacion_tutor : null,
-          tutor_nombre: data.tutor_nombre !== undefined ? data.tutor_nombre : null
+          tutor_nombre: data.tutor_nombre !== undefined ? data.tutor_nombre : null,
         });
       };
 
-      newSocket.on('actualizar_estado_alumno', onActualizarEstadoAlumno);
+      newSocket.on("actualizar_estado_alumno", onActualizarEstadoAlumno);
 
       setSocket(newSocket);
 
       return () => {
-        console.log('Desconectado del servidor WebSocket');
-        newSocket.off('actualizar_estado_alumno', onActualizarEstadoAlumno);
+        console.log("Desconectado del servidor WebSocket");
+        newSocket.off("actualizar_estado_alumno", onActualizarEstadoAlumno);
         newSocket.disconnect();
       };
     };
@@ -159,8 +157,7 @@ const AlumnoView = ({ userName }) => {
     }
   }, [alumnoId, socket]);
 
-  useEffect(() => {
-  }, [estadoAlumno]);
+  useEffect(() => {}, [estadoAlumno]);
 
   return (
     <>
@@ -178,8 +175,12 @@ const AlumnoView = ({ userName }) => {
       <UserSelectionModule />
       <div className="sessionWrapper">
         <div className="container d-flex flex-column">
-          <h4 className="subtitle-sm"><div className="stepBadge">Paso 2</div>Busca un tutor y entra a una sala</h4>
-          <p className="paragraph-m">Presiona el botón <strong>buscar un tutor en línea</strong> y espera hasta que un tutor acepte la solicitud.</p>
+          <h4 className="subtitle-sm">
+            <div className="stepBadge">Paso 2</div>Busca un tutor y entra a una sala
+          </h4>
+          <p className="paragraph-m">
+            Presiona el botón <strong>buscar un tutor en línea</strong> y espera hasta que un tutor acepte la solicitud.
+          </p>
           {/*<div className="estadosActuales">
             estadoAlumno.estado={String(estadoAlumno.estado)} /
             estadoAlumno.solicitud_saliente={String(estadoAlumno.solicitud_saliente)} /
@@ -193,69 +194,46 @@ const AlumnoView = ({ userName }) => {
         <div className="emptyState">
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <div className="sinSolicitudes">
-                Aún no tienes solicitudes
-              </div>
+              <div className="sinSolicitudes">Aún no tienes solicitudes</div>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <div className="sinSolicitudes">
-                Estamos buscando un tutor en línea. Esto puede tardar unos minutos...
-              </div>
+              <div className="sinSolicitudes">Estamos buscando un tutor en línea. Esto puede tardar unos minutos...</div>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === true && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <div className="sinSolicitudes">
-                Encontramos un tutor en línea. Esperando su confirmación...
-              </div>
+              <div className="sinSolicitudes">Encontramos un tutor en línea. Esperando su confirmación...</div>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === true && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-              <div className="paragraph-m">
-                {String(solicitudAlumno.tutor_nombre)} aceptó tu solicitud. ¿Quieres entrar a la sala?
-              </div>
-              <button
-                className="btn-m btn-primary">
-                Ir a la sala
-              </button>
+              <div className="paragraph-m">{String(solicitudAlumno.tutor_nombre)} aceptó tu solicitud. ¿Quieres entrar a la sala?</div>
+              <button className="btn-m btn-primary">Ir a la sala</button>
             </>
           )}
 
           {estadoAlumno?.estado === true && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === false && solicitudAlumno?.estado === false && solicitudAlumno?.confirmacion_tutor === false && (
             <>
-              <div className="sinSolicitudes">
-                El tutor no pudo aceptar tu solicitud. Seguimos buscando...
-              </div>
+              <div className="sinSolicitudes">El tutor no pudo aceptar tu solicitud. Seguimos buscando...</div>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === true && (
             <>
-              <div className="paragraph-m">
-              {String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ¿Quieres entrar a la sala?
-              </div>
-              <button
-                className="btn-m btn-primary">
-                Ir a la sala
-              </button>
+              <div className="paragraph-m">{String(solicitudAlumno.tutor_nombre)} acepto tu solicitud, ¿Quieres entrar a la sala?</div>
+              <button className="btn-m btn-primary">Ir a la sala</button>
             </>
           )}
 
           {estadoAlumno?.estado === false && estadoAlumno?.solicitud_saliente === false && estadoAlumno?.alumno_en_sala === true && solicitudAlumno?.estado === null && solicitudAlumno?.confirmacion_tutor === null && (
             <>
-              <div className="paragraph-m">
-                Actualmente tienes una sala abierta
-              </div>
-              <button
-                className="btn-m btn-primary">
-                Ir a la sala
-              </button>
+              <div className="paragraph-m">Actualmente tienes una sala abierta</div>
+              <button className="btn-m btn-primary">Ir a la sala</button>
             </>
           )}
         </div>
@@ -267,7 +245,8 @@ const AlumnoView = ({ userName }) => {
                 handleChangeEstado();
               }
             }}
-            className={estadoAlumno.alumno_en_sala ? "btn-m btn-secondary text-black-50" : estadoAlumno.estado ? "btn-m btn-secondary" : "btn-m btn-primary"}>
+            className={estadoAlumno.alumno_en_sala ? "btn-m btn-secondary text-black-50" : estadoAlumno.estado ? "btn-m btn-secondary" : "btn-m btn-primary"}
+          >
             {estadoAlumno.alumno_en_sala ? "Buscar un tutor" : estadoAlumno.estado ? "Cancelar" : "Buscar un tutor"}
           </button>
         </div>

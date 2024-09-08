@@ -11,15 +11,12 @@ import Notfound from "./pages/Notfound";
 import AdminLogin from "./pages/AdminLogin";
 import AdminHome from "./pages/AdminHome";
 import PayingMethod from "./pages/PayingMethod";
-import TutorBankData from "./pages/TutorBankData";
+import TutorBankData from "./pages/tutorBankData.jsx";
 import AlumnoView from "./components/AlumnoView";
 import TutorView from "./components/TutorView";
 
-
 const Layout = () => {
-  
   const { store, actions } = useContext(Context);
-
 
   return (
     <>
