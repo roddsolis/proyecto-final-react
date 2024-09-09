@@ -1,0 +1,60 @@
+.SelectionModuleWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--extra-large);
+  border-radius: var(--medium);
+  background-color: white;
+  gap: var(--large);
+  border: 1px solid var(--neutral-3);
+  box-shadow: 0px 12px 8px -12px var(--neutral-3);
+  height: 100%;
+  width: 100%;
+
+  .selectionModuleTextContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    & h6 {
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    & p {
+      margin: 0;
+      color: var(--neutral-5);
+    }
+    & .stepBadge {
+      padding: 0.2em 1em 0.2em 1em;
+      height: 32px;
+      border-radius: var(--large);
+      font-size: 0.8rem;
+      width: fit-content;
+      background-color: var(--primary-1);
+      color: var(--primary-5);
+      margin-bottom: 0;
+      box-shadow:0px -1px 0px 0px var(--primary-2) inset;
+      border: 1px solid var(--primary-2);
+    }
+  }
+
+
+  .selectorWrapper {
+    display: flex;
+    gap: 1em;
+    & select {
+      box-shadow: 0px 12px 12px -12px var(--neutral-2), 0px -2px 0px 0px var(--neutral-1) inset;
+      border-radius: var(--extra-small);
+      font-family: "Inter", sans-serif;
+      font-weight: 500;
+      font-size: 0.9rem;
+    }
+
+    & option {
+      padding: 1em;
+      color: var(--neutral-6);
+      border: 1px solid var(--neutral-2);
+    }
+  }
+}

@@ -1,0 +1,44 @@
+* {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  box-sizing: border-box;
+}
+
+#error-page {
+  position: absolute;
+  top: 10%;
+  left: 15%;
+  right: 15%;
+  bottom: 10%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btns {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* O ajusta la altura según sea necesario */
+}
+
+#error-page .content {
+  max-width: 600px;
+  text-align: center;
+}
+
+.content h2.header {
+  font-size: 12vw;
+  line-height: 1em;
+  position: relative;
+}
+
+.content h4 {
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  color: #000;
+  font-size: 2em;
+  max-width: 600px;
+  position: relative;
+}

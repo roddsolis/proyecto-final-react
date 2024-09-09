@@ -1,0 +1,150 @@
+@keyframes light-green {
+  0% {
+    box-shadow: 0px 0px 0px 0px var(--success-1);
+  }
+  50% {
+    box-shadow: 0px 0px 0px 4px var(--success-2);
+  }
+  100% {
+    box-shadow: 0px 0px 0px 6px white;
+  }
+}
+
+.topBarWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  gap: 1em;
+  & .logoHomeWrapper{
+    display: flex;
+    align-items: end;
+    justify-content: end;
+    width: 100%;
+    & img{
+      height: 40px;
+    }
+  }
+}
+
+.textContentWrapper{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5em;
+  width: 100%;
+  height: 100%;
+  & h4{margin-bottom: 0em;} 
+  & p{
+    margin-bottom: 0em;
+    color: var(--neutral-5);
+  }
+}
+
+.sessionWrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--extra-large);
+  border-radius: var(--medium);
+  background-color: white;
+  gap: var(--large);
+  border: 1px solid var(--neutral-3);
+  box-shadow: 0px 12px 8px -12px var(--neutral-3);
+  height: 100%;
+  width: 100%;
+
+  & .tutorContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  & .alumnContent{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  & p {
+    color: var(--neutral-5);
+  }
+}
+
+.actionWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.emptyState {
+  border-radius: var(--small);
+  border: 1px  dashed var(--neutral-3);
+  background: var(--neutral-0);
+  display: flex;
+  height: 120px;
+  width: 100%;
+  padding: 32px;
+  justify-content: center;
+  align-items: center;
+  color: var(--neutral-4);
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+
+#loginBtn {
+  height: 40px;
+  background-color: white;
+  border: 1px solid var(--neutral-3);
+  border-radius: var(--small);
+  padding: var(--small) var(--medium);
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 12px 12px -12px var(--neutral-2), 0px -2px 0px 0px var(--neutral-1) inset;
+  & p {
+    color: var(--neutral-6);
+  }
+}
+
+.btn-light.btn-circle.active .circle {
+  background-color: var(--success-4);
+  /* box-shadow: 0px 0px 0px 0px var(--success-2); */
+  animation-name: light-green;
+  animation-duration: 1.5s;
+  animation-iteration-count: infinite;
+  animation-timing-function: ease-in-out;
+}
+
+.btn-light.btn-circle.inactive .circle {
+  background-color: var(--danger-4);
+}
+
+/* Estilos adicionales para el texto junto al círculo */
+.btn-light.btn-circle .status-text {
+  margin-left: 5px;
+  font-weight: bold;
+}
+
+h4 {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  .stepBadge {
+    padding: 0.2em 1em 0.2em 1em;
+    height: 32px;
+    border-radius: var(--large);
+    font-size: 0.8rem;
+    width: fit-content;
+    background-color: var(--primary-1);
+    color: var(--primary-5);
+    margin-bottom: 0;
+    box-shadow:0px -1px 0px 0px var(--primary-2) inset;
+    border: 1px solid var(--primary-2);
+  }
+}

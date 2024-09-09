@@ -1,0 +1,33 @@
+
+.videoActionsWrapper{
+    /* background-color: red; */
+    width: 100%;
+    height: auto;
+    bottom: 0;
+    position: absolute;
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+    background: linear-gradient(hsla(0, 0%, 0%, 0) 50%,black 200%);
+}
+
+.callIconWrapper{
+    border-radius: var(--medium);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    border: 1px solid hsla(0, 0%, 50%, 0.1);
+    backdrop-filter: blur(15px);
+    background-color: hsla(0, 0%, 50%, 0.3); 
+    & svg{color: white;}
+} 
+
+.icon-red{
+    background-color: var(--danger-4); 
+}
+
+.icon-active{
+    background-color: hsla(0, 0%, 10%, 0.3); 
+}

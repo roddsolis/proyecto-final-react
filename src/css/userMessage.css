@@ -1,0 +1,32 @@
+.messageContainer{
+    letter-spacing: 0.04rem;
+    line-height: 1.13rem;
+    padding-bottom: 1.5em;
+    .message{
+        background-color: white;
+        padding: var(--large) ;
+        margin-left: var(--small);
+        margin-right: 0;
+        margin-top: var(--extra-small);
+        font-size: 0.8em;
+        border-radius: 0 var(--small) var(--small) var(--small);
+        border: 1px solid var(--neutral-3);
+        white-space-collapse:normal;
+        box-shadow: 0px 2px 0px -1px var(--neutral-3);
+        color: var(--neutral-5);
+    }
+
+}
+
+.left{
+        
+    .message{
+        margin-left: 0;
+        margin-right: var(--small);
+        margin-top: var(--extra-small);
+        font-size: 0.8em;
+        border-radius: var(--small) 0 var(--small) var(--small);
+        border: 1px solid var(--neutral-3);
+        white-space-collapse:normal;
+    }
+}
